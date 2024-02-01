@@ -6,5 +6,5 @@ import { LandingPageComponentComponent } from './landing-page-component/landing-
 export const routes: Routes = [
   { path: '', component: LandingPageComponentComponent, title: 'Gestión FCT' },
   { path: 'login', component: LoginComponent, title: 'Login' },
-  { path: '**', component: NotFoundComponent, title: 'pagina no encontrada' }
+  { path: '**', component: NotFoundComponent, title: 'Oops...' }
 ];
