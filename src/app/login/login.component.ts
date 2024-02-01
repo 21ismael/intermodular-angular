@@ -20,6 +20,5 @@ export class LoginComponent {
     console.log("login!");
     //window.location.href = "http://localhost:4200/empresas";
     this.router.navigate(['/login']);
-    // El redirect no es lo correcto
   }
 }
