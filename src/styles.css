@@ -1,11 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   cursor: default;
 }
 
@@ -22,8 +21,6 @@
   background: linear-gradient(to right, #ffab1a, #f49b06);
 }
 
-
-
 html,
 body {
   height: 100%;
@@ -32,4 +29,4 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-}
+}/*# sourceMappingURL=styles.css.map */

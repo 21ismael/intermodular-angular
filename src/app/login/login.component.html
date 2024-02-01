@@ -1,0 +1,17 @@
+<div class="container-fluid d-flex justify-content-center align-items-center">
+  <div class="login-container d-flex p-0">
+      <img class="img-fluid col-6" src="../../assets/login/login-img.jpg" alt="imagen">
+      <form action="" class="col-6">
+          <h1>Bienvenido<br><span>Acceder</span></h1>
+          <div class="input-data">
+              <input [(ngModel)]="usuario" type="text" name="username" required>
+              <label>Usuario</label>
+          </div>
+          <div class="input-data">
+              <input type="password" name="password" required>
+              <label>Contraseña</label>
+          </div>
+          <button (click)="login()" type="submit" name="submit"></button>
+      </form>
+  </div>
+</div>
