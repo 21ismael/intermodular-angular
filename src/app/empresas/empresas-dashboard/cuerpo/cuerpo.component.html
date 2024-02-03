@@ -1,0 +1,28 @@
+<!--mat-stretch-tabs="false" mat-align-tabs="start" animationDuration="2000ms"-->
+
+<mat-tab-group>
+  <mat-tab label="Empresas" id="tab">
+    <section class="cards-container">
+      @for(empresa of empresasFiltradas; track empresa.id) {
+      <article class="col-12 col-md-6 col-lg-4 col-xl-3">
+        <div class="card-empresa">
+          <app-empresa [empresa]="empresa"></app-empresa>
+        </div>
+      </article>
+      } @empty {
+      <p>No hay empresas disponibles</p>
+      }
+    </section>
+  </mat-tab>
+  <mat-tab label="Mapa" id="map">
+    <google-map height="550px" width="100%" [center]="center" [zoom]="zoom" (mapClick)="moveMap($event)"
+      (mapMousemove)="move($event)">
+      @for (position of markerPositions; track position) {
+        <map-marker #marker="mapMarker" [position]="position" (mapClick)="openInfoWindow(marker)" />
+      }
+      @if (empresaMarker){
+        <map-info-window><app-empresa [empresa]="empresaMarker"></app-empresa></map-info-window>
+      }
+    </google-map>
+  </mat-tab>
+</mat-tab-group>

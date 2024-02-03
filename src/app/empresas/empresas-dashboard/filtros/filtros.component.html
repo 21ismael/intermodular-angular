@@ -1,0 +1,60 @@
+<form>
+
+  <div class="contenedor-filtros">
+    <h1 class="mb-3">Buscar Empresa</h1>
+
+    <input type="text" [(ngModel)]="nombre" class="mb-3" name="nombre" placeholder=" Nombre">
+
+    <div class="d-flex flex-column mb-3">
+      <label>Provincia</label>
+      <select [(ngModel)]="provincia" (change)="cambioProvincia()" name="provincia">
+        @for (prov of provincias; track prov) {
+        <option [value]="prov">{{prov | capitalizar}}</option>
+        }
+      </select>
+    </div>
+
+    <div class="d-flex flex-column mb-3">
+      <label>Localidad</label>
+      <select [(ngModel)]="localidad" name="localidad">
+        @for (loc of localidades; track loc) {
+        <option [value]="loc">{{loc}}</option>
+        }
+      </select>
+    </div>
+
+    <div class="d-flex flex-column mb-3">
+      <label>Espacios Vacantes</label>
+      <select [(ngModel)]="vacantes" name="vacantes">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">+5</option>
+      </select>
+    </div>
+  </div>
+
+  <!--<label>Categorias</label>
+  <select [(ngModel)]="categoria" (change)="cambioCategoria()" name="categoria">
+    @for (cat of categorias; track cat) {
+      <option [value]="cat">{{cat}}</option>
+    }
+  </select>
+
+  <label>Servicios</label>
+  <select [(ngModel)]="servicio" name="servicios">
+    @for (serv of servicios; track serv) {
+      <option [value]="serv">{{serv}}</option>
+    }
+  </select>-->
+
+  <div class="d-flex justify-content-end mb-2">
+    <button class="boton w-100 d-flex justify-content-evenly align-items-center" (click)="aplicarFiltros()"
+      type="button">
+      <i class="bi bi-search"></i>
+      Aplicar Filtros
+    </button>
+  </div>
+
+</form>

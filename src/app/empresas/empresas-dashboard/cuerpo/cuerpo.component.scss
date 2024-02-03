@@ -1,0 +1,26 @@
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: auto;
+  min-width: 100%;
+  padding: 5px 10px;
+}
+
+article {
+  margin-bottom: 5px;
+  padding: 8px;
+}
+
+.card-empresa {
+  background-color: rgb(247, 247, 247);
+  height: auto;
+  border-radius: 5px;
+}
+
+.card-empresa:hover {
+  background-color: rgb(240, 240, 240);
+}
+
+#map {
+  border: 10px solid red;
+}
