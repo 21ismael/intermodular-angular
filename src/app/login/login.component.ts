@@ -19,6 +19,6 @@ export class LoginComponent {
   login() {
     console.log("login!");
     //window.location.href = "http://localhost:4200/empresas";
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 }
