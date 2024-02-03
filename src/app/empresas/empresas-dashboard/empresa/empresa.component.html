@@ -1,0 +1,33 @@
+<div class="card-content" resaltar>
+  <figure>
+    <img class="img-fluid rounded" [src]="empresa.imagen">
+  </figure>
+  <p id="localidad">{{ empresa.direccion.localidad }} - ({{ empresa.direccion.provincia }})</p>
+  <h5 id="nombre">{{ empresa.nombre }}</h5>
+  <div class="inline">
+    <i class="bi bi-geo-alt"></i>
+    <p>{{ empresa.direccion.calle }}</p>
+  </div>
+  <div class="inline">
+    <i class="bi bi-person"></i>
+    <p>{{ empresa.vacantes }} {{empresa.vacantes == 1 ? "puesto vacante" : "puestos vacantes"}}</p>
+  </div>
+  <div class="inline">
+    <i class="bi bi-telephone"></i>
+    <p><a href="{{ empresa.telefono }}">Teléfono de contacto</a></p>
+  </div>
+  <div class="inline">
+    <i class="bi bi-envelope"></i>
+    <p><a href="{{ empresa.correo }}">Correo electrónico</a></p>
+  </div>
+  <div class="inline">
+    <i class="bi bi-clock-history"></i>
+    <p>De {{empresa.horario.inicio }} a {{empresa.horario.fin }}</p>
+  </div>
+  <div class="d-flex justify-content-center">
+    <button type="button" [routerLink]="'' + empresa.id" class="boton btn-empresa">
+      Ver Más
+    </button>
+  </div>
+</div>
+
