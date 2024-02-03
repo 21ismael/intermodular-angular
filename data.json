@@ -1,0 +1,177 @@
+{
+  "ubicacion": {
+    "alicante": ["Altea", "Benidorm", "Benissa", "Callosa de Segura", "Calpe/Calp", "Campello", "San Juan de Alicante", "Villena"],
+    "valencia": ["Alzira", "Burjassot", "Cheste", "Cullera", "Gandia", "Mislata", "Oliva", "Ontinyent", "Sagunto/Sagunt", "Valencia", "Xátiva"],
+    "castellón": ["Castellón de la Plana", "Oropesa del Mar", "Peñíscola", "Villarreal", "Viver", "Zucaina"]
+  },
+  "categorias": {
+    "servicio01": ["PHP", "Javascript", "Laravel", "Angular", "MySQL"],
+    "servicio02": ["Swift", "Kotlin", "React Native", "Flutter", "Xamarin"],
+    "servicio03": ["Figma", "Sketch", "InVision", "Adobe XD", "Photoshop"],
+    "servicio04": ["TensorFlow", "Python", "Computer Vision", "Machine Learning"],
+    "servicio05": ["Virtualización", "Sistemas Operativos", "Penetration Testing", "Firewall Configuration", "Identity and Access Management"],
+    "servicio06": ["Linux Administration", "Windows Server Administration", "VMware ESXi", "Cisco Networking", "Shell Scripting"]
+  },
+  "listaEmpresas": [
+    {
+      "id": 1,
+      "nombre": "Pixel78 - Estudio Creativo",
+      "imagen": "../../assets/empresas/pixel78.jpg",
+      "telefono": "111-111-111",
+      "correo": "info@empresa1.com",
+      "direccion": {
+        "calle": "Maravall, local 5",
+        "provincia": "Alicante",
+        "localidad": "Benidorm",
+        "coordenadas": {
+          "lat": 38.537711037256074,
+          "lng": -0.13605523324503718
+        }
+      },
+      "categorias": ["programación web", "diseño UX/UI", "servicio01"],
+      "servicios": ["Javascript", "Figma", "Photoshop"],
+      "vacantes": 2,
+      "horario": { "inicio": "9:00h", "fin": "17:00h" }
+    },
+    {
+      "id": 2,
+      "nombre": "NTT DATA",
+      "imagen": "../../assets/empresas/nttdata_alc.jpg",
+      "telefono": "222-222-222",
+      "correo": "info@empresa2.com",
+      "direccion": {
+        "calle": "Calle Esperanza",
+        "provincia": "Alicante",
+        "localidad": "San Juan de Alicante",
+        "coordenadas": {
+          "lat": 38.37043912215425,
+          "lng": -0.421121748597903
+        }
+      },
+      "categorias": ["programación web", "diseño UX/UI", "servicio01"],
+      "servicios": ["Javascript", "Figma", "Photoshop"],
+      "vacantes": 7,
+      "horario": { "inicio": "8:00h", "fin": "16:00h" }
+    },
+    {
+      "id": 3,
+      "nombre": "Centauro",
+      "imagen": "../../assets/empresas/centauro.jpg",
+      "telefono": "333333333",
+      "correo": "info@empresa3.com",
+      "direccion": {
+        "calle": "Calle La Font 3",
+        "provincia": "Alicante",
+        "localidad": "Benidorm",
+        "coordenadas": {
+          "lat": 38.534589098211455,
+          "lng": -0.10686578906574488
+        }
+      },
+      "categorias": ["programación web", "diseño UX/UI", "a. de sistemas", "servicio01"],
+      "servicios": ["Javascript", "Figma", "Photoshop", "Virtualización"],
+      "vacantes": 1,
+      "horario": { "inicio": "9:00h", "fin": "17:00h" }
+    },
+    {
+      "id": 4,
+      "nombre": "Indra",
+      "imagen": "../../assets/empresas/indra.jpeg",
+      "telefono": "444444444",
+      "correo": "info@empresa4.com",
+      "direccion": {
+        "calle": "Calle Principal 4",
+        "provincia": "Valencia",
+        "localidad": "Valencia",
+        "coordenadas": {
+          "lat": 39.473010440047936,
+          "lng": -0.35454601476671105
+        }
+      },
+      "categorias": ["desarrollo móvil", "diseño UX/UI", "servicio02"],
+      "servicios": ["Javascript", "Kotlin", "Java"],
+      "vacantes": 1,
+      "horario": { "inicio": "9:00h", "fin": "16:00h" }
+    },
+    {
+      "id": 5,
+      "nombre": "NTT DATA",
+      "imagen": "../../assets/empresas/nttdata_vlc.jpg",
+      "telefono": "555555555",
+      "correo": "info@empresa5.com",
+      "direccion": {
+        "calle": "Calle Finlandia 5",
+        "provincia": "Valencia",
+        "localidad": "Valencia",
+        "coordenadas": {
+          "lat": 39.49218952816786,
+          "lng": -0.40140106929523267
+        }
+      },
+      "categorias": ["programación web", "diseño UX/UI", "servicio03"],
+      "servicios": ["Javascript", "Figma", "Photoshop"],
+      "vacantes": 3,
+      "horario": { "inicio": "8:00h", "fin": "14:00h" }
+    },
+    {
+      "id": 6,
+      "nombre": "Accenture",
+      "imagen": "../../assets/empresas/accenture.jpg",
+      "telefono": "666666666",
+      "correo": "info@empresa6.com",
+      "direccion": {
+        "calle": "Calle Principal 6",
+        "provincia": "Valencia",
+        "localidad": "Valencia",
+        "coordenadas": {
+          "lat": 39.467924464094125,
+          "lng": -0.38088048670515023
+        }
+      },
+      "categorias": ["programación web", "diseño UX/UI", "servicio01"],
+      "servicios": ["Javascript", "Figma", "Photoshop"],
+      "vacantes": 1,
+      "horario": { "inicio": "8:30h", "fin": "14:30h" }
+    },
+    {
+      "id": 7,
+      "nombre": "Telefónica",
+      "imagen": "../../assets/empresas/telefonica.jpeg",
+      "telefono": "777777777",
+      "correo": "info@empresa7.com",
+      "direccion": {
+        "calle": "Calle Principal 7",
+        "provincia": "Castellón",
+        "localidad": "Villarreal",
+        "coordenadas": {
+          "lat": 39.46907830373499,
+          "lng": -0.37592946813395617
+        }
+      },
+      "categorias": ["programación web", "diseño UX/UI", "servicio05"],
+      "servicios": ["Javascript", "Figma", "Photoshop"],
+      "vacantes": 1,
+      "horario": { "inicio": "9:00h", "fin": "17:00h" }
+    },
+    {
+      "id": 8,
+      "nombre": "MediaMarkt",
+      "imagen": "../../assets/empresas/mediamrkt.jpg",
+      "telefono": "888888888",
+      "correo": "info@empresa8.com",
+      "direccion": {
+        "calle": "Calle Principal 8",
+        "provincia": "Castellón",
+        "localidad": "Peñíscola",
+        "coordenadas": {
+          "lat": 40.45574380831745,
+          "lng": 0.45067853802779617
+        }
+      },
+      "categorias": ["programación web", "diseño UX/UI", "servicio06"],
+      "servicios": ["Javascript", "Figma", "Photoshop"],
+      "vacantes": 2,
+      "horario": { "inicio": "9:30h", "fin": "17:30h" }
+    }
+  ]
+}
