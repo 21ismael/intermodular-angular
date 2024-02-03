@@ -1,18 +1,4 @@
-.main-btn {
-    border: 1px solid transparent;
-    border-radius: 5px;
-    background: linear-gradient(90deg, rgba(241, 39, 17, 1) 0%, rgba(240, 129, 22, 1) 66%);
-    opacity: 0.8;
-    padding: 10px;
-    color: white;
-    transition: opacity 300ms ease-in-out;
-    &:hover {
-        opacity: 1;
-    }
-}
-
 #filtro {
-    height: 100vh;
     padding: 20px;
     position: relative;
     display: flex;
