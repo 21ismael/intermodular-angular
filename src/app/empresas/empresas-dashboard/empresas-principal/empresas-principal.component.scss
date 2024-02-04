@@ -4,12 +4,14 @@
 }
 
 .filtros {
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  width: 20%;
   height: calc(100vh - 94px);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .cuerpo {
   height: calc(100vh - 94px);
+  width: 80%;
   overflow-y: scroll;
   padding-bottom: 20px;
 }

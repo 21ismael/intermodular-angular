@@ -1,0 +1,18 @@
+#filtro {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+#filtro button {
+  width: 90%;
+  cursor: pointer;
+}
+#filtro select {
+  width: 90%;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-bottom: 1px solid black;
+  padding: 10px 0;
+}/*# sourceMappingURL=filtro-component.component.css.map */
