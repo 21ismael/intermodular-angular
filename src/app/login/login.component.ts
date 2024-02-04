@@ -16,9 +16,10 @@ export class LoginComponent {
   usuario: string = "";
   password: string = "";
 
-  login() {
-    console.log("login!");
-    //window.location.href = "http://localhost:4200/empresas";
+  login(e: any) {
     this.router.navigate(['/']);
+    document.getElementById('login-form')?.addEventListener('submit', function(e) {
+      e.preventDefault();
+    });
   }
 }
