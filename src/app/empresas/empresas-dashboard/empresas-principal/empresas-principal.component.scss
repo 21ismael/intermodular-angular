@@ -5,10 +5,11 @@
 
 .filtros {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  height: calc(100vh - 94px);
 }
 
 .cuerpo {
-  height: 100vh;
+  height: calc(100vh - 94px);
   overflow-y: scroll;
   padding-bottom: 20px;
 }
