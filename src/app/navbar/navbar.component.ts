@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [],
+  imports: [MatTooltipModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
@@ -12,7 +13,9 @@ export class NavbarComponent {
 
   constructor(private router: Router) {}
 
-  onLoginClick() {
-    this.router.navigate(['/login']);
+  active: boolean = false;
+
+  navigate(ruta: string) {
+    this.router.navigate([ruta]);
   }
 }

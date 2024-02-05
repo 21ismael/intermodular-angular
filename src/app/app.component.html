@@ -1,9 +1,6 @@
-<div [@routesAnimation]="getRouteAnimationData()">
-    @if(canShowNavbar) {
-        <div>
-            <app-navbar></app-navbar>
-        </div>
-    }
+<header>
+    <app-navbar [ngStyle]="canShowNavbar ? { 'display': 'block' } : { 'display': 'none' }"></app-navbar>
+</header>
+<main>
     <router-outlet></router-outlet>
-</div>
-
+</main>
