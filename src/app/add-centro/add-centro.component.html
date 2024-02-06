@@ -2,8 +2,8 @@
     <h3 class="h1">Añadir Centro</h3>
     <form [formGroup]="formulario" (ngSubmit)="submit($event)">
         <div class="row">
-            <div class="col-6">
-                <div class="my-5">
+            <div class="col-12 col-lg-6">
+                <div class="mb-5">
                     <label for="nombre" class="mb-2 ms-1">Nombre del centro</label>
                     <input type="text" name="nombre" formControlName="nombre">
                 </div>
@@ -20,8 +20,8 @@
                     <input type="text" name="telefono" formControlName="telefono">
                 </div>
             </div>
-            <div class="col-6">
-                <div class="my-5">
+            <div class="col-12 col-lg-6">
+                <div class="mb-5">
                     <label for="password" class="mb-2 ms-1">Contraseña</label>
                     <input type="password" name="password" formControlName="password">
                 </div>
@@ -42,7 +42,7 @@
             </div>
         </div>
         <div class="d-flex justify-content-end mt-5">
-            <button type="submit" class="main-btn" id="añadir-btn">
+            <button type="submit" class="main-btn w-100" id="añadir-btn">
                 <i class="bi bi-plus-circle"></i>
                 <span class="ms-2">Añadir</span>
             </button>
