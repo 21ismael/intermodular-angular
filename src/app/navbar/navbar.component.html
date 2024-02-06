@@ -5,6 +5,11 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navbar-ul">
       <li class="nav-item my-3 mx-2">
+        <button class="secondary-btn w-100" matTooltip="Panel de administrador" (click)="navigate('/panel')">
+          <i class="bi bi-key"></i>
+        </button>
+      </li>
+      <li class="nav-item my-3 mx-2">
         <button class="secondary-btn w-100" matTooltip="Empresas" (click)="navigate('/empresas')">
             <i class="bi bi-building"></i>
         </button>
