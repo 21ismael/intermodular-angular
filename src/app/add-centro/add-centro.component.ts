@@ -25,18 +25,6 @@ export class AddCentroComponent implements OnInit {
       provincia: ['', Validators.required],
       rol: 'centro'
     });
-    /*
-    this.formulario = new FormGroup({
-      nombre: new FormControl('', [Validators.required, Validators.minLength(10)]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-      direccion: new FormControl('', [Validators.required]),
-      telefono: new FormControl('', [Validators.required, Validators.pattern('')]),
-      poblacion: new FormControl('', [Validators.required]),
-      provincia: new FormControl('', [Validators.required]),
-      rol: new FormControl('centro'),
-    });
-    */
   }
 
   submit(e: Event) {

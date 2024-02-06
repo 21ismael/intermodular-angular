@@ -9,3 +9,11 @@ select, input, option {
 label {
     font-size: 18px;
 }
+
+.invalid {
+    border: 1px solid #dc3545;
+}
+
+input:focus, select:focus {
+    outline: none;
+}

@@ -1,0 +1,22 @@
+<aside class="container-fluid mt-5">
+        <button class="main-btn navbar-toggler d-xl-none" type="button" data-bs-toggle="collapse" data-bs-target="#panel" aria-controls="panel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-list"></i>
+            <span class="ms-2">Abrir menú</span>
+        </button>
+        <div class="collapse navbar-collapse d-xl-block w-100" id="panel">
+            <p class="h2 my-5">Panel de administración</p>
+            <div class="w-100 panel-option" routerLink="/panel">
+                <p class="h4">Principal</p>
+            </div>
+            <div class="w-100 panel-option">
+                <p class="h4">Empresas</p>
+            </div>
+            <div class="w-100 panel-option" routerLinkActive="active" routerLink="/panel/add/centro">
+                <p class="h4">Centros</p>
+            </div>
+            <div class="w-100 panel-option" routerLinkActive="active" routerLink="/panel/add/tutor">
+                <p class="h4">Tutores</p>
+            </div>
+        </div>
+</aside>
+
