@@ -41,9 +41,13 @@ body {
   opacity: 0.8;
   padding: 10px;
   color: white;
-  transition: opacity 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
   &:hover {
       opacity: 1;
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 }
 
