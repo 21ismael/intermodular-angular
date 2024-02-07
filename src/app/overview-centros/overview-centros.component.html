@@ -1,0 +1,40 @@
+<section class="container-fluid py-5">
+    <h2 class="h1">Información general de centros</h2>
+    <div class="mt-3 table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Dirección</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col">Provincia</th>
+                    <th scope="col">Población</th>
+                    <th scope="col">Operaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>IES Pere Maria</td>
+                    <td>ies.gmail.com</td>
+                    <td>Calle 3</td>
+                    <td>123456789</td>
+                    <td>Alicante</td>
+                    <td>Benidorm</td>
+                    <td>
+                        <a class="operations-icon" matTooltip="Editar"><i class="bi bi-pencil mx-3"></i></a>
+                        <a class="operations-icon" matTooltip="Eliminar"><i class="bi bi-trash mx-3"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class=" mt-5 w-100 d-flex justify-content-end">
+        <button class="main-btn" routerLink="/panel/add/centro">
+            <i class="bi bi-plus-circle me-1"></i>
+            <span class="ms-1">Añadir centro</span>
+        </button>
+    </div>
+</section>

@@ -51,6 +51,18 @@ body {
   }
 }
 
+.operations-icon {
+  color: black;
+  border-radius: 100%;
+  padding: 5px;
+  font-size: 20px;
+  transition: background-color 200ms ease-in;
+  &:hover {
+      background-color: #ddd;
+      cursor: pointer;
+  }
+}
+
 .secondary-btn {
   border: 1px solid #dddddd;
   border-radius: 5px;
