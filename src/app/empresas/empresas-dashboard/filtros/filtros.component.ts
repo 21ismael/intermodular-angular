@@ -6,11 +6,12 @@ import { Subscription } from 'rxjs';
 import { Filtros } from './filtros';
 import { EmpresasService } from '../empresas.service';
 import { CapitalizarPipe } from '../../../pipes/capitalizar.pipe';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-filtros',
   standalone: true,
-  imports: [CommonModule, FormsModule, CapitalizarPipe],
+  imports: [RouterModule, CommonModule, FormsModule, CapitalizarPipe],
   templateUrl: './filtros.component.html',
   styleUrl: './filtros.component.scss'
 })

@@ -11,12 +11,16 @@ import { AddTutorComponent } from './add-tutor/add-tutor.component';
 import { OverviewCentrosComponent } from './overview-centros/overview-centros.component';
 import { OverviewTutoresComponent } from './overview-tutores/overview-tutores.component';
 import { AddEmpresaComponent } from './add-empresa/add-empresa.component';
+import { CuerpoComponent } from './empresas/empresas-dashboard/cuerpo/cuerpo.component';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponentComponent, title: 'Gestión FCT', data: { animation: 'landingPage' } },
   { path: 'login', component: LoginComponent, title: 'Login', data: { animation: 'loginPage' } },
-  { path: 'empresas', component: EmpresasPrincipalComponent, title: 'Empresas Dashboard', resolve: { datos: empresasResolver } },
-  { path: 'empresas/:id', component: EmpresaDetailsComponent, resolve: { empresa: detailsResolver } },
+  { path: 'empresas', component: EmpresasPrincipalComponent, title: 'Empresas Dashboard', resolve: { datos: empresasResolver }, children: [
+    { path: '', component: CuerpoComponent, title: 'Empresas Dashboard' },
+    { path: 'search/:id', component: EmpresaDetailsComponent, resolve: { empresa: detailsResolver } }
+  ]},
+  /*{ path: 'empresas/:id', component: EmpresaDetailsComponent, resolve: { empresa: detailsResolver } },*/
   { path: 'panel', component: AdminPanelComponent ,title: 'Panel de administración', children: [
     { path: 'centros', component: OverviewCentrosComponent, title: 'Información de centros' },
     { path: 'tutores', component: OverviewTutoresComponent, title: 'Información de tutores' },
