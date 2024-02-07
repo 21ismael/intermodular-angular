@@ -1,6 +1,7 @@
 aside {
     padding: 10px;
     color: #333333;
+    height: calc(100vh - 94px);
 }
 
 .panel-option {
@@ -9,6 +10,7 @@ aside {
     border-radius: 10px;
     margin: 20px 0;
     transition: background-color 300ms ease-in-out;
+    cursor: pointer;
     &:hover {
         background-color: #f0f0f0;
     }
