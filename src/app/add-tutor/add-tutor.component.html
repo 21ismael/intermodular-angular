@@ -1,1 +1,91 @@
-<p>add-tutor works!</p>
+<section class="container-fluid p-4">
+    <h3 class="h1 my-5">Añadir Tutor</h3>
+    <form [formGroup]="addTutorForm" (ngSubmit)="submit($event)">
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div class="mb-5">
+                    <label for="nombre" class="mb-2 ms-1">Nombre</label>
+                    <input type="text" name="nombre" formControlName="nombre" [ngClass]="{'invalid': addTutorForm.get('nombre')?.invalid && (addTutorForm.get('nombre')?.dirty || addTutorForm.get('nombre')?.touched)}">
+                    @if (addTutorForm.get('nombre')?.invalid && (addTutorForm.get('nombre')?.dirty || addTutorForm.get('nombre')?.touched)) {
+                        <div class="position-absolute mt-2">
+                            <span *ngIf="addTutorForm.get('nombre')?.errors?.['required']" class="text-danger">El nombre del tutor es obligatorio</span>
+                            <span *ngIf="addTutorForm.get('nombre')?.errors?.['minlength']" class="text-danger">El nombre es muy corto</span>
+                        </div>
+                    }
+                </div>
+                <div class="mb-5">
+                    <label for="dni" class="mb-2 ms-1">DNI</label>
+                    <input type="text" name="dni" formControlName="dni" [ngClass]="{'invalid': addTutorForm.get('dni')?.invalid && (addTutorForm.get('dni')?.dirty || addTutorForm.get('dni')?.touched)}">
+                    @if(addTutorForm.get('dni')?.invalid && (addTutorForm.get('dni')?.dirty || addTutorForm.get('dni')?.touched)) {
+                        <div class="position-absolute mt-2">
+                            <span *ngIf="addTutorForm.get('dni')?.errors?.['required']" class="text-danger">El DNI del tutor es obligatorio</span>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="mb-5">
+                    <label for="email" class="mb-2 ms-1">Correo electrónico</label>
+                    <input type="text" name="email" formControlName="email" [ngClass]="{'invalid': addTutorForm.get('email')?.invalid && (addTutorForm.get('email')?.dirty || addTutorForm.get('email')?.touched)}">
+                    @if (addTutorForm.get('email')?.invalid && (addTutorForm.get('email')?.dirty || addTutorForm.get('email')?.touched)) {
+                        <div class="position-absolute mt-2">
+                            <span *ngIf="addTutorForm.get('email')?.errors?.['required']" class="text-danger">El correo eléctrónico es obligatorio</span>
+                            <span *ngIf="addTutorForm.get('email')?.errors?.['email']" class="text-danger">La dirección de correco electrónico no es correcta</span>
+                        </div>
+                    }
+                </div>
+                <div class="mb-5">
+                    <label for="password" class="mb-2 ms-1">Contraseña</label>
+                    <input type="text" name="password" formControlName="password" [ngClass]="{'invalid': addTutorForm.get('password')?.invalid && (addTutorForm.get('password')?.dirty || addTutorForm.get('password')?.touched)}">
+                    @if (addTutorForm.get('password')?.invalid && (addTutorForm.get('password')?.dirty || addTutorForm.get('password')?.touched)) {
+                        <div class="position-absolute mt-2">
+                            <span *ngIf="addTutorForm.get('password')?.errors?.['required']" class="text-danger">Por favor, indique una contraseña</span>
+                            <span *ngIf="addTutorForm.get('password')?.errors?.['minlength']" class="text-danger">La contraseña debe ser de al menos 8 caracteres</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h3 class="mb-3">Centro</h3>
+            <div class="col-12">
+                <div class="mb-5">
+                    <label for="provincia" class="mb-2 ms-1">Provincia</label>
+                    <select name="provincia" id="provincia">
+                        <option value="">Alicante</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="mb-5">
+                    <label for="poblacion" class="mb-2 ms-1">Población</label>
+                    <select name="poblacion" id="poblacion">
+                        <option value="">Benidorm</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="mb-5">
+                    <label for="centro" class="mb-2 ms-1">Centro</label>
+                    <select name="centro" id="centro" formControlName="centro" [ngClass]="{'invalid': addTutorForm.get('centro')?.invalid && (addTutorForm.get('centro')?.dirty || addTutorForm.get('centro')?.touched)}">
+                        <option value="Pere Maria">IES Pere Maria</option>
+                        <option value="2">IES 2</option>
+                    </select>
+                    @if (addTutorForm.get('centro')?.invalid && (addTutorForm.get('centro')?.dirty || addTutorForm.get('centro')?.touched)) {
+                        <div class="position-absolute mt-2">
+                            <span *ngIf="addTutorForm.get('centro')?.errors?.['required']" class="text-danger">La selección de un centro es obligatoria</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end mt-5">
+            <button type="submit" class="main-btn w-100" id="añadir-btn" [disabled]="addTutorForm.invalid">
+                <i class="bi bi-plus-circle"></i>
+                <span class="ms-2">Añadir</span>
+            </button>
+        </div>
+    </form>
+
+    <p>{{ addTutorForm.value | json }}</p>
+</section>
