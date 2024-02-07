@@ -11,7 +11,10 @@ import { AddTutorComponent } from './add-tutor/add-tutor.component';
 import { OverviewCentrosComponent } from './overview-centros/overview-centros.component';
 import { OverviewTutoresComponent } from './overview-tutores/overview-tutores.component';
 import { AddEmpresaComponent } from './add-empresa/add-empresa.component';
+import { EditCentroComponent } from './edit-centro/edit-centro.component';
+import { EditTutorComponent } from './edit-tutor/edit-tutor.component';
 import { CuerpoComponent } from './empresas/empresas-dashboard/cuerpo/cuerpo.component';
+
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponentComponent, title: 'Gestión FCT', data: { animation: 'landingPage' } },
@@ -26,7 +29,9 @@ export const routes: Routes = [
     { path: 'tutores', component: OverviewTutoresComponent, title: 'Información de tutores' },
     { path: 'add/centro', component: AddCentroComponent, title: 'Añadir Centro' },
     { path: 'add/tutor', component: AddTutorComponent, title: 'Añadir Tutor' },
-    { path: 'add/empresa', component: AddEmpresaComponent, title: 'Añadir Empresa' }
+    { path: 'add/empresa', component: AddEmpresaComponent, title: 'Añadir Empresa' },
+    { path: 'edit/centro/:id', component: EditCentroComponent, title: 'Editar Centro' },
+    { path: 'edit/tutor/:id', component: EditTutorComponent, title: 'Editar Tutor' }
   ] },
   { path: '**', component: NotFoundComponent, title: 'Página no encontrada' }
 ];
