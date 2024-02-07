@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import {MatTooltipModule} from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [MatTooltipModule],
+  imports: [RouterModule, MatTooltipModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
