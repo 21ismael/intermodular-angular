@@ -1,0 +1,128 @@
+<div class="container-fluid p-4">
+  <h1 class="h1 my-4">Agregar empresa</h1>
+  <form [formGroup]="empresaFormGroup">
+
+    <div class="row d-flex mb-3">
+
+      <div class="col-12 col-md-6">
+        <label>Nombre
+          <input class="form-control" formControlName="nombre"
+            [ngClass]="{'is-valid': nombre?.valid, 'is-invalid': nombre?.invalid && (nombre?.touched || nombre?.dirty)}" />
+          <div *ngIf="nombre?.invalid && (nombre?.touched || nombre?.dirty)" class="invalid-feedback col-12">
+            El nombre es obligatorio.
+          </div>
+        </label>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <label>CIF
+          <input class="form-control" formControlName="cif"
+            [ngClass]="{'is-valid': cif?.valid, 'is-invalid': cif?.invalid && (cif?.touched || cif?.dirty)}" />
+          <div *ngIf="cif?.invalid && (cif?.touched || cif?.dirty)" class="invalid-feedback col-12">
+            El cif es obligatorio.
+          </div>
+        </label>
+      </div>
+
+    </div>
+
+    <div class="row d-flex py-2 mb-3">
+      <div class="col-12 col-md-6">
+        <label>Provincia
+          <select formControlName="provincia" (change)="cambioProvincia()" name="provincia"
+            [ngClass]="{'is-valid': provincia?.valid, 'is-invalid': provincia?.invalid && (provincia?.touched || provincia?.dirty)}">
+            @for (prov of provincias; track prov) {
+            <option [value]="prov">{{prov | capitalizar}}</option>
+            }
+          </select>
+          <div *ngIf="provincia?.invalid && (provincia?.touched || provincia?.dirty)" class="invalid-feedback col-12">
+            La provincia es obligatoria.
+          </div>
+        </label>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <label>Localidad
+          <select formControlName="localidad" name="localidad"
+            [ngClass]="{'is-valid': localidad?.valid, 'is-invalid': localidad?.invalid && (localidad?.touched || localidad?.dirty)}">
+            @for (loc of localidades; track loc) {
+            <option [value]="loc">{{loc}}</option>
+            }
+          </select>
+          <div *ngIf="localidad?.invalid && (localidad?.touched || localidad?.dirty)" class="invalid-feedback col-12">
+            La localidad es obligatoria.
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <div class="row d-flex mb-3">
+      <div class="col-12 col-md-6">
+        <label class="col-6">Email
+          <input class="form-control" formControlName="email"
+            [ngClass]="{'is-valid': email?.valid, 'is-invalid': email?.invalid && (email?.touched || email?.dirty)}" />
+          <div *ngIf="email?.invalid && (email?.touched || email?.dirty)" class="invalid-feedback col-12">
+            El email es obligatorio y debe ser válido.
+          </div>
+        </label>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <label>Puestos Disponibles</label>
+        <select formControlName="vacantes" name="vacantes"
+          [ngClass]="{'is-valid': vacantes?.valid, 'is-invalid': vacantes?.invalid && (vacantes?.touched || vacantes?.dirty)}">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">+5</option>
+        </select>
+        <div *ngIf="vacantes?.invalid && (vacantes?.touched || vacantes?.dirty)" class="invalid-feedback col-12">
+          El número de vacantes es obligatorio.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row d-flex mb-3">
+      <div class="col-12 col-md-6" formGroupName="horario">
+        <div class="row">
+          <div class="col-6">
+            <label class="smallLabel">Hora inicio<input type="time" formControlName="inicio" placeholder="Inicio"></label>
+          </div>
+          <div class="col-6">
+            <label class="smallLabel">Hora fin<input type="time" formControlName="fin" placeholder="Fin"></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="col-12 col-md-6">
+      <label>Categoría
+        <select formControlName="categoria" name="categoria"
+          [ngClass]="{'is-valid': categoria?.valid, 'is-invalid': categoria?.invalid && (categoria?.touched || categoria?.dirty)}">
+          @for (prov of categorias; track prov) {
+          <option [value]="prov">{{prov | capitalizar}}</option>
+          }
+        </select>
+        <div *ngIf="categoria?.invalid && (categoria?.touched || categoria?.dirty)" class="invalid-feedback col-12">
+          La categoria es obligatoria.
+        </div>
+      </label>
+    </div>
+
+    <br>
+    <div class="d-flex justify-content-end mt-5">
+      <button type="submit" class="main-btn w-100">
+        <i class="bi bi-plus-circle"></i>
+        <span class="ms-2">Añadir Empresa</span>
+      </button>
+    </div>
+  </form>
+
+  <br>
+  <br>
+  <p>{{empresa | json}}</p>
+</div>
