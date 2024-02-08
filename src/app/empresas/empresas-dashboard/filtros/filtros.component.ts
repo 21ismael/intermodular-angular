@@ -73,5 +73,6 @@ export class FiltrosComponent {
       vacantes: this.vacantes
     }
     this.filtrosService.actualizarFiltros(this.filtros);
+    console.log(this.filtros);
   }
 }

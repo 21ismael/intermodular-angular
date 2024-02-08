@@ -1,16 +1,4 @@
-.empresas-container {
-  height: auto;
-  display: flex;
-}
-
-.filtros {
-  height: calc(100vh - 94px);
-  width: 40%;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-
-.empresa-details {
+.empresa-container {
+  height: 100%;
   padding: 20px;
-  display: flex;
-  justify-content: center;
 }

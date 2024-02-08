@@ -1,0 +1,24 @@
+aside {
+  padding: 10px;
+  color: #333333;
+}
+
+.panel-option {
+  padding: 30px;
+  border: 1px solid #dddddd;
+  border-radius: 10px;
+  margin: 20px 0;
+  transition: background-color 300ms ease-in-out;
+  cursor: pointer;
+}
+.panel-option:hover {
+  background-color: #f0f0f0;
+}
+
+.active {
+  background-color: #e0e0e0;
+  transition: background-color 300ms ease-in-out;
+}
+.active:hover {
+  background-color: #d0d0d0;
+}/*# sourceMappingURL=admin-panel-lateral.component.css.map */
