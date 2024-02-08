@@ -21,12 +21,11 @@ aside {
 }
 
 .active {
-    background-color: rgba(251, 49, 27, 1);
+    background-color: rgba(230.6, 83, 10, 1);
     transition: background-color 300ms ease-in-out;
-    &:hover {
-        background-color: rgba(241, 39, 17, 1);
-    }
+    cursor: default;
 }
+
 
 p, i {
     font-size: 30px;
@@ -34,6 +33,10 @@ p, i {
 }
 
 #title {
-    font-size: 40px;
+    font-size: 50px;
     font-weight: 500;
+    background-color: rgba(230.6, 83, 10, 1);
+    padding: 20px;
+    border-radius: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
