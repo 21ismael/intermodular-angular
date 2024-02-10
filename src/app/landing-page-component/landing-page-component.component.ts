@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FiltroComponentComponent } from '../filtro-component/filtro-component.component';
+import { AuthService } from '../Services/auth.service';
 
 @Component({
   selector: 'app-landing-page-component',
@@ -11,9 +12,9 @@ import { FiltroComponentComponent } from '../filtro-component/filtro-component.c
 })
 export class LandingPageComponentComponent {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
-  onLoginClick() {
-    this.router.navigate(['/login']);
+  logout() {
+    this.authService.logout();
   }
 }

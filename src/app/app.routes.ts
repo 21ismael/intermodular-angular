@@ -14,11 +14,12 @@ import { AddEmpresaComponent } from './add-empresa/add-empresa.component';
 import { EditCentroComponent } from './edit-centro/edit-centro.component';
 import { EditTutorComponent } from './edit-tutor/edit-tutor.component';
 import { CuerpoComponent } from './empresas/empresas-dashboard/cuerpo/cuerpo.component';
+import { authGuard } from './Guards/auth.guard';
 
 
 export const routes: Routes = [
-  { path: '', component: LandingPageComponentComponent, title: 'Gestión FCT', data: { animation: 'landingPage' } },
-  { path: 'login', component: LoginComponent, title: 'Login', data: { animation: 'loginPage' } },
+  { path: '', component: LoginComponent, title: 'Inicia sesión!', data: { animation: 'landingPage' } },
+  { path: 'main', component: LandingPageComponentComponent, title: 'Login', data: { animation: 'loginPage' }, canActivate: [authGuard] },
   { path: 'empresas', component: EmpresasPrincipalComponent, title: 'Empresas Dashboard', resolve: { datos: empresasResolver }, children: [
     { path: '', component: CuerpoComponent, title: 'Empresas Dashboard' },
     { path: 'search/:id', component: EmpresaDetailsComponent, resolve: { empresa: detailsResolver } }
