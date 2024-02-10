@@ -20,12 +20,12 @@ import { authGuard } from './Guards/auth.guard';
 export const routes: Routes = [
   { path: '', component: LoginComponent, title: 'Inicia sesión!', data: { animation: 'landingPage' } },
   { path: 'main', component: LandingPageComponentComponent, title: 'Login', data: { animation: 'loginPage' }, canActivate: [authGuard] },
-  { path: 'empresas', component: EmpresasPrincipalComponent, title: 'Empresas Dashboard', resolve: { datos: empresasResolver }, children: [
+  { path: 'empresas', component: EmpresasPrincipalComponent, title: 'Empresas Dashboard', resolve: { datos: empresasResolver }, canActivate: [authGuard], canActivateChild: [authGuard], children: [
     { path: '', component: CuerpoComponent, title: 'Empresas Dashboard' },
     { path: 'search/:id', component: EmpresaDetailsComponent, resolve: { empresa: detailsResolver } }
   ]},
   /*{ path: 'empresas/:id', component: EmpresaDetailsComponent, resolve: { empresa: detailsResolver } },*/
-  { path: 'panel', component: AdminPanelComponent ,title: 'Panel de administración', children: [
+  { path: 'panel', component: AdminPanelComponent ,title: 'Panel de administración', canActivate: [authGuard], canActivateChild: [authGuard], children: [
     { path: 'centros', component: OverviewCentrosComponent, title: 'Información de centros' },
     { path: 'tutores', component: OverviewTutoresComponent, title: 'Información de tutores' },
     { path: 'add/centro', component: AddCentroComponent, title: 'Añadir Centro' },
