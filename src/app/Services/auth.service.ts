@@ -12,7 +12,7 @@ export class AuthService {
   constructor(private usersService: UsersService, private router: Router) { }
 
   private isLogged = new BehaviorSubject<boolean>(this.token());
-  private isLogged$ = this.isLogged.asObservable();
+  isLogged$ = this.isLogged.asObservable();
 
   login(credenciales: Credenciales) {
     return this.usersService.login(credenciales).pipe(tap((response: any) => {
@@ -31,6 +31,10 @@ export class AuthService {
 
   getIsLogged() : boolean {
     return this.isLogged.value;
+  }
+
+  getUser() {
+    return localStorage.getItem('login');
   }
 
   private setUserSession(accessToken: string, login: string) {
