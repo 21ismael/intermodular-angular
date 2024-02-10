@@ -1,17 +1,17 @@
 <div class="container-fluid d-flex justify-content-center align-items-center">
   <div class="login-container d-flex p-0">
       <img class="img-fluid d-none d-md-block col-6" src="../../assets/login/login-img.jpg" alt="imagen">
-      <form action="" class="col" id="login-form">
+      <form class="col" id="login-form" [formGroup]="loginForm" (ngSubmit)="sumbit($event)">
           <h1>Bienvenido<br><span>Acceder</span></h1>
           <div class="input-data">
-              <input [(ngModel)]="usuario" type="text" name="username" required>
+              <input type="text" name="login" formControlName="login">
               <label>Usuario</label>
           </div>
           <div class="input-data">
-              <input type="password" name="password" required>
+              <input type="password" name="password" formControlName="password">
               <label>Contraseña</label>
           </div>
-          <button (click)="login($event)" type="submit" name="submit"></button>
+          <button type="submit" name="submit" class="main-btn" [disabled]="loginForm.invalid">Iniciar sesión</button>
       </form>
   </div>
 </div>
