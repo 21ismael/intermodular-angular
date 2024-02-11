@@ -1,14 +1,19 @@
 <div class="container-fluid d-flex justify-content-center align-items-center">
   <div class="login-container d-flex p-0">
       <img class="img-fluid d-none d-md-block col-6" src="../../assets/login/login-img.jpg" alt="imagen">
-      <form class="col" id="login-form" [formGroup]="loginForm" (ngSubmit)="sumbit($event)">
+      <form class="col" id="login-form" [formGroup]="loginForm" (ngSubmit)="sumbit($event)" novalidate>
           <h1>Bienvenido<br><span>Acceder</span></h1>
+          @if (error) {
+            <div class="mb-2">
+                <span class="text-danger">{{ errorMessage }}</span>
+            </div>
+            }
           <div class="input-data">
-              <input type="text" name="login" formControlName="login">
+              <input type="text" name="login" formControlName="login" required>
               <label>Usuario</label>
           </div>
           <div class="input-data">
-              <input type="password" name="password" formControlName="password">
+              <input type="password" name="password" formControlName="password" required>
               <label>Contraseña</label>
           </div>
           <button type="submit" name="submit" class="main-btn" [disabled]="loginForm.invalid">Iniciar sesión</button>

@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { UsersService } from '../Services/users.service';
+import { Usuario } from '../usuario';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-tutor',
@@ -11,8 +14,9 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 })
 export class AddTutorComponent implements OnInit {
   addTutorForm!: FormGroup;
+  added!: boolean;
   
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private usersService: UsersService, private router: Router) {}
 
   ngOnInit(): void {
     this.addTutorForm = this.formBuilder.group({
@@ -20,14 +24,34 @@ export class AddTutorComponent implements OnInit {
       dni: ['', [Validators.required, Validators.pattern('')]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      centro: ['', Validators.required]
+      centro: ['', Validators.required],
+      login: ['', [Validators.required, Validators.minLength(5)]],
+      roles: 'tutor'
     });
   }
 
   submit(e: Event) {
     e.preventDefault();
     if(this.addTutorForm.valid) {
-      console.log(this.addTutorForm.getRawValue());
+      const newTutor : Partial<Usuario> = {
+        name: this.addTutorForm.get('nombre')?.value,
+        dni: this.addTutorForm.get('dni')?.value,
+        token: 'asdsadas',
+        email: this.addTutorForm.get('email')?.value,
+        password: this.addTutorForm.get('password')?.value,
+        login: this.addTutorForm.get('login')?.value,
+        roles: this.addTutorForm.get('roles')?.value
+      }
+      this.usersService.postUser(newTutor).subscribe({
+        next: x => {
+          console.log(x)
+          this.added = true;
+          this.router.navigate(['/panel/tutores']);
+        },
+        error: err => {
+          console.log(err);
+        }
+      });
     }
   }
 

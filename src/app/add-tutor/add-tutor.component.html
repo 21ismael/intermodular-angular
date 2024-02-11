@@ -5,11 +5,21 @@
             <div class="col-12 col-lg-6">
                 <div class="mb-5">
                     <label for="nombre" class="mb-2 ms-1">Nombre</label>
-                    <input type="text" name="nombre" formControlName="nombre" [ngClass]="{'invalid': addTutorForm.get('nombre')?.invalid && (addTutorForm.get('nombre')?.dirty || addTutorForm.get('nombre')?.touched)}">
+                    <input type="text" name="name" formControlName="nombre" [ngClass]="{'invalid': addTutorForm.get('nombre')?.invalid && (addTutorForm.get('nombre')?.dirty || addTutorForm.get('nombre')?.touched)}">
                     @if (addTutorForm.get('nombre')?.invalid && (addTutorForm.get('nombre')?.dirty || addTutorForm.get('nombre')?.touched)) {
                         <div class="position-absolute mt-2">
                             <span *ngIf="addTutorForm.get('nombre')?.errors?.['required']" class="text-danger">El nombre del tutor es obligatorio</span>
                             <span *ngIf="addTutorForm.get('nombre')?.errors?.['minlength']" class="text-danger">El nombre es muy corto</span>
+                        </div>
+                    }
+                </div>
+                <div class="mb-5">
+                    <label for="login" class="mb-2 ms-1">Nombre de usuario</label>
+                    <input type="text" name="login" formControlName="login" [ngClass]="{'invalid': addTutorForm.get('login')?.invalid && (addTutorForm.get('login')?.dirty || addTutorForm.get('login')?.touched)}">
+                    @if(addTutorForm.get('login')?.invalid && (addTutorForm.get('login')?.dirty || addTutorForm.get('login')?.touched)) {
+                        <div class="position-absolute mt-2">
+                            <span *ngIf="addTutorForm.get('login')?.errors?.['required']" class="text-danger">El nombre de usuario es obligatorio</span>
+                            <span *ngIf="addTutorForm.get('login')?.errors?.['minlength']" class="text-danger">El nombre de usuario debe tener mínimo 5 caracteres</span>
                         </div>
                     }
                 </div>

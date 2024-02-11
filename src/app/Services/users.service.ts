@@ -18,11 +18,15 @@ export class UsersService {
     return this.http.post<Credenciales>('http://intermodular-laravel.lo/api/login', data).pipe(catchError(this.error));
   }
 
+  postUser(data: Partial<Usuario>) {
+    return this.http.post<Usuario>('http://intermodular-laravel.lo/api/usuarios', data).pipe(catchError(this.error));
+  }
+
   private error(error: HttpErrorResponse) {
     if (error.status === 0) {
       return throwError(() => new Error('No se ha podido establecer conexión con el servidor'));
     } else {
-      return throwError(() => new Error('error'));
+      return throwError(() => new Error(error.error.error));
     }
   }
 }
