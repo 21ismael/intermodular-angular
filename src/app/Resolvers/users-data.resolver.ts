@@ -7,3 +7,7 @@ export const usersDataResolver: ResolveFn<Usuario[]> = (route, state) => {
   return inject(UsersService).getUsers();
 };
 
+export const userDetailsResolver: ResolveFn<Usuario> = (route, state) => {
+  return inject(UsersService).getUsersById(+(route.paramMap.get('id') || 0));
+}
+

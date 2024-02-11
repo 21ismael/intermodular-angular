@@ -14,12 +14,20 @@ export class UsersService {
     return this.http.get<Usuario[]>('http://intermodular-laravel.lo/api/usuarios').pipe(retry(2), catchError(this.error));
   }
 
+  getUsersById(id: number) : Observable<Usuario> {
+    return this.http.get<Usuario>(`http://intermodular-laravel.lo/api/usuarios/${id}`).pipe(retry(2), catchError(this.error));
+  }
+
   login(data: Credenciales) {
     return this.http.post<Credenciales>('http://intermodular-laravel.lo/api/login', data).pipe(catchError(this.error));
   }
 
   postUser(data: Partial<Usuario>) {
     return this.http.post<Usuario>('http://intermodular-laravel.lo/api/usuarios', data).pipe(catchError(this.error));
+  }
+
+  editUser(id: number, data: Partial<Usuario>) {
+    return this.http.put<Usuario>(`http://intermodular-laravel.lo/api/usuarios/${id}`, data).pipe(catchError(this.error));
   }
 
   private error(error: HttpErrorResponse) {

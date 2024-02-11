@@ -15,7 +15,7 @@ import { EditCentroComponent } from './edit-centro/edit-centro.component';
 import { EditTutorComponent } from './edit-tutor/edit-tutor.component';
 import { CuerpoComponent } from './empresas/empresas-dashboard/cuerpo/cuerpo.component';
 import { authGuard } from './Guards/auth.guard';
-import { usersDataResolver } from './Resolvers/users-data.resolver';
+import { userDetailsResolver, usersDataResolver } from './Resolvers/users-data.resolver';
 
 
 export const routes: Routes = [
@@ -33,7 +33,7 @@ export const routes: Routes = [
     { path: 'add/tutor', component: AddTutorComponent, title: 'Añadir Tutor' },
     { path: 'add/empresa', component: AddEmpresaComponent, title: 'Añadir Empresa' },
     { path: 'edit/centro/:id', component: EditCentroComponent, title: 'Editar Centro' },
-    { path: 'edit/tutor/:id', component: EditTutorComponent, title: 'Editar Tutor' }
+    { path: 'edit/tutor/:id', component: EditTutorComponent, title: 'Editar Tutor', resolve: {usuario: userDetailsResolver} }
   ] },
   { path: '**', component: NotFoundComponent, title: 'Página no encontrada' }
 ];
