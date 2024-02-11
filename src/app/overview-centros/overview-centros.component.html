@@ -15,19 +15,21 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>IES Pere Maria</td>
-                    <td>ies.gmail.com</td>
-                    <td>Calle 3</td>
-                    <td>123456789</td>
-                    <td>Alicante</td>
-                    <td>Benidorm</td>
-                    <td>
-                        <a class="operations-icon" matTooltip="Editar" routerLink="/panel/edit/centro/1"><i class="bi bi-pencil mx-3"></i></a>
-                        <a class="operations-icon" matTooltip="Eliminar"><i class="bi bi-trash mx-3"></i></a>
-                    </td>
-                </tr>
+                @for (centro of centros; track centro.id) {
+                    <tr>
+                        <th scope="row">{{ centro.id }}</th>
+                        <td>{{ centro.name }}</td>
+                        <td>ies.gmail.com</td>
+                        <td>Calle 3</td>
+                        <td>123456789</td>
+                        <td>Alicante</td>
+                        <td>Benidorm</td>
+                        <td>
+                            <a class="operations-icon" matTooltip="Editar" routerLink="/panel/edit/centro/1"><i class="bi bi-pencil mx-3"></i></a>
+                            <a class="operations-icon" matTooltip="Eliminar"><i class="bi bi-trash mx-3"></i></a>
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>

@@ -3,6 +3,7 @@ import { UsersService } from './users.service';
 import { Router } from '@angular/router';
 import { BehaviorSubject, tap } from 'rxjs';
 import { Credenciales } from '../Interfaces/credenciales';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +16,12 @@ export class AuthService {
   isLogged$ = this.isLogged.asObservable();
 
   login(credenciales: Credenciales) {
-    return this.usersService.login(credenciales).pipe(tap((response: any) => {
-      const { accessToken, login } = response;
-      this.setUserSession(accessToken, login);
-      this.isLogged.next(true);
+    return this.usersService.login(credenciales).pipe(tap({
+      next: (x: any) => {
+        const { accessToken, login } = x;
+        this.setUserSession(accessToken, login);
+        this.isLogged.next(true);
+      }
     }));
   }
 

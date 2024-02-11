@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router, private formBuilder: FormBuilder, private authService: AuthService) {}
   loginForm!: FormGroup;
+  error!: boolean;
+  errorMessage!: string;
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -28,8 +30,6 @@ export class LoginComponent implements OnInit {
     e.preventDefault();
     if (this.loginForm.valid) {
       this.login();
-    } else {
-      console.log('no valido')
     }
   }
 
@@ -40,10 +40,12 @@ export class LoginComponent implements OnInit {
     }
     this.authService.login(credenciales).subscribe({
       next: x => {
+        console.log(x);
         this.router.navigate(['/main']);
       },
       error: x => {
-        console.log(x);
+        this.error = true;
+        this.errorMessage = x;
       }
     });
   }

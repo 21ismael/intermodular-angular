@@ -21,21 +21,16 @@ export class NavbarComponent implements OnInit {
   private subscription!: Subscription;
 
   ngOnInit(): void {
-    if (this.authService.getIsLogged()) {
-      this.subscription = this.authService.isLogged$.subscribe({
-        next: x => {
-          this.isLogged = x;
-          if (this.isLogged) {
-            this.userLogged = this.authService.getUser();
-          } else {
-            this.userLogged = null;
-          }
+    this.subscription = this.authService.isLogged$.subscribe({
+      next: x => {
+        this.isLogged = x;
+        if (this.isLogged) {
+          this.userLogged = this.authService.getUser();
+        } else {
+          this.userLogged = null;
         }
-      });
-      this.userLogged = this.authService.getUser();
-    } else {
-      this.isLogged = false;
-    }
+      }
+    });
   }
 
   navigate(ruta: string) {

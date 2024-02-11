@@ -15,6 +15,7 @@ import { EditCentroComponent } from './edit-centro/edit-centro.component';
 import { EditTutorComponent } from './edit-tutor/edit-tutor.component';
 import { CuerpoComponent } from './empresas/empresas-dashboard/cuerpo/cuerpo.component';
 import { authGuard } from './Guards/auth.guard';
+import { usersDataResolver } from './Resolvers/users-data.resolver';
 
 
 export const routes: Routes = [
@@ -25,9 +26,9 @@ export const routes: Routes = [
     { path: 'search/:id', component: EmpresaDetailsComponent, resolve: { empresa: detailsResolver } }
   ]},
   /*{ path: 'empresas/:id', component: EmpresaDetailsComponent, resolve: { empresa: detailsResolver } },*/
-  { path: 'panel', component: AdminPanelComponent ,title: 'Panel de administración', canActivate: [authGuard], canActivateChild: [authGuard], children: [
-    { path: 'centros', component: OverviewCentrosComponent, title: 'Información de centros' },
-    { path: 'tutores', component: OverviewTutoresComponent, title: 'Información de tutores' },
+  { path: 'panel', component: AdminPanelComponent ,title: 'Panel de administración', canActivate: [authGuard], canActivateChild: [authGuard], resolve: {usuarios: usersDataResolver}, children: [
+    { path: 'centros', component: OverviewCentrosComponent, title: 'Información de centros', resolve: {usuarios: usersDataResolver} },
+    { path: 'tutores', component: OverviewTutoresComponent, title: 'Información de tutores', resolve: {usuarios: usersDataResolver} },
     { path: 'add/centro', component: AddCentroComponent, title: 'Añadir Centro' },
     { path: 'add/tutor', component: AddTutorComponent, title: 'Añadir Tutor' },
     { path: 'add/empresa', component: AddEmpresaComponent, title: 'Añadir Empresa' },
