@@ -3,7 +3,7 @@ import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LandingPageComponentComponent } from './landing-page-component/landing-page-component.component';
 import { EmpresasPrincipalComponent } from './empresas/empresas-dashboard/empresas-principal/empresas-principal.component';
-import { detailsResolver, empresasResolver } from './data-resolver.resolver';
+import { centrosResolver, detailsResolver, empresasResolver } from './data-resolver.resolver';
 import { EmpresaDetailsComponent } from './empresas/empresas-dashboard/empresa-details/empresa-details.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AddCentroComponent } from './add-centro/add-centro.component';
@@ -16,6 +16,7 @@ import { EditTutorComponent } from './edit-tutor/edit-tutor.component';
 import { CuerpoComponent } from './empresas/empresas-dashboard/cuerpo/cuerpo.component';
 import { authGuard } from './Guards/auth.guard';
 import { userDetailsResolver, usersDataResolver } from './Resolvers/users-data.resolver';
+import { OverviewEmpresasComponent } from './overview-empresas/overview-empresas.component';
 
 
 export const routes: Routes = [
@@ -27,8 +28,9 @@ export const routes: Routes = [
   ]},
   /*{ path: 'empresas/:id', component: EmpresaDetailsComponent, resolve: { empresa: detailsResolver } },*/
   { path: 'panel', component: AdminPanelComponent ,title: 'Panel de administración', canActivate: [authGuard], canActivateChild: [authGuard], resolve: {usuarios: usersDataResolver}, children: [
-    { path: 'centros', component: OverviewCentrosComponent, title: 'Información de centros', resolve: {usuarios: usersDataResolver} },
+    { path: 'centros', component: OverviewCentrosComponent, title: 'Información de centros', resolve: {centros: centrosResolver} },
     { path: 'tutores', component: OverviewTutoresComponent, title: 'Información de tutores', resolve: {usuarios: usersDataResolver} },
+    { path: 'empresas', component: OverviewEmpresasComponent, title: 'Información de empresas', resolve: {empresas: empresasResolver} },
     { path: 'add/centro', component: AddCentroComponent, title: 'Añadir Centro' },
     { path: 'add/tutor', component: AddTutorComponent, title: 'Añadir Tutor' },
     { path: 'add/empresa', component: AddEmpresaComponent, title: 'Añadir Empresa' },
