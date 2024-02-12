@@ -13,13 +13,24 @@ import { Centro } from '../centro';
 })
 export class OverviewCentrosComponent implements OnInit {
   centros: Centro[] = [];
+  userLoggedRoles!: string | string[];
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.getUserRoles();
     this.route.data.subscribe(({ centros }) => {
       this.centros = centros;
-      console.log(centros);
     });
+  }
+
+  private getUserRoles() {
+    const userRolesString = localStorage.getItem('roles');
+    if (userRolesString?.includes(',')) {
+      this.userLoggedRoles = userRolesString.split(',');
+    } else {
+      userRolesString ? this.userLoggedRoles = userRolesString : '';
+    }
+    console.log(this.userLoggedRoles);
   }
 }

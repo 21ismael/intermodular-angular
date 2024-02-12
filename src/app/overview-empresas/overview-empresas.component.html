@@ -30,10 +30,12 @@
           </tbody>
       </table>
   </div>
-  <div class=" mt-5 w-100 d-flex justify-content-end">
-      <button class="main-btn" routerLink="/panel/add/empresa">
-          <i class="bi bi-plus-circle me-1"></i>
-          <span class="ms-1">Añadir Empresa</span>
-      </button>
-  </div>
+  @if(userLoggedRol && userLoggedRol === 'admin') {
+    <div class=" mt-5 w-100 d-flex justify-content-end">
+        <button class="main-btn" routerLink="/panel/add/empresa">
+            <i class="bi bi-plus-circle me-1"></i>
+            <span class="ms-1">Añadir Empresa</span>
+        </button>
+    </div>
+  }
 </section>

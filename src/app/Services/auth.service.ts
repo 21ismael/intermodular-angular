@@ -18,8 +18,10 @@ export class AuthService {
   login(credenciales: Credenciales) {
     return this.usersService.login(credenciales).pipe(tap({
       next: (x: any) => {
-        const { accessToken, login } = x;
-        this.setUserSession(accessToken, login);
+        console.log(x);
+        const { accessToken, login, roles } = x;
+        console.log(roles);
+        this.setUserSession(accessToken, login, roles);
         this.isLogged.next(true);
       }
     }));
@@ -40,9 +42,10 @@ export class AuthService {
     return localStorage.getItem('login');
   }
 
-  private setUserSession(accessToken: string, login: string) {
+  private setUserSession(accessToken: string, login: string, roles: string[]) {
     localStorage.setItem('token', accessToken);
     localStorage.setItem('login', login);
+    localStorage.setItem('roles', roles.join(','));
   }
 
   private token() {
