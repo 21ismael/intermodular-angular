@@ -7,11 +7,12 @@ import { Empresa } from './empresa/empresa';
   providedIn: 'root'
 })
 export class EmpresasService {
+  private URL: string = 'http://intermodular-laravel.lo/api/empresas';
 
   constructor(private http: HttpClient) { }
 
   getAllEmpresas() : Observable<Empresa[]> {
-    return this.http.get<Empresa[]>('http://127.0.0.1:8000/api/empresas')
+    return this.http.get<Empresa[]>(this.URL)
     .pipe(retry(2), catchError(this.handleHttpError));
   }
 
@@ -21,8 +22,8 @@ export class EmpresasService {
   }*/
 
   getEmpresaById(id: number): Observable<Empresa> {
-    const url = `http://localhost:3000/listaEmpresas/${id}`;
-    return this.http.get<Empresa>(url)
+    console.log(this.http.get<Empresa>(this.URL + `/${id}`));
+    return this.http.get<Empresa>(this.URL + `/${id}`)
       .pipe(retry(2), catchError(this.handleHttpError));
   }
 
