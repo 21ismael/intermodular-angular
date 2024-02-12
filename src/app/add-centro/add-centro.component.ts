@@ -23,7 +23,7 @@ export class AddCentroComponent implements OnInit {
       telefono: ['', [Validators.required, Validators.pattern(/[0-9]{9,}/)]],
       poblacion: ['', Validators.required],
       provincia: ['', Validators.required],
-      rol: 'centro'
+      roles: 'centro'
     });
   }
 

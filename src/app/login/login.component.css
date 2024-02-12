@@ -1,0 +1,93 @@
+.container-fluid {
+  height: 100vh;
+  background: linear-gradient(to right, #ee2200, #f49b06);
+}
+
+.login-container {
+  width: 70%;
+  height: 80vh;
+  background-color: white;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  min-width: 200px;
+}
+
+img {
+  width: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: 50%;
+  padding: 0 50px;
+}
+form h1 {
+  font-size: 22px;
+  font-weight: 400;
+  text-align: center;
+}
+
+span {
+  font-weight: 800;
+  color: #F12711;
+}
+
+.input-data {
+  height: 40px;
+  width: 100%;
+  position: relative;
+}
+.input-data input {
+  height: 100%;
+  width: 100%;
+  font-weight: 600;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid darkgray;
+}
+.input-data input:focus ~ label, .input-data input:valid ~ label {
+  transform: translateY(-20px);
+  font-size: 13px;
+}
+.input-data label {
+  position: absolute;
+  font-size: 15px;
+  font-weight: 600;
+  bottom: 10px;
+  left: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+button[name=submit] {
+  background-color: #F12711;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  width: 100%;
+  border-radius: 5px;
+  /*
+  &::before {
+    content: "ACCEDER";
+  }
+
+  &:hover::before {
+    content: "ACCEDIENDO";
+  }
+
+  &:hover {
+    background-color: #80001D;
+  }
+  */
+}/*# sourceMappingURL=login.component.css.map */
