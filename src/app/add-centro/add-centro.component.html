@@ -38,6 +38,14 @@
             </div>
             <div class="col-12 col-lg-6">
                 <div class="mb-5">
+                    <label for="login" class="mb-2 ms-1">Nombre de usuario</label>
+                    <input type="text" name="login" formControlName="login" [ngClass]="{'invalid': formulario.get('login')?.invalid && (formulario.get('login')?.dirty || formulario.get('login')?.touched)}">
+                    <div *ngIf="formulario.get('login')?.invalid && (formulario.get('login')?.dirty || formulario.get('login')?.touched)" class="position-absolute mt-2">
+                        <span *ngIf="formulario.get('login')?.errors?.['required']" class="text-danger">El nombre de usuario es obligatorio</span>
+                        <span *ngIf="formulario.get('login')?.errors?.['minlength']" class="text-danger">El nombre de usuario debe ser de mínimo 5 caracteres</span>
+                    </div>
+                </div>
+                <div class="mb-5">
                     <label for="password" class="mb-2 ms-1">Contraseña</label>
                     <input type="password" name="password" formControlName="password" [ngClass]="{'invalid': formulario.get('password')?.invalid && (formulario.get('password')?.dirty || formulario.get('password')?.touched)}">
                     <div *ngIf="formulario.get('password')?.invalid && (formulario.get('password')?.dirty || formulario.get('password')?.touched)" class="position-absolute mt-2">
