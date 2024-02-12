@@ -11,9 +11,14 @@ export class EmpresasService {
   constructor(private http: HttpClient) { }
 
   getAllEmpresas() : Observable<Empresa[]> {
-    return this.http.get<Empresa[]>('http://localhost:3000/listaEmpresas')
+    return this.http.get<Empresa[]>('http://127.0.0.1:8000/api/empresas')
     .pipe(retry(2), catchError(this.handleHttpError));
   }
+
+  /*getAllEmpresas() : Observable<Empresa[]> {
+    return this.http.get<Empresa[]>('http://localhost:3000/listaEmpresas')
+    .pipe(retry(2), catchError(this.handleHttpError));
+  }*/
 
   getEmpresaById(id: number): Observable<Empresa> {
     const url = `http://localhost:3000/listaEmpresas/${id}`;
