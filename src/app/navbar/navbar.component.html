@@ -14,12 +14,20 @@
             <i class="bi bi-building"></i>
         </button>
       </li>
-      <li class="nav-item my-3 mx-2">
-        <button class="secondary-btn w-100" (click)="navigate('/login')">
-            <i class="bi bi-person-circle"></i>
-            <span class="ms-2">Iniciar sesión</span>
-        </button>
-      </li>
+      @if (isLogged) {
+        <li class="nav-item my-3 mx-2">
+          <button class="secondary-btn w-100" disabled>
+              <i class="bi bi-person-circle"></i>
+              <span class="ms-2">{{ userLogged }}</span>
+          </button>
+        </li>
+        <li class="nav-item my-3 mx-2">
+          <button class="secondary-btn w-100" (click)="logout()">
+              <i class="bi bi-door-closed"></i>
+              <span class="ms-2">Cerrar sesión</span>
+          </button>
+        </li>
+      }
       <li class="nav-item my-3 mx-2">
         <button class="main-btn w-100" [routerLink]="'/panel/add/empresa'">
             <i class="bi bi-star"></i>

@@ -14,24 +14,26 @@ import { AddEmpresaComponent } from './add-empresa/add-empresa.component';
 import { EditCentroComponent } from './edit-centro/edit-centro.component';
 import { EditTutorComponent } from './edit-tutor/edit-tutor.component';
 import { CuerpoComponent } from './empresas/empresas-dashboard/cuerpo/cuerpo.component';
+import { authGuard } from './Guards/auth.guard';
+import { userDetailsResolver, usersDataResolver } from './Resolvers/users-data.resolver';
 
 
 export const routes: Routes = [
-  { path: '', component: LandingPageComponentComponent, title: 'Gestión FCT', data: { animation: 'landingPage' } },
-  { path: 'login', component: LoginComponent, title: 'Login', data: { animation: 'loginPage' } },
-  { path: 'empresas', component: EmpresasPrincipalComponent, title: 'Empresas Dashboard', resolve: { datos: empresasResolver }, children: [
+  { path: '', component: LoginComponent, title: 'Inicia sesión!', data: { animation: 'landingPage' } },
+  { path: 'main', component: LandingPageComponentComponent, title: 'Login', data: { animation: 'loginPage' }, canActivate: [authGuard] },
+  { path: 'empresas', component: EmpresasPrincipalComponent, title: 'Empresas Dashboard', resolve: { datos: empresasResolver }, canActivate: [authGuard], canActivateChild: [authGuard], children: [
     { path: '', component: CuerpoComponent, title: 'Empresas Dashboard' },
     { path: 'search/:id', component: EmpresaDetailsComponent, resolve: { empresa: detailsResolver } }
   ]},
   /*{ path: 'empresas/:id', component: EmpresaDetailsComponent, resolve: { empresa: detailsResolver } },*/
-  { path: 'panel', component: AdminPanelComponent ,title: 'Panel de administración', children: [
-    { path: 'centros', component: OverviewCentrosComponent, title: 'Información de centros' },
-    { path: 'tutores', component: OverviewTutoresComponent, title: 'Información de tutores' },
+  { path: 'panel', component: AdminPanelComponent ,title: 'Panel de administración', canActivate: [authGuard], canActivateChild: [authGuard], resolve: {usuarios: usersDataResolver}, children: [
+    { path: 'centros', component: OverviewCentrosComponent, title: 'Información de centros', resolve: {usuarios: usersDataResolver} },
+    { path: 'tutores', component: OverviewTutoresComponent, title: 'Información de tutores', resolve: {usuarios: usersDataResolver} },
     { path: 'add/centro', component: AddCentroComponent, title: 'Añadir Centro' },
     { path: 'add/tutor', component: AddTutorComponent, title: 'Añadir Tutor' },
     { path: 'add/empresa', component: AddEmpresaComponent, title: 'Añadir Empresa' },
     { path: 'edit/centro/:id', component: EditCentroComponent, title: 'Editar Centro' },
-    { path: 'edit/tutor/:id', component: EditTutorComponent, title: 'Editar Tutor' }
+    { path: 'edit/tutor/:id', component: EditTutorComponent, title: 'Editar Tutor', resolve: {usuario: userDetailsResolver} }
   ] },
   { path: '**', component: NotFoundComponent, title: 'Página no encontrada' }
 ];

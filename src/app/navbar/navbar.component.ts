@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { AuthService } from '../Services/auth.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -9,13 +11,33 @@ import {MatTooltipModule} from '@angular/material/tooltip';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   active: boolean = false;
+  isLogged!: boolean;
+  userLogged! : string | null;
+  private subscription!: Subscription;
+
+  ngOnInit(): void {
+    this.subscription = this.authService.isLogged$.subscribe({
+      next: x => {
+        this.isLogged = x;
+        if (this.isLogged) {
+          this.userLogged = this.authService.getUser();
+        } else {
+          this.userLogged = null;
+        }
+      }
+    });
+  }
 
   navigate(ruta: string) {
     this.router.navigate([ruta]);
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

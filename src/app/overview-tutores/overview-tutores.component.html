@@ -13,17 +13,19 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Cristian</td>
-                    <td>cris.gmail.com</td>
-                    <td>123456789</td>
-                    <td>IES Pere Maria</td>
-                    <td>
-                        <a class="operations-icon" matTooltip="Editar" routerLink="/panel/edit/tutor/1"><i class="bi bi-pencil mx-3"></i></a>
-                        <a class="operations-icon" matTooltip="Eliminar"><i class="bi bi-trash mx-3"></i></a>
-                    </td>
-                </tr>
+                @for(tutor of tutores; track tutor.id) {
+                    <tr>
+                        <th scope="row">{{ tutor.id }}</th>
+                        <td>{{ tutor.name }}</td>
+                        <td>{{ tutor.email }}</td>
+                        <td>{{ tutor.dni }}</td>
+                        <td>IES Pere Maria</td>
+                        <td>
+                            <a class="operations-icon" matTooltip="Editar" routerLink="/panel/edit/tutor/{{ tutor.id }}"><i class="bi bi-pencil mx-3"></i></a>
+                            <a class="operations-icon" matTooltip="Eliminar"><i class="bi bi-trash mx-3"></i></a>
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>

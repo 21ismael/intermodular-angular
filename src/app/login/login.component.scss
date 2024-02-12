@@ -74,7 +74,7 @@ span {
 
 button[name="submit"] {
   background-color: #F12711;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   color: white;
   border: none;
@@ -82,6 +82,7 @@ button[name="submit"] {
   width: 100%;
   border-radius: 5px;
 
+  /*
   &::before {
     content: "ACCEDER";
   }
@@ -93,4 +94,5 @@ button[name="submit"] {
   &:hover {
     background-color: #80001D;
   }
+  */
 }
