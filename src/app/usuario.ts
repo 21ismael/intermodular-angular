@@ -7,4 +7,6 @@ export interface Usuario {
     email: string;
     password: string;
     login: string;
+    id_centro: number;
+    id_empresa: number;
 }
