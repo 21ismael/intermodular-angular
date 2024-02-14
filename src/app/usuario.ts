@@ -9,4 +9,5 @@ export interface Usuario {
     login: string;
     id_centro: number;
     id_empresa: number;
+    centro: any;
 }
