@@ -34,12 +34,14 @@
           </button>
         </li>
       }
-      <li class="nav-item my-3 mx-2">
-        <button class="main-btn w-100" [routerLink]="'/panel/add/empresa'">
-            <i class="bi bi-star"></i>
-            <span class="ms-2">Añadir empresa</span>
-        </button>
-      </li>
+      @if(userLoggedRoles.includes('admin') || userLoggedRoles.includes('centro') || userLoggedRoles.includes('admin')) {
+        <li class="nav-item my-3 mx-2">
+          <button class="main-btn w-100" [routerLink]="'/panel/add/empresa'">
+              <i class="bi bi-star"></i>
+              <span class="ms-2">Añadir empresa</span>
+          </button>
+        </li>
+      }
     </ul>
   </div>
 </nav>

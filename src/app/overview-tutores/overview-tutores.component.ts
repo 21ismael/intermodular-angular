@@ -32,7 +32,7 @@ export class OverviewTutoresComponent implements OnInit {
       if (this.userLoggedRoles.includes('admin')) {
         this.tutores = users.data;
       } else {
-        this.tutores = users.data.filter((tutor: any) => tutor.roles.includes('centro') && tutor.centro.length > 0 && tutor.centro[0].id === this.userLoggedCentroID);
+        this.tutores = users.data.filter((tutor: any) => tutor.roles.includes('tutor') && tutor.centro.length > 0 && tutor.centro[0].id === this.userLoggedCentroID);
       }
     });
   }
