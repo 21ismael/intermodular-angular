@@ -8,26 +8,33 @@ import { Credenciales } from '../Interfaces/credenciales';
   providedIn: 'root'
 })
 export class UsersService {
+  private userApiURL: string = 'http://intermodular-laravel.lo/api/usuarios';
+  private loginApiURL: string = 'http://intermodular-laravel.lo/api/login';
+
   constructor(private http: HttpClient) { }
 
   getUsers() : Observable<Usuario[]> {
-    return this.http.get<Usuario[]>('http://intermodular-laravel.lo/api/usuarios').pipe(retry(2), catchError(this.error));
+    return this.http.get<Usuario[]>(this.userApiURL).pipe(retry(2), catchError(this.error));
   }
 
   getUsersById(id: number) : Observable<Usuario> {
-    return this.http.get<Usuario>(`http://intermodular-laravel.lo/api/usuarios/${id}`).pipe(retry(2), catchError(this.error));
+    return this.http.get<Usuario>(`${this.userApiURL}/${id}`).pipe(retry(2), catchError(this.error));
   }
 
   login(data: Credenciales) {
-    return this.http.post<Credenciales>('http://intermodular-laravel.lo/api/login', data).pipe(catchError(this.error));
+    return this.http.post<Credenciales>(this.loginApiURL, data).pipe(catchError(this.error));
   }
 
   postUser(data: Partial<Usuario>) {
-    return this.http.post<Usuario>('http://intermodular-laravel.lo/api/usuarios', data).pipe(catchError(this.error));
+    return this.http.post<Usuario>(this.userApiURL, data).pipe(catchError(this.error));
   }
 
   editUser(id: number, data: Partial<Usuario>) {
-    return this.http.put<Usuario>(`http://intermodular-laravel.lo/api/usuarios/${id}`, data).pipe(catchError(this.error));
+    return this.http.put<Usuario>(`${this.userApiURL}/${id}`, data).pipe(catchError(this.error));
+  }
+
+  deleteUser(id: number) {
+    return this.http.delete<Usuario>(`${this.userApiURL}/${id}`).pipe(catchError(this.error));
   }
 
   private error(error: HttpErrorResponse) {

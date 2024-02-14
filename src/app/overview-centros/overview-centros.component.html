@@ -33,10 +33,12 @@
             </tbody>
         </table>
     </div>
-    <div class=" mt-5 w-100 d-flex justify-content-end">
-        <button class="main-btn" routerLink="/panel/add/centro">
-            <i class="bi bi-plus-circle me-1"></i>
-            <span class="ms-1">Añadir centro</span>
-        </button>
-    </div>
+    @if (userLoggedRoles.includes('admin') || userLoggedRoles == 'admin') {
+        <div class=" mt-5 w-100 d-flex justify-content-end">
+            <button class="main-btn" routerLink="/panel/add/centro">
+                <i class="bi bi-plus-circle me-1"></i>
+                <span class="ms-1">Añadir centro</span>
+            </button>
+        </div>
+    }
 </section>

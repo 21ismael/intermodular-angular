@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { UsersService } from '../Services/users.service';
 import { Usuario } from '../usuario';
 import { Router } from '@angular/router';
+import { AuthService } from '../Services/auth.service';
 
 @Component({
   selector: 'app-add-tutor',
@@ -15,16 +16,25 @@ import { Router } from '@angular/router';
 export class AddTutorComponent implements OnInit {
   addTutorForm!: FormGroup;
   added!: boolean;
+  userLoggedRoles!: string | string[];
   
-  constructor(private formBuilder: FormBuilder, private usersService: UsersService, private router: Router) {}
+  constructor(private formBuilder: FormBuilder, private usersService: UsersService, private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
+    this.authService.isLogged$.subscribe({
+      next: () => {
+        this.userLoggedRoles = this.authService.getRoles();
+      },
+      error: err => {
+        console.log(err);
+      }
+    });
     this.addTutorForm = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.minLength(10)]],
       dni: ['', [Validators.required, Validators.pattern('')]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      centro: ['', Validators.required],
+      centro: '',
       login: ['', [Validators.required, Validators.minLength(5)]],
       roles: 'tutor'
     });
@@ -33,14 +43,20 @@ export class AddTutorComponent implements OnInit {
   submit(e: Event) {
     e.preventDefault();
     if(this.addTutorForm.valid) {
-      const newTutor : Partial<Usuario> = {
-        name: this.addTutorForm.get('nombre')?.value,
-        dni: this.addTutorForm.get('dni')?.value,
-        token: 'asdsadas',
-        email: this.addTutorForm.get('email')?.value,
-        password: this.addTutorForm.get('password')?.value,
-        login: this.addTutorForm.get('login')?.value,
-        roles: this.addTutorForm.get('roles')?.value
+      let id_centro!: number;
+      if (this.userLoggedRoles.includes('centro') || this.userLoggedRoles === 'centro') {
+        id_centro = +(localStorage.getItem('id_centro') || NaN);
+      } else {
+        id_centro = 2;
+      }
+      const newTutor: Partial<Usuario> = {
+          name: this.addTutorForm.get('nombre')?.value,
+          dni: this.addTutorForm.get('dni')?.value,
+          email: this.addTutorForm.get('email')?.value,
+          password: this.addTutorForm.get('password')?.value,
+          login: this.addTutorForm.get('login')?.value,
+          roles: this.addTutorForm.get('roles')?.value,
+          id_centro: id_centro,
       }
       this.usersService.postUser(newTutor).subscribe({
         next: x => {

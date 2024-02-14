@@ -3,6 +3,7 @@ import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { Usuario } from '../usuario';
 import { Centro } from '../centro';
+import { AuthService } from '../Services/auth.service';
 
 @Component({
   selector: 'app-overview-centros',
@@ -13,13 +14,18 @@ import { Centro } from '../centro';
 })
 export class OverviewCentrosComponent implements OnInit {
   centros: Centro[] = [];
+  userLoggedRoles!: string | string[];
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private authService: AuthService) {}
 
   ngOnInit(): void {
+    this.authService.isLogged$.subscribe({
+      next: x => {
+        this.userLoggedRoles = this.authService.getRoles();
+      }
+    });
     this.route.data.subscribe(({ centros }) => {
-      this.centros = centros;
-      console.log(centros);
+      this.centros = centros.data;
     });
   }
 }

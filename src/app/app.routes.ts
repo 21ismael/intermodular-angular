@@ -17,6 +17,8 @@ import { CuerpoComponent } from './empresas/empresas-dashboard/cuerpo/cuerpo.com
 import { authGuard } from './Guards/auth.guard';
 import { userDetailsResolver, usersDataResolver } from './Resolvers/users-data.resolver';
 import { OverviewEmpresasComponent } from './overview-empresas/overview-empresas.component';
+import { rolGuard } from './Guards/rol.guard';
+import { ResenaComponent } from './resena/resena.component';
 
 
 export const routes: Routes = [
@@ -27,15 +29,16 @@ export const routes: Routes = [
     { path: 'search/:id', component: EmpresaDetailsComponent, resolve: { empresa: detailsResolver } }
   ]},
   /*{ path: 'empresas/:id', component: EmpresaDetailsComponent, resolve: { empresa: detailsResolver } },*/
-  { path: 'panel', component: AdminPanelComponent ,title: 'Panel de administración', canActivate: [authGuard], canActivateChild: [authGuard], resolve: {usuarios: usersDataResolver}, children: [
-    { path: 'centros', component: OverviewCentrosComponent, title: 'Información de centros', resolve: {centros: centrosResolver} },
-    { path: 'tutores', component: OverviewTutoresComponent, title: 'Información de tutores', resolve: {usuarios: usersDataResolver} },
-    { path: 'empresas', component: OverviewEmpresasComponent, title: 'Información de empresas', resolve: {empresas: empresasResolver} },
-    { path: 'add/centro', component: AddCentroComponent, title: 'Añadir Centro' },
-    { path: 'add/tutor', component: AddTutorComponent, title: 'Añadir Tutor' },
-    { path: 'add/empresa', component: AddEmpresaComponent, title: 'Añadir Empresa' },
-    { path: 'edit/centro/:id', component: EditCentroComponent, title: 'Editar Centro' },
-    { path: 'edit/tutor/:id', component: EditTutorComponent, title: 'Editar Tutor', resolve: {usuario: userDetailsResolver} }
+  { path: 'panel', component: AdminPanelComponent ,title: 'Panel de administración', canActivate: [authGuard], canActivateChild: [authGuard, rolGuard], resolve: {usuarios: usersDataResolver}, children: [
+    { path: 'centros', component: OverviewCentrosComponent, title: 'Información de centros', resolve: {centros: centrosResolver}, data: { roles: ['admin', 'centro', 'tutor', 'empresa'] } },
+    { path: 'tutores', component: OverviewTutoresComponent, title: 'Información de tutores', resolve: {usuarios: usersDataResolver}, data: { roles: ['admin', 'centro', 'tutor', 'empresa'] } },
+    { path: 'empresas', component: OverviewEmpresasComponent, title: 'Información de empresas', resolve: {empresas: empresasResolver}, data: { roles: ['admin', 'centro', 'tutor', 'empresa'] } },
+    { path: 'add/centro', component: AddCentroComponent, title: 'Añadir Centro', data: { roles: ['admin'] } },
+    { path: 'add/tutor', component: AddTutorComponent, title: 'Añadir Tutor', data: { roles: ['admin', 'centro'] } },
+    { path: 'add/empresa', component: AddEmpresaComponent, title: 'Añadir Empresa', data: { roles: ['admin', 'centro', 'tutor'] } },
+    { path: 'edit/centro/:id', component: EditCentroComponent, title: 'Editar Centro', data: { roles: ['admin'] } },
+    { path: 'edit/tutor/:id', component: EditTutorComponent, title: 'Editar Tutor', resolve: {usuario: userDetailsResolver}, data: { roles: ['admin', 'centro'] } }
   ] },
+  { path: 'formulario', component: ResenaComponent},
   { path: '**', component: NotFoundComponent, title: 'Página no encontrada' }
 ];

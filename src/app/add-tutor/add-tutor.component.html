@@ -56,39 +56,41 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <h3 class="mb-3">Centro</h3>
-            <div class="col-12">
-                <div class="mb-5">
-                    <label for="provincia" class="mb-2 ms-1">Provincia</label>
-                    <select name="provincia" id="provincia">
-                        <option value="">Alicante</option>
-                    </select>
+        @if (!userLoggedRoles.includes('centro') || userLoggedRoles != 'centro') {
+            <div class="row">
+                <h3 class="mb-3">Centro</h3>
+                <div class="col-12">
+                    <div class="mb-5">
+                        <label for="provincia" class="mb-2 ms-1">Provincia</label>
+                        <select name="provincia" id="provincia">
+                            <option value="">Alicante</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="mb-5">
+                        <label for="poblacion" class="mb-2 ms-1">Población</label>
+                        <select name="poblacion" id="poblacion">
+                            <option value="">Benidorm</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="mb-5">
+                        <label for="centro" class="mb-2 ms-1">Centro</label>
+                        <select name="centro" id="centro" formControlName="centro" [ngClass]="{'invalid': addTutorForm.get('centro')?.invalid && (addTutorForm.get('centro')?.dirty || addTutorForm.get('centro')?.touched)}">
+                            <option value="Pere Maria">IES Pere Maria</option>
+                            <option value="2">IES 2</option>
+                        </select>
+                        @if (addTutorForm.get('centro')?.invalid && (addTutorForm.get('centro')?.dirty || addTutorForm.get('centro')?.touched)) {
+                            <div class="position-absolute mt-2">
+                                <span *ngIf="addTutorForm.get('centro')?.errors?.['required']" class="text-danger">La selección de un centro es obligatoria</span>
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
-            <div class="col-12">
-                <div class="mb-5">
-                    <label for="poblacion" class="mb-2 ms-1">Población</label>
-                    <select name="poblacion" id="poblacion">
-                        <option value="">Benidorm</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="mb-5">
-                    <label for="centro" class="mb-2 ms-1">Centro</label>
-                    <select name="centro" id="centro" formControlName="centro" [ngClass]="{'invalid': addTutorForm.get('centro')?.invalid && (addTutorForm.get('centro')?.dirty || addTutorForm.get('centro')?.touched)}">
-                        <option value="Pere Maria">IES Pere Maria</option>
-                        <option value="2">IES 2</option>
-                    </select>
-                    @if (addTutorForm.get('centro')?.invalid && (addTutorForm.get('centro')?.dirty || addTutorForm.get('centro')?.touched)) {
-                        <div class="position-absolute mt-2">
-                            <span *ngIf="addTutorForm.get('centro')?.errors?.['required']" class="text-danger">La selección de un centro es obligatoria</span>
-                        </div>
-                    }
-                </div>
-            </div>
-        </div>
+        }
         <div class="d-flex justify-content-end mt-5">
             <button type="submit" class="main-btn w-100" id="añadir-btn" [disabled]="addTutorForm.invalid">
                 <i class="bi bi-plus-circle"></i>

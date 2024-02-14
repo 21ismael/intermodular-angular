@@ -13,11 +13,12 @@ export class OverviewEmpresasComponent {
   constructor(private route: ActivatedRoute) {}
 
   empresas: Empresa[] = [];
+  userLoggedRol!: string | null;
 
   ngOnInit(): void {
+    this.userLoggedRol = localStorage.getItem('roles');
     this.route.data.subscribe(({ empresas }) => {
       this.empresas = empresas;
-      console.log(this.empresas);
     });
   }
 }
