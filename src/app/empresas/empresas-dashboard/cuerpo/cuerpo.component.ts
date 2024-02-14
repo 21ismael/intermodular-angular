@@ -53,7 +53,10 @@ export class CuerpoComponent {
   constructor(private route: ActivatedRoute, private filtrosService: FiltrosService, private geocoder: MapGeocoder) { }
 
   ngOnInit(): void {
-    this.route.data.subscribe(({ datos }) => this.listaEmpresas = datos);
+    this.route.data.subscribe(({ datos }) => {
+      this.listaEmpresas = datos;
+      console.log(this.listaEmpresas);
+    });
 
     this.filtrosService.filtros$.subscribe(filtros => {
       this.aplicarFiltros(filtros);

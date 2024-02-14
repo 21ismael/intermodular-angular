@@ -3,7 +3,7 @@ import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LandingPageComponentComponent } from './landing-page-component/landing-page-component.component';
 import { EmpresasPrincipalComponent } from './empresas/empresas-dashboard/empresas-principal/empresas-principal.component';
-import { detailsResolver, empresasResolver } from './data-resolver.resolver';
+import { centrosResolver, detailsResolver, empresasResolver } from './data-resolver.resolver';
 import { EmpresaDetailsComponent } from './empresas/empresas-dashboard/empresa-details/empresa-details.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AddCentroComponent } from './add-centro/add-centro.component';
@@ -16,6 +16,8 @@ import { EditTutorComponent } from './edit-tutor/edit-tutor.component';
 import { CuerpoComponent } from './empresas/empresas-dashboard/cuerpo/cuerpo.component';
 import { authGuard } from './Guards/auth.guard';
 import { userDetailsResolver, usersDataResolver } from './Resolvers/users-data.resolver';
+import { OverviewEmpresasComponent } from './overview-empresas/overview-empresas.component';
+import { rolGuard } from './Guards/rol.guard';
 import { ResenaComponent } from './resena/resena.component';
 
 
@@ -27,14 +29,15 @@ export const routes: Routes = [
     { path: 'search/:id', component: EmpresaDetailsComponent, resolve: { empresa: detailsResolver } }
   ]},
   /*{ path: 'empresas/:id', component: EmpresaDetailsComponent, resolve: { empresa: detailsResolver } },*/
-  { path: 'panel', component: AdminPanelComponent ,title: 'Panel de administración', canActivate: [authGuard], canActivateChild: [authGuard], resolve: {usuarios: usersDataResolver}, children: [
-    { path: 'centros', component: OverviewCentrosComponent, title: 'Información de centros', resolve: {usuarios: usersDataResolver} },
-    { path: 'tutores', component: OverviewTutoresComponent, title: 'Información de tutores', resolve: {usuarios: usersDataResolver} },
-    { path: 'add/centro', component: AddCentroComponent, title: 'Añadir Centro' },
-    { path: 'add/tutor', component: AddTutorComponent, title: 'Añadir Tutor' },
-    { path: 'add/empresa', component: AddEmpresaComponent, title: 'Añadir Empresa' },
-    { path: 'edit/centro/:id', component: EditCentroComponent, title: 'Editar Centro' },
-    { path: 'edit/tutor/:id', component: EditTutorComponent, title: 'Editar Tutor', resolve: {usuario: userDetailsResolver} }
+  { path: 'panel', component: AdminPanelComponent ,title: 'Panel de administración', canActivate: [authGuard], canActivateChild: [authGuard, rolGuard], resolve: {usuarios: usersDataResolver}, children: [
+    { path: 'centros', component: OverviewCentrosComponent, title: 'Información de centros', resolve: {centros: centrosResolver}, data: { roles: ['admin', 'centro', 'tutor', 'empresa'] } },
+    { path: 'tutores', component: OverviewTutoresComponent, title: 'Información de tutores', resolve: {usuarios: usersDataResolver}, data: { roles: ['admin', 'centro', 'tutor', 'empresa'] } },
+    { path: 'empresas', component: OverviewEmpresasComponent, title: 'Información de empresas', resolve: {empresas: empresasResolver}, data: { roles: ['admin', 'centro', 'tutor', 'empresa'] } },
+    { path: 'add/centro', component: AddCentroComponent, title: 'Añadir Centro', data: { roles: ['admin'] } },
+    { path: 'add/tutor', component: AddTutorComponent, title: 'Añadir Tutor', data: { roles: ['admin', 'centro'] } },
+    { path: 'add/empresa', component: AddEmpresaComponent, title: 'Añadir Empresa', data: { roles: ['admin', 'centro', 'tutor'] } },
+    { path: 'edit/centro/:id', component: EditCentroComponent, title: 'Editar Centro', data: { roles: ['admin'] } },
+    { path: 'edit/tutor/:id', component: EditTutorComponent, title: 'Editar Tutor', resolve: {usuario: userDetailsResolver}, data: { roles: ['admin', 'centro'] } }
   ] },
   { path: 'formulario', component: ResenaComponent},
   { path: '**', component: NotFoundComponent, title: 'Página no encontrada' }

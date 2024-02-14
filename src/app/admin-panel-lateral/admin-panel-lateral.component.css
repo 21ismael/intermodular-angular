@@ -37,4 +37,10 @@ p, i {
   padding: 20px;
   border-radius: 5px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+@media (min-width: 1200px) {
+  aside {
+    height: 95vh;
+  }
 }/*# sourceMappingURL=admin-panel-lateral.component.css.map */

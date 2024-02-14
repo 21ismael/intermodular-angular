@@ -16,12 +16,22 @@ export class OverviewTutoresComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   tutores: Usuario[] = [];
+  userLoggedRoles!: string | string[];
 
   ngOnInit(): void {
+    this.getRoles();
     this.route.data.subscribe(({ usuarios }) => {
       const users : any = usuarios;
       this.tutores = users.data.filter((tutor: Usuario) => tutor.roles.includes('tutor')); 
-      console.log(this.tutores);
     });
+  }
+
+  private getRoles() {
+    const userLoggedRolesString = localStorage.getItem('roles');
+    if (userLoggedRolesString?.includes(',')) {
+      this.userLoggedRoles = userLoggedRolesString.split(',');
+    } else {
+      userLoggedRolesString ? this.userLoggedRoles = userLoggedRolesString : '';
+    }
   }
 }

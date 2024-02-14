@@ -18,14 +18,14 @@
                 @for (centro of centros; track centro.id) {
                     <tr>
                         <th scope="row">{{ centro.id }}</th>
-                        <td>{{ centro.name }}</td>
-                        <td>ies.gmail.com</td>
-                        <td>Calle 3</td>
-                        <td>123456789</td>
-                        <td>Alicante</td>
-                        <td>Benidorm</td>
+                        <td>{{ centro.nombre }}</td>
+                        <td>{{ centro.email }}</td>
+                        <td>{{ centro.direccion }}</td>
+                        <td>{{ centro.telefono }}</td>
+                        <td>{{ centro.provincia }}</td>
+                        <td>{{ centro.poblacion }}</td>
                         <td>
-                            <a class="operations-icon" matTooltip="Editar" routerLink="/panel/edit/centro/1"><i class="bi bi-pencil mx-3"></i></a>
+                            <a class="operations-icon" matTooltip="Editar" routerLink="/panel/edit/centro/{{centro.id}}"><i class="bi bi-pencil mx-3"></i></a>
                             <a class="operations-icon" matTooltip="Eliminar"><i class="bi bi-trash mx-3"></i></a>
                         </td>
                     </tr>
@@ -33,10 +33,12 @@
             </tbody>
         </table>
     </div>
-    <div class=" mt-5 w-100 d-flex justify-content-end">
-        <button class="main-btn" routerLink="/panel/add/centro">
-            <i class="bi bi-plus-circle me-1"></i>
-            <span class="ms-1">Añadir centro</span>
-        </button>
-    </div>
+    @if (userLoggedRoles.includes('admin') || userLoggedRoles == 'admin') {
+        <div class=" mt-5 w-100 d-flex justify-content-end">
+            <button class="main-btn" routerLink="/panel/add/centro">
+                <i class="bi bi-plus-circle me-1"></i>
+                <span class="ms-1">Añadir centro</span>
+            </button>
+        </div>
+    }
 </section>
