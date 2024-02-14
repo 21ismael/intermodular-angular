@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
   active: boolean = false;
   isLogged!: boolean;
   userLogged! : string | null;
-  userLoggedRoles!: string | string[]; 
+  userLoggedRoles: string | string[] = []; 
   private subscription!: Subscription;
 
   ngOnInit(): void {

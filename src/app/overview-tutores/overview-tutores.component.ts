@@ -28,9 +28,10 @@ export class OverviewTutoresComponent implements OnInit {
       }
     });
     this.route.data.subscribe(({ usuarios }) => {
+      console.log(usuarios);
       const users : any = usuarios;
       if (this.userLoggedRoles.includes('admin')) {
-        this.tutores = users.data;
+        this.tutores = users.data.filter((tutor: any) => tutor.roles.includes('tutor'));
       } else {
         this.tutores = users.data.filter((tutor: any) => tutor.roles.includes('tutor') && tutor.centro.length > 0 && tutor.centro[0].id === this.userLoggedCentroID);
       }
