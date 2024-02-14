@@ -16,6 +16,7 @@ import { EditTutorComponent } from './edit-tutor/edit-tutor.component';
 import { CuerpoComponent } from './empresas/empresas-dashboard/cuerpo/cuerpo.component';
 import { authGuard } from './Guards/auth.guard';
 import { userDetailsResolver, usersDataResolver } from './Resolvers/users-data.resolver';
+import { ResenaComponent } from './resena/resena.component';
 
 
 export const routes: Routes = [
@@ -35,5 +36,6 @@ export const routes: Routes = [
     { path: 'edit/centro/:id', component: EditCentroComponent, title: 'Editar Centro' },
     { path: 'edit/tutor/:id', component: EditTutorComponent, title: 'Editar Tutor', resolve: {usuario: userDetailsResolver} }
   ] },
+  { path: 'formulario', component: ResenaComponent},
   { path: '**', component: NotFoundComponent, title: 'Página no encontrada' }
 ];
