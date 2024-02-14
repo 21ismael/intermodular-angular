@@ -19,7 +19,7 @@ export class EditTutorComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private usersService: UsersService, private router: Router) {}
   ngOnInit(): void {
-    this.route.data.subscribe(({ usuario }) => this.tutor = usuario);
+    this.route.data.subscribe(({ usuario }) => this.tutor = usuario.data);
     this.editTutorForm = this.formBuilder.group({
       nombre: [this.tutor.name, Validators.minLength(5)],
       dni: [this.tutor.dni, Validators.minLength(5)],

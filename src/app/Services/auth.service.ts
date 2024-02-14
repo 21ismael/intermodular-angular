@@ -18,6 +18,7 @@ export class AuthService {
   login(credenciales: Credenciales) {
     return this.usersService.login(credenciales).pipe(tap({
       next: (x: any) => {
+        console.log(x);
         const { accessToken, login, roles, id_centro, id_empresa } = x;
         this.setUserSession(accessToken, login, roles, id_centro, id_empresa);
         this.isLogged.next(true);

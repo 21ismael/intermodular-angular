@@ -9,7 +9,9 @@
                     <th scope="col">Email</th>
                     <th scope="col">DNI</th>
                     <th scope="col">Centro</th>
-                    <th scope="col">Operaciones</th>
+                    @if (userLoggedRoles.includes('admin') || userLoggedRoles.includes('centro') || userLoggedRoles === 'admin' || userLoggedRoles === 'centro') {
+                        <th scope="col">Operaciones</th>
+                    }
                 </tr>
             </thead>
             <tbody>
@@ -20,10 +22,12 @@
                         <td>{{ tutor.email }}</td>
                         <td>{{ tutor.dni }}</td>
                         <td>IES Pere Maria</td>
-                        <td>
-                            <a class="operations-icon" matTooltip="Editar" routerLink="/panel/edit/tutor/{{ tutor.id }}"><i class="bi bi-pencil mx-3"></i></a>
-                            <a class="operations-icon" matTooltip="Eliminar"><i class="bi bi-trash mx-3"></i></a>
-                        </td>
+                        @if(userLoggedRoles.includes('admin') || userLoggedRoles.includes('centro') || userLoggedRoles === 'admin' || userLoggedRoles === 'centro') {
+                            <td>
+                                <a class="operations-icon" matTooltip="Editar" routerLink="/panel/edit/tutor/{{ tutor.id }}"><i class="bi bi-pencil mx-3"></i></a>
+                                <a class="operations-icon" matTooltip="Eliminar" (click)="onClick($event, tutor.id)"><i class="bi bi-trash mx-3"></i></a>
+                            </td>
+                        }
                     </tr>
                 }
             </tbody>

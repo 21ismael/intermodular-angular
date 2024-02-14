@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTooltip } from '@angular/material/tooltip';
-import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { UsersService } from '../Services/users.service';
 import { Usuario } from '../usuario';
 import { AuthService } from '../Services/auth.service';
@@ -14,7 +14,7 @@ import { AuthService } from '../Services/auth.service';
 })
 export class OverviewTutoresComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private authService: AuthService) {}
+  constructor(private route: ActivatedRoute, private authService: AuthService, private userService: UsersService, private router: Router) {}
 
   tutores: Usuario[] = [];
   userLoggedRoles!: string | string[];
@@ -41,5 +41,18 @@ export class OverviewTutoresComponent implements OnInit {
     if (localStorage.getItem('id_centro')) {
       this.userLoggedCentroID = parseInt(localStorage.getItem('id_centro') || '');
     }
+  }
+
+  onClick(e: Event, id: number) {
+    e.preventDefault();
+    this.userService.deleteUser(id).subscribe({
+      next: () => {
+        const tutorIndex = this.tutores.findIndex(tutor => tutor.id === id);
+        this.tutores.splice(tutorIndex, 1);
+      },
+      error: err => {
+        console.log(err);
+      }
+    });
   }
 }
