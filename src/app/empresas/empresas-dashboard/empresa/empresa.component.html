@@ -2,11 +2,11 @@
   <figure>
     <img class="img-fluid rounded" [src]="empresa.imagen">
   </figure>
-  <p id="localidad">{{ empresa.direccion.localidad }} - ({{ empresa.direccion.provincia }})</p>
+  <p id="localidad">{{ empresa.ubicacion.localidad }} - ({{ empresa.ubicacion.provincia }})</p>
   <h5 id="nombre">{{ empresa.nombre }}</h5>
   <div class="inline">
     <i class="bi bi-geo-alt"></i>
-    <p>{{ empresa.direccion.calle }}</p>
+    <p>{{ empresa.ubicacion.direccion }}</p>
   </div>
   <div class="inline">
     <i class="bi bi-person"></i>
@@ -18,7 +18,7 @@
   </div>
   <div class="inline">
     <i class="bi bi-envelope"></i>
-    <p><a href="{{ empresa.correo }}">Correo electrónico</a></p>
+    <p><a href="{{ empresa.email }}">Correo electrónico</a></p>
   </div>
   <div class="inline">
     <i class="bi bi-clock-history"></i>

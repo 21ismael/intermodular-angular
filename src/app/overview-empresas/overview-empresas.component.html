@@ -6,7 +6,7 @@
               <tr>
                   <th scope="col">ID</th>
                   <th scope="col">Nombre</th>
-                  <th scope="col">Correo</th>
+                  <th scope="col">Email</th>
                   <th scope="col">Teléfono</th>
                   <th scope="col">Provincia</th>
                   <th scope="col">Localidad</th>
@@ -17,10 +17,10 @@
                   <tr>
                       <th scope="row">{{ empresa.id }}</th>
                       <td>{{ empresa.nombre }}</td>
-                      <td>{{ empresa.correo }}</td>
+                      <td>{{ empresa.email }}</td>
                       <td>{{ empresa.telefono }}</td>
-                      <td>{{ empresa.direccion.provincia }}</td>
-                      <td>{{ empresa.direccion.localidad }}</td>
+                      <td>{{ empresa.ubicacion.provincia }}</td>
+                      <td>{{ empresa.ubicacion.localidad }}</td>
                       <td>
                           <a class="operations-icon" matTooltip="Editar" routerLink=""><i class="bi bi-pencil mx-3"></i></a>
                           <a class="operations-icon" matTooltip="Eliminar"><i class="bi bi-trash mx-3"></i></a>

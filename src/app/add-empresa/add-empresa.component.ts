@@ -4,6 +4,8 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { CapitalizarPipe } from '../pipes/capitalizar.pipe';
 import { EmpresasService } from '../empresas/empresas-dashboard/empresas.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { Empresa } from '../empresas/empresas-dashboard/empresa/empresa';
 
 @Component({
   selector: 'app-add-empresa',
@@ -13,7 +15,7 @@ import { Subscription } from 'rxjs';
   styleUrl: './add-empresa.component.scss'
 })
 export class AddEmpresaComponent {
-  constructor(private empresasService: EmpresasService){}
+  constructor(private empresasService: EmpresasService, private router: Router) { }
 
   subscription!: Subscription;
 
@@ -26,25 +28,32 @@ export class AddEmpresaComponent {
   empresaFormGroup = new FormGroup({
     nombre: new FormControl('', Validators.required),
     cif: new FormControl('', Validators.required),
+    decripcion: new FormControl('', Validators.required),
+    telefono: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    direccion: new FormControl('', Validators.required),
     provincia: new FormControl('', Validators.required),
     localidad: new FormControl('', Validators.required),
-    horario: new FormGroup({
-      inicio: new FormControl('', Validators.required),
-      fin: new FormControl('', Validators.required)
-    }),
-    email: new FormControl('', [Validators.required, Validators.email]),
+    lat: new FormControl('', Validators.required),
+    lng: new FormControl('', Validators.required),
     vacantes: new FormControl('', Validators.required),
-    categoria: new FormControl('', Validators.required),
+    hora_inicio: new FormControl('', Validators.required),
+    hora_fin: new FormControl('', Validators.required),
   })
 
   get nombre() { return this.empresaFormGroup.get('nombre') }
   get cif() { return this.empresaFormGroup.get('cif') }
+  get descripcion() { return this.empresaFormGroup.get('descripcion') }
+  get telefono() { return this.empresaFormGroup.get('telefono') }
+  get email() { return this.empresaFormGroup.get('email'); }
+  get direccion() { return this.empresaFormGroup.get('direccion') }
   get provincia() { return this.empresaFormGroup.get('provincia') }
   get localidad() { return this.empresaFormGroup.get('localidad') }
-  get inicio() { return this.empresaFormGroup.get('horario.inicio'); }
-  get fin() { return this.empresaFormGroup.get('horario.fin'); }
-  get email() { return this.empresaFormGroup.get('email'); }
+  get lat() { return this.empresaFormGroup.get('latitud') }
+  get lng() { return this.empresaFormGroup.get('longitud') }
   get vacantes() { return this.empresaFormGroup.get('vacantes'); }
+  get inicio() { return this.empresaFormGroup.get('hora_inicio'); }
+  get fin() { return this.empresaFormGroup.get('hora_fin'); }
   get categoria() { return this.empresaFormGroup.get('categoria'); }
 
   empresa: any = {}
@@ -63,7 +72,7 @@ export class AddEmpresaComponent {
     });
   }
 
-  cambioProvincia(){
+  cambioProvincia() {
     let provinciaSeleccionada = this.provincia?.value;
     if (provinciaSeleccionada == "alicante") {
       this.localidades = this.ubicacion.alicante;
@@ -75,4 +84,63 @@ export class AddEmpresaComponent {
       this.localidades = [];
     }
   }
+
+  submit(e: Event) {
+    e.preventDefault();
+    console.log("submit")
+    if (this.empresaFormGroup.valid) {
+      console.log("valido");
+      const data = {
+        nombre: this.empresaFormGroup.get('nombre')?.value,
+        imagen: "../../assets/empresas/imagen.jpg",
+        nota: 0,
+        cif: this.empresaFormGroup.get('cif')?.value,
+        descripcion: "descripcion",
+        telefono: this.empresaFormGroup.get('telefono')?.value,
+        email: this.empresaFormGroup.get('email')?.value,
+        direccion: this.empresaFormGroup.get('direccion')?.value,
+        provincia: this.empresaFormGroup.get('provincia')?.value,
+        localidad: this.empresaFormGroup.get('localidad')?.value,
+        lat: this.empresaFormGroup.get('localidad')?.value,
+        lng: this.empresaFormGroup.get('localidad')?.value,
+        vacantes: this.empresaFormGroup.get('vacantes')?.value,
+        hora_inicio: this.empresaFormGroup.get('hora_inicio')?.value,
+        hora_fin: this.empresaFormGroup.get('hora_fin')?.value,
+        //categoria: this.empresaFormGroup.get('categoria')?.value
+      };
+
+      console.log(data)
+
+      /*this.empresasService.postEmpresa(data).subscribe({
+        next: response => {
+          console.log(response);
+          this.router.navigate(['/panel/empresas']);
+        },
+        error: err => {
+          console.log(err);
+        }
+      });*/
+    }
+  }
+
 }
+
+/*
+{
+  "nombre": "Empresa de ejemplo",
+  "imagen": "../../assets/empresas/centauro.jpg",
+  "nota": 5,
+  "cif": "CIF123456",
+  "descripcion": "Descripción de la empresa de ejemplo",
+  "telefono": "123-456-789",
+  "email": "info@empresa.com",
+  "direccion": "Calle Ejemplo 123",
+  "provincia": "Ejemplo",
+  "localidad": "Ciudad Ejemplo",
+  "lat": 40.7128,
+  "lng": -74.0060,
+  "vacantes": 10,
+  "hora_inicio": "09:00:00",
+  "hora_fin": "18:00:00"
+}
+*/

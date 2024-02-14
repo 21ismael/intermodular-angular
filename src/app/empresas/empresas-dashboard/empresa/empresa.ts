@@ -2,10 +2,13 @@ export interface Empresa {
   id: number;
   nombre: string;
   imagen: string;
+  nota: number;
+  cif: string;
+  descripcion: string;
   telefono: string;
-  correo: string;
-  direccion: {
-    calle: string;
+  email: string;
+  ubicacion: {
+    direccion: string;
     provincia: string;
     localidad: string;
     coordenadas: {
@@ -13,31 +16,11 @@ export interface Empresa {
       lng: number;
     };
   };
+  vacantes: number;
+  horario: {
+    inicio: string;
+    fin: string;
+  };
   categorias: string[];
   servicios: string[];
-  vacantes: number;
-  horario: { inicio: string, fin: string };
 }
-
-/*
- id: number;
-  nombre: string;
-  imagen: string;
-  telefono: string;
-  correo: string;
-  direccion: {
-    calle: string;
-    provincia: string;
-    poblacion: string;
-    coordenadas: {
-      lat: number;
-      lng: number;
-    };
-  };
-  vacantes: number;
-  categorias: string[];
-  horario: { inicio: string; fin: string };
-  nota: string;
-  estudiante: boolean;
-  profesor: boolean;
-*/

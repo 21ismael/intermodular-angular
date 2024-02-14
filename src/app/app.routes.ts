@@ -22,7 +22,7 @@ import { OverviewEmpresasComponent } from './overview-empresas/overview-empresas
 export const routes: Routes = [
   { path: '', component: LoginComponent, title: 'Inicia sesión!', data: { animation: 'landingPage' } },
   { path: 'main', component: LandingPageComponentComponent, title: 'Login', data: { animation: 'loginPage' }, canActivate: [authGuard] },
-  { path: 'empresas', component: EmpresasPrincipalComponent, title: 'Empresas Dashboard', resolve: { datos: empresasResolver }, canActivate: [authGuard], canActivateChild: [authGuard], children: [
+  { path: 'empresas', component: EmpresasPrincipalComponent, title: 'Empresas Dashboard', resolve: { empresas: empresasResolver }, canActivate: [authGuard], canActivateChild: [authGuard], children: [
     { path: '', component: CuerpoComponent, title: 'Empresas Dashboard' },
     { path: 'search/:id', component: EmpresaDetailsComponent, resolve: { empresa: detailsResolver } }
   ]},

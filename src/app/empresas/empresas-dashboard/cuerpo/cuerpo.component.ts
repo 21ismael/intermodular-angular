@@ -44,8 +44,8 @@ export class CuerpoComponent {
   openInfoWindow(marker: MapMarker) {
     const posicion = marker.marker?.getPosition()?.toJSON();
 
-    this.empresaMarker = this.listaEmpresas.filter(empresa => { return empresa.direccion.coordenadas.lat == posicion?.lat &&
-      empresa.direccion.coordenadas.lng == posicion?.lng})[0];
+    this.empresaMarker = this.listaEmpresas.filter(empresa => { return empresa.ubicacion.coordenadas.lat == posicion?.lat &&
+      empresa.ubicacion.coordenadas.lng == posicion?.lng})[0];
 
     this.infoWindow.open(marker);
   }
@@ -53,8 +53,8 @@ export class CuerpoComponent {
   constructor(private route: ActivatedRoute, private filtrosService: FiltrosService, private geocoder: MapGeocoder) { }
 
   ngOnInit(): void {
-    this.route.data.subscribe(({ datos }) => {
-      this.listaEmpresas = datos;
+    this.route.data.subscribe(({ empresas }) => {
+      this.listaEmpresas = empresas;
       console.log(this.listaEmpresas);
     });
 
@@ -63,7 +63,7 @@ export class CuerpoComponent {
     });
 
     for (let empresa of this.empresasFiltradas) {
-      this.markerPositions.push({ lat: empresa.direccion.coordenadas.lat, lng: empresa.direccion.coordenadas.lng })
+      this.markerPositions.push({ lat: empresa.ubicacion.coordenadas.lat, lng: empresa.ubicacion.coordenadas.lng })
     }
   }
 
@@ -88,15 +88,15 @@ export class CuerpoComponent {
 
     this.empresasFiltradas = this.listaEmpresas.filter(empresa =>
       empresa.nombre.toLowerCase().includes(filtros.nombre.toLowerCase()) &&
-      (filtros.provincia === "" || empresa.direccion.provincia.toLowerCase() === filtros.provincia.toLowerCase()) &&
-      (filtros.localidad === "" || empresa.direccion.localidad.toLowerCase() === filtros.localidad.toLowerCase()) &&
+      (filtros.provincia === "" || empresa.ubicacion.provincia.toLowerCase() === filtros.provincia.toLowerCase()) &&
+      (filtros.localidad === "" || empresa.ubicacion.localidad.toLowerCase() === filtros.localidad.toLowerCase()) &&
       (filtros.vacantes === "" || empresa.vacantes === +filtros.vacantes || (empresa.vacantes >= 5 && +filtros.vacantes >= 5))
     );
 
     this.markerPositions = [];
 
     for (let empresa of this.empresasFiltradas) {
-      this.markerPositions.push({ lat: empresa.direccion.coordenadas.lat, lng: empresa.direccion.coordenadas.lng })
+      this.markerPositions.push({ lat: empresa.ubicacion.coordenadas.lat, lng: empresa.ubicacion.coordenadas.lng })
     }
     console.log(this.empresasFiltradas);
     console.log(filtros)
