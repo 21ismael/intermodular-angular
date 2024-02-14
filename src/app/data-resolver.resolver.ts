@@ -15,7 +15,6 @@ export const detailsResolver: ResolveFn<Empresa> = (route: ActivatedRouteSnapsho
 };
 
 export const centrosResolver: ResolveFn<Centro[]> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-  console.log(inject(CentrosService).getAllCentros());
   return inject(CentrosService).getAllCentros();
 };
 
