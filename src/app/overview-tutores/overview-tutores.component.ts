@@ -3,6 +3,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 import { UsersService } from '../Services/users.service';
 import { Usuario } from '../usuario';
+import { AuthService } from '../Services/auth.service';
 
 @Component({
   selector: 'app-overview-tutores',
@@ -13,25 +14,32 @@ import { Usuario } from '../usuario';
 })
 export class OverviewTutoresComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private authService: AuthService) {}
 
   tutores: Usuario[] = [];
   userLoggedRoles!: string | string[];
+  userLoggedCentroID!: number;
 
   ngOnInit(): void {
-    this.getRoles();
+    this.authService.isLogged$.subscribe({
+      next: () => {
+        this.userLoggedRoles = this.authService.getRoles();
+        this.getForeignID();
+      }
+    });
     this.route.data.subscribe(({ usuarios }) => {
       const users : any = usuarios;
-      this.tutores = users.data.filter((tutor: Usuario) => tutor.roles.includes('tutor')); 
+      if (this.userLoggedRoles.includes('admin')) {
+        this.tutores = users.data;
+      } else {
+        this.tutores = users.data.filter((tutor: any) => tutor.roles.includes('centro') && tutor.centro.length > 0 && tutor.centro[0].id === this.userLoggedCentroID);
+      }
     });
   }
 
-  private getRoles() {
-    const userLoggedRolesString = localStorage.getItem('roles');
-    if (userLoggedRolesString?.includes(',')) {
-      this.userLoggedRoles = userLoggedRolesString.split(',');
-    } else {
-      userLoggedRolesString ? this.userLoggedRoles = userLoggedRolesString : '';
+  private getForeignID() {
+    if (localStorage.getItem('id_centro')) {
+      this.userLoggedCentroID = parseInt(localStorage.getItem('id_centro') || '');
     }
   }
 }

@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateFn, Router } from '@angular/router';
 
 export const rolGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state) => {
-  const rolesValidos = route.data['roles'] as string[]; //['admin', 'centro', ...]
+  const rolesValidos = route.data['roles'] as string[];
   const usuarioRolesString = localStorage.getItem('roles');
 
   if (!usuarioRolesString) {

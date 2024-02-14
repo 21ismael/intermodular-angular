@@ -18,10 +18,8 @@ export class AuthService {
   login(credenciales: Credenciales) {
     return this.usersService.login(credenciales).pipe(tap({
       next: (x: any) => {
-        console.log(x);
-        const { accessToken, login, roles } = x;
-        console.log(roles);
-        this.setUserSession(accessToken, login, roles);
+        const { accessToken, login, roles, id_centro, id_empresa } = x;
+        this.setUserSession(accessToken, login, roles, id_centro, id_empresa);
         this.isLogged.next(true);
       }
     }));
@@ -30,6 +28,14 @@ export class AuthService {
   logout() : void {
     localStorage.removeItem('token');
     localStorage.removeItem('login');
+    localStorage.removeItem('roles');
+
+    if(localStorage.getItem('id_centro')) {
+      localStorage.removeItem('id_centro');
+    }
+    if (localStorage.getItem('id_empresa')) {
+      localStorage.removeItem('id_empresa');
+    }
     this.isLogged.next(false);
     this.router.navigate(['/']);
   }
@@ -42,10 +48,31 @@ export class AuthService {
     return localStorage.getItem('login');
   }
 
-  private setUserSession(accessToken: string, login: string, roles: string[]) {
+  getRoles() : string | string[] {
+    const userLoggedRolesString = localStorage.getItem('roles');
+    if (userLoggedRolesString?.includes(',')) {
+      return userLoggedRolesString.split(',');
+    } else {
+      if (userLoggedRolesString) {
+        return userLoggedRolesString;
+      } else {
+        return '';
+      }
+    }
+  }
+
+  private setUserSession(accessToken: string, login: string, roles: string[], id_centro: number, id_empresa: number) {
     localStorage.setItem('token', accessToken);
     localStorage.setItem('login', login);
     localStorage.setItem('roles', roles.join(','));
+
+    if(id_centro !== null) {
+      localStorage.setItem('id_centro', id_centro ? id_centro.toString() : '');
+    }
+
+    if(id_empresa !== null) {
+      localStorage.setItem('id_empresa', id_empresa ? id_empresa.toString() : '');
+    }
   }
 
   private token() {
