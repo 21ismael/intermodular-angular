@@ -19,7 +19,6 @@ export class AdminPanelComponent implements OnInit {
   ngOnInit(): void {
     this.route.data.subscribe(({ usuarios }) => {
       this.usuarios = usuarios;
-      console.log(this.usuarios);
     })
   }
 }

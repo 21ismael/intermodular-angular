@@ -27,15 +27,15 @@ export class AuthService {
   }
 
   logout() : void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('login');
-    localStorage.removeItem('roles');
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('login');
+    sessionStorage.removeItem('roles');
 
-    if(localStorage.getItem('id_centro')) {
-      localStorage.removeItem('id_centro');
+    if(sessionStorage.getItem('id_centro')) {
+      sessionStorage.removeItem('id_centro');
     }
-    if (localStorage.getItem('id_empresa')) {
-      localStorage.removeItem('id_empresa');
+    if (sessionStorage.getItem('id_empresa')) {
+      sessionStorage.removeItem('id_empresa');
     }
     this.isLogged.next(false);
     this.router.navigate(['/']);
@@ -46,11 +46,11 @@ export class AuthService {
   }
 
   getUser() {
-    return localStorage.getItem('login');
+    return sessionStorage.getItem('login');
   }
 
   getRoles() : string | string[] {
-    const userLoggedRolesString = localStorage.getItem('roles');
+    const userLoggedRolesString = sessionStorage.getItem('roles');
     if (userLoggedRolesString?.includes(',')) {
       return userLoggedRolesString.split(',');
     } else {
@@ -63,20 +63,20 @@ export class AuthService {
   }
 
   private setUserSession(accessToken: string, login: string, roles: string[], id_centro: number, id_empresa: number) {
-    localStorage.setItem('token', accessToken);
-    localStorage.setItem('login', login);
-    localStorage.setItem('roles', roles.join(','));
+    sessionStorage.setItem('token', accessToken);
+    sessionStorage.setItem('login', login);
+    sessionStorage.setItem('roles', roles.join(','));
 
     if(id_centro !== null) {
-      localStorage.setItem('id_centro', id_centro ? id_centro.toString() : '');
+      sessionStorage.setItem('id_centro', id_centro ? id_centro.toString() : '');
     }
 
     if(id_empresa !== null) {
-      localStorage.setItem('id_empresa', id_empresa ? id_empresa.toString() : '');
+      sessionStorage.setItem('id_empresa', id_empresa ? id_empresa.toString() : '');
     }
   }
 
   private token() {
-    return !!localStorage.getItem('token');
+    return !!sessionStorage.getItem('token');
   }
 }
