@@ -3,11 +3,10 @@ import { ActivatedRouteSnapshot, CanActivateFn, Router } from '@angular/router';
 
 export const rolGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state) => {
   const rolesValidos = route.data['roles'] as string[];
-  const usuarioRolesString = localStorage.getItem('roles');
+  const usuarioRolesString = sessionStorage.getItem('roles');
 
   if (!usuarioRolesString) {
-    inject(Router).navigate(['/main']);
-    return false;
+    return inject(Router).createUrlTree(['/main']);
   }
 
   let acceso = false;
@@ -25,8 +24,7 @@ export const rolGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state) =>
   }
 
   if (!acceso) {
-    inject(Router).navigate(['/main']);
-    return false;
+    return inject(Router).createUrlTree(['/main']);
   }
 
   return true;

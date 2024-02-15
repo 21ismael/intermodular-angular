@@ -39,8 +39,8 @@ export class OverviewTutoresComponent implements OnInit {
   }
 
   private getForeignID() {
-    if (localStorage.getItem('id_centro')) {
-      this.userLoggedCentroID = parseInt(localStorage.getItem('id_centro') || '');
+    if (sessionStorage.getItem('id_centro')) {
+      this.userLoggedCentroID = parseInt(sessionStorage.getItem('id_centro') || '');
     }
   }
 

@@ -45,7 +45,7 @@ export class AddTutorComponent implements OnInit {
     if(this.addTutorForm.valid) {
       let id_centro!: number;
       if (this.userLoggedRoles.includes('centro') || this.userLoggedRoles === 'centro') {
-        id_centro = +(localStorage.getItem('id_centro') || NaN);
+        id_centro = +(sessionStorage.getItem('id_centro') || NaN);
       } else {
         id_centro = 2;
       }
