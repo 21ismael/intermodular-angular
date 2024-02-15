@@ -26,7 +26,7 @@
                         <td>{{ centro.poblacion }}</td>
                         <td>
                             <a class="operations-icon" matTooltip="Editar" routerLink="/panel/edit/centro/{{centro.id}}"><i class="bi bi-pencil mx-3"></i></a>
-                            <a class="operations-icon" matTooltip="Eliminar"><i class="bi bi-trash mx-3"></i></a>
+                            <a class="operations-icon" matTooltip="Eliminar" (click)="eliminarCentro(centro.id)"><i class="bi bi-trash mx-3"></i></a>
                         </td>
                     </tr>
                 }

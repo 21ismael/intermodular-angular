@@ -21,6 +21,11 @@ export class CentrosService {
     return this.http.post<any>(this.URL, data).pipe(catchError(this.handleHttpError));
   }
 
+  deleteCentro(id: number) {
+    const deleteUrl = `${this.URL}/${id}`;
+    return this.http.delete<any>(deleteUrl).pipe(catchError(this.handleHttpError));
+  }
+
   private handleHttpError(error : HttpErrorResponse) {
     if(error.status === 0) {
       return throwError(() => "No se puede establecer la conexión");
