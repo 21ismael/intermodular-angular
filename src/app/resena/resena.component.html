@@ -12,13 +12,13 @@
                 <div class="container-fluid col-12 mt-4 mt-lg-0 col-lg-3 custom-border-end ms-2">
                     <div class="row justify-content-center">
                         <div class="col-12 mt-5 d-none d-lg-inline">
-                            <img class="img-fluid" src="https://picsum.photos/300/200">
+                            <img class="img-fluid" src="{{ empresa.imagen }}">
                         </div>
                         <div class="col-12 mt-3 d-none d-lg-inline">
-                            <small>Benidorm - (Alicante)</small>
+                            <small>{{ empresa.ubicacion.localidad }} - ({{ empresa.ubicacion.provincia }})</small>
                         </div>
                         <div class="col-12 m-0 ms-lg-2 p-0 p-lg-2">
-                            <h6>Pixel78 - Estudio Creativo</h6>
+                            <h6>{{ empresa.nombre }}</h6>
                         </div>
                         <div class="col-12 d-none d-lg-inline">
                             <small>Programación web, Diseño gráfico, RRSS, Comercio electrónico</small>
@@ -36,10 +36,10 @@
                                 <div class="container col-10">
                                     <div class="row">
                                         <div class="col-12">
-                                            <small>Benidorm - (Alicante)</small>
+                                            <small>{{ empresa.ubicacion.localidad }} - ({{ empresa.ubicacion.provincia }})</small>
                                         </div>
                                         <div class="col-12">
-                                            <p>Maravall 1, local 5</p>
+                                            <p>{{ empresa.ubicacion.direccion }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -61,7 +61,7 @@
                                             <small>De</small>
                                         </div>
                                         <div class="col-12">
-                                            <p>9:30h -13:30h</p>
+                                            <p>{{ empresa.horario.inicio }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -71,7 +71,7 @@
                                             <small>To</small>
                                         </div>
                                         <div class="col-12">
-                                            <p>15:00 - 19:00</p>
+                                            <p>{{ empresa.horario.fin }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -86,220 +86,73 @@
                             <p>VALORA TU EXPERIENCIA</p>
                         </div>
                         <form novalidate [formGroup]="form">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-12 col-lg-6">
-                                        <p>Lorem ipsum is simply dummy text of the printing and typesetting industry</p>
-                                    </div>
-                                    <div class="col-lg-3 offset-lg-3">
-                                        <div class="stars">
-                                            <label class=star for=rating1>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 275">
-                                            <path fill="#fe0" stroke="#605a00" stroke-width="15" 
-                                            d="M150 25l29 86h90l-72 54 26 86-73-51-73 51 26-86-72-54h90z"/>
-                                            </svg>
-                                            </label>
-                                            <input id=rating1 type=radio value=1 name=rating1 (change)="getRating($event)" formControlName="rating1" />
-                                                
-                                            <label class=star for=rating2>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 275">
-                                            <path stroke="#605a00" stroke-width="15"
-                                            d="M150 25l29 86h90l-72 54 26 86-73-51-73 51 26-86-72-54h90z"/>
-                                            </svg>
-                                            </label>
-                                            <input id=rating2 type=radio value=2 name=rating1 (change)="getRating($event)" formControlName="rating1" />
-                                                
-                                            <label class=star for=rating3>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 275">
-                                            <path stroke="#605a00" stroke-width="15"
-                                            d="M150 25l29 86h90l-72 54 26 86-73-51-73 51 26-86-72-54h90z"/>
-                                            </svg>
-                                            </label>
-                                            <input id=rating3 type=radio value=3 name=rating1 (change)="getRating($event)" formControlName="rating1" />
-                                                
-                                            <label class=star for=rating4>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 275">
-                                            <path stroke="#605a00" stroke-width="15"
-                                            d="M150 25l29 86h90l-72 54 26 86-73-51-73 51 26-86-72-54h90z"/>
-                                            </svg>
-                                            </label>
-                                            <input id=rating4 type=radio value=4 name=rating1 (change)="getRating($event)" formControlName="rating1" />
-                                                
-                                            <label class=star for=rating5>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 275">
-                                            <path stroke="#605a00" stroke-width="15"
-                                            d="M150 25l29 86h90l-72 54 26 86-73-51-73 51 26-86-72-54h90z"/>
-                                            </svg>
-                                            </label>
-                                            <input id=rating5 type=radio value=5 name=rating1 (change)="getRating($event)" formControlName="rating1" />
+                            @for (pregunta of preguntas; track pregunta; let i = $index) {
+                                @if (i <= 7) {
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12 col-lg-8">
+                                                <p>{{preguntas[i]}}</p>
+                                            </div>
+                                            <div class="col-lg-3 offset-lg-1">
+                                                <div class="stars">
+                                                    <label class=star for=rating1>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 275">
+                                                    <path fill="#fe0" stroke="#605a00" stroke-width="15" 
+                                                    d="M150 25l29 86h90l-72 54 26 86-73-51-73 51 26-86-72-54h90z"/>
+                                                    </svg>
+                                                    </label>
+                                                    <input id=rating1 type=radio value=1 name=rating1 (change)="getRating($event)" formControlName="rating1" />
+                                                        
+                                                    <label class=star for=rating2>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 275">
+                                                    <path stroke="#605a00" stroke-width="15"
+                                                    d="M150 25l29 86h90l-72 54 26 86-73-51-73 51 26-86-72-54h90z"/>
+                                                    </svg>
+                                                    </label>
+                                                    <input id=rating2 type=radio value=2 name=rating1 (change)="getRating($event)" formControlName="rating1" />
+                                                        
+                                                    <label class=star for=rating3>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 275">
+                                                    <path stroke="#605a00" stroke-width="15"
+                                                    d="M150 25l29 86h90l-72 54 26 86-73-51-73 51 26-86-72-54h90z"/>
+                                                    </svg>
+                                                    </label>
+                                                    <input id=rating3 type=radio value=3 name=rating1 (change)="getRating($event)" formControlName="rating1" />
+                                                        
+                                                    <label class=star for=rating4>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 275">
+                                                    <path stroke="#605a00" stroke-width="15"
+                                                    d="M150 25l29 86h90l-72 54 26 86-73-51-73 51 26-86-72-54h90z"/>
+                                                    </svg>
+                                                    </label>
+                                                    <input id=rating4 type=radio value=4 name=rating1 (change)="getRating($event)" formControlName="rating1" />
+                                                        
+                                                    <label class=star for=rating5>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 275">
+                                                    <path stroke="#605a00" stroke-width="15"
+                                                    d="M150 25l29 86h90l-72 54 26 86-73-51-73 51 26-86-72-54h90z"/>
+                                                    </svg>
+                                                    </label>
+                                                    <input id=rating5 type=radio value=5 name=rating1 (change)="getRating($event)" formControlName="rating1" />
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-12 col-lg-6">
-                                        <p>Lorem ipsum is simply dummy text of the printing and typesetting industry</p>
-                                    </div>
-                                    <div class="col-lg-3 offset-lg-3">
-                                        <div class="stars">
-                                            <label class=star for=rating1>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 275">
-                                            <path fill="#fe0" stroke="#605a00" stroke-width="15" 
-                                            d="M150 25l29 86h90l-72 54 26 86-73-51-73 51 26-86-72-54h90z"/>
-                                            </svg>
-                                            </label>
-                                            <input id=rating1 type=radio value=1 name=rating2 (change)="getRating($event)" formControlName="rating2" />
-                                                    
-                                            <label class=star for=rating2>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 275">
-                                            <path stroke="#605a00" stroke-width="15"
-                                            d="M150 25l29 86h90l-72 54 26 86-73-51-73 51 26-86-72-54h90z"/>
-                                            </svg>
-                                            </label>
-                                            <input id=rating2 type=radio value=2 name=rating2 (change)="getRating($event)" formControlName="rating2" />
-                                                    
-                                            <label class=star for=rating3>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 275">
-                                            <path stroke="#605a00" stroke-width="15"
-                                            d="M150 25l29 86h90l-72 54 26 86-73-51-73 51 26-86-72-54h90z"/>
-                                            </svg>
-                                            </label>
-                                            <input id=rating3 type=radio value=3 name=rating2 (change)="getRating($event)" formControlName="rating2" />
-                                                    
-                                            <label class=star for=rating4>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 275">
-                                            <path stroke="#605a00" stroke-width="15"
-                                            d="M150 25l29 86h90l-72 54 26 86-73-51-73 51 26-86-72-54h90z"/>
-                                            </svg>
-                                            </label>
-                                            <input id=rating4 type=radio value=4 name=rating2 (change)="getRating($event)" formControlName="rating2" />
-                                                    
-                                            <label class=star for=rating5>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 275">
-                                            <path stroke="#605a00" stroke-width="15"
-                                            d="M150 25l29 86h90l-72 54 26 86-73-51-73 51 26-86-72-54h90z"/>
-                                            </svg>
-                                            </label>
-                                            <input id=rating5 type=radio value=5 name=rating2 (change)="getRating($event)" formControlName="rating2" />
+                                    <hr>
+                                }
+                                @else {
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <p>{{preguntas[i]}}</p>
+                                            </div>
+                                            <textarea rows="4" cols="4"></textarea>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-12 col-lg-6">
-                                        <p>Lorem ipsum is simply dummy text of the printing and typesetting industry</p>
-                                    </div>
-                                    <div class="col-lg-3 offset-lg-3">
-                                        <div class="stars">
-                                            <label class=star for=rating1>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 275">
-                                            <path fill="#fe0" stroke="#605a00" stroke-width="15" 
-                                            d="M150 25l29 86h90l-72 54 26 86-73-51-73 51 26-86-72-54h90z"/>
-                                            </svg>
-                                            </label>
-                                            <input id=rating1 type=radio value=1 name=rating3 (change)="getRating($event)" />
-                                                
-                                            <label class=star for=rating2>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 275">
-                                            <path stroke="#605a00" stroke-width="15"
-                                            d="M150 25l29 86h90l-72 54 26 86-73-51-73 51 26-86-72-54h90z"/>
-                                            </svg>
-                                            </label>
-                                            <input id=rating2 type=radio value=2 name=rating3 (change)="getRating($event)" />
-                                                
-                                            <label class=star for=rating3>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 275">
-                                            <path stroke="#605a00" stroke-width="15"
-                                            d="M150 25l29 86h90l-72 54 26 86-73-51-73 51 26-86-72-54h90z"/>
-                                            </svg>
-                                            </label>
-                                            <input id=rating3 type=radio value=3 name=rating3 (change)="getRating($event)" />
-                                                
-                                            <label class=star for=rating4>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 275">
-                                            <path stroke="#605a00" stroke-width="15"
-                                            d="M150 25l29 86h90l-72 54 26 86-73-51-73 51 26-86-72-54h90z"/>
-                                            </svg>
-                                            </label>
-                                            <input id=rating4 type=radio value=4 name=rating3 (change)="getRating($event)" />
-                                                
-                                            <label class=star for=rating5>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 275">
-                                            <path stroke="#605a00" stroke-width="15"
-                                            d="M150 25l29 86h90l-72 54 26 86-73-51-73 51 26-86-72-54h90z"/>
-                                            </svg>
-                                            </label>
-                                            <input id=rating5 type=radio value=5 name=rating3 (change)="getRating($event)" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-12 col-lg-6">
-                                        <p>Lorem ipsum is simply dummy text of the printing and typesetting industry</p>
-                                    </div>
-                                    <div class="col-lg-3 offset-lg-3">
-                                        <div class="stars">
-                                            <label class=star for=rating1>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 275">
-                                            <path fill="#fe0" stroke="#605a00" stroke-width="15" 
-                                            d="M150 25l29 86h90l-72 54 26 86-73-51-73 51 26-86-72-54h90z"/>
-                                            </svg>
-                                            </label>
-                                            <input id=rating1 type=radio value=1 name=rating4 (change)="getRating($event)" />
-                                                
-                                            <label class=star for=rating2>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 275">
-                                            <path stroke="#605a00" stroke-width="15"
-                                            d="M150 25l29 86h90l-72 54 26 86-73-51-73 51 26-86-72-54h90z"/>
-                                            </svg>
-                                            </label>
-                                            <input id=rating2 type=radio value=2 name=rating4 (change)="getRating($event)" />
-                                                
-                                            <label class=star for=rating3>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 275">
-                                            <path stroke="#605a00" stroke-width="15"
-                                            d="M150 25l29 86h90l-72 54 26 86-73-51-73 51 26-86-72-54h90z"/>
-                                            </svg>
-                                            </label>
-                                            <input id=rating3 type=radio value=3 name=rating4 (change)="getRating($event)" />
-                                                
-                                            <label class=star for=rating4>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 275">
-                                            <path stroke="#605a00" stroke-width="15"
-                                            d="M150 25l29 86h90l-72 54 26 86-73-51-73 51 26-86-72-54h90z"/>
-                                            </svg>
-                                            </label>
-                                            <input id=rating4 type=radio value=4 name=rating4 (change)="getRating($event)" />
-                                                
-                                            <label class=star for=rating5>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 275">
-                                            <path stroke="#605a00" stroke-width="15"
-                                            d="M150 25l29 86h90l-72 54 26 86-73-51-73 51 26-86-72-54h90z"/>
-                                            </svg>
-                                            </label>
-                                            <input id=rating5 type=radio value=5 name=rating4 (change)="getRating($event)" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
+                                }
+                            }
                         </form>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12">
-                                    <p>Lorem ipsum is simply dummy text of the printing and typesetting industry</p>
-                                </div>
-                                <div class="col-12 border border-secondary w-100" style="height: 100px; border-radius: 10px;">
-                                </div>
-                            </div>
-                        </div>
+                        
                         <div class="container mt-5">
                             <div class="row">
                                 <div class="col-12 col-lg-3 offset-lg-9">
