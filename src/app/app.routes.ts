@@ -39,6 +39,6 @@ export const routes: Routes = [
     { path: 'edit/centro/:id', component: EditCentroComponent, title: 'Editar Centro', data: { roles: ['admin'] } },
     { path: 'edit/tutor/:id', component: EditTutorComponent, title: 'Editar Tutor', resolve: {usuario: userDetailsResolver}, data: { roles: ['admin', 'centro'] } }
   ] },
-  { path: 'formulario', component: ResenaComponent},
+  { path: 'formulario/:id', component: ResenaComponent, title: 'Formulario', resolve: {empresas: detailsResolver}},
   { path: '**', component: NotFoundComponent, title: 'Página no encontrada' }
 ];
