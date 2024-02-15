@@ -21,7 +21,7 @@
                         <td>{{ tutor.name }}</td>
                         <td>{{ tutor.email }}</td>
                         <td>{{ tutor.dni }}</td>
-                        <td>IES Pere Maria</td>
+                        <td>{{ tutor.centro[0] ? tutor.centro[0].nombre : '' }}</td>
                         @if(userLoggedRoles.includes('admin') || userLoggedRoles.includes('centro') || userLoggedRoles === 'admin' || userLoggedRoles === 'centro') {
                             <td>
                                 <a class="operations-icon" matTooltip="Editar" routerLink="/panel/edit/tutor/{{ tutor.id }}"><i class="bi bi-pencil mx-3"></i></a>
