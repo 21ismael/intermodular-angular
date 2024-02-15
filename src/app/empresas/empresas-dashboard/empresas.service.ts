@@ -27,6 +27,15 @@ export class EmpresasService {
       .pipe(retry(2), catchError(this.handleHttpError));
   }
 
+  postEmpresa(data: any) {
+    return this.http.post<any>(this.URL, data).pipe(catchError(this.handleHttpError));
+  }
+
+  deleteEmpresa(id: number) {
+    const deleteUrl = `${this.URL}/${id}`;
+    return this.http.delete<any>(deleteUrl).pipe(catchError(this.handleHttpError));
+  }
+
   getUbicacion(): Observable<any> {
     return this.http.get<any>('http://localhost:3000/ubicacion');
   }

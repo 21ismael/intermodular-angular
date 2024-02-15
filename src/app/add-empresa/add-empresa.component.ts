@@ -28,7 +28,7 @@ export class AddEmpresaComponent {
   empresaFormGroup = new FormGroup({
     nombre: new FormControl('', Validators.required),
     cif: new FormControl('', Validators.required),
-    decripcion: new FormControl('', Validators.required),
+    descripcion: new FormControl('', Validators.required),
     telefono: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     direccion: new FormControl('', Validators.required),
@@ -87,31 +87,27 @@ export class AddEmpresaComponent {
 
   submit(e: Event) {
     e.preventDefault();
-    console.log("submit")
     if (this.empresaFormGroup.valid) {
-      console.log("valido");
       const data = {
         nombre: this.empresaFormGroup.get('nombre')?.value,
         imagen: "../../assets/empresas/imagen.jpg",
         nota: 0,
         cif: this.empresaFormGroup.get('cif')?.value,
-        descripcion: "descripcion",
+        descripcion: this.empresaFormGroup.get('descripcion')?.value,
         telefono: this.empresaFormGroup.get('telefono')?.value,
         email: this.empresaFormGroup.get('email')?.value,
         direccion: this.empresaFormGroup.get('direccion')?.value,
         provincia: this.empresaFormGroup.get('provincia')?.value,
         localidad: this.empresaFormGroup.get('localidad')?.value,
-        lat: this.empresaFormGroup.get('localidad')?.value,
-        lng: this.empresaFormGroup.get('localidad')?.value,
+        lat: this.empresaFormGroup.get('lat')?.value,
+        lng: this.empresaFormGroup.get('lng')?.value,
         vacantes: this.empresaFormGroup.get('vacantes')?.value,
         hora_inicio: this.empresaFormGroup.get('hora_inicio')?.value,
         hora_fin: this.empresaFormGroup.get('hora_fin')?.value,
         //categoria: this.empresaFormGroup.get('categoria')?.value
       };
 
-      console.log(data)
-
-      /*this.empresasService.postEmpresa(data).subscribe({
+      this.empresasService.postEmpresa(data).subscribe({
         next: response => {
           console.log(response);
           this.router.navigate(['/panel/empresas']);
@@ -119,7 +115,7 @@ export class AddEmpresaComponent {
         error: err => {
           console.log(err);
         }
-      });*/
+      });
     }
   }
 

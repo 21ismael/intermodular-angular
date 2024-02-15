@@ -38,16 +38,6 @@
         </label>
       </div>
 
-      <!--<div class="col-12 col-md-6">
-        <label>Dirección
-          <input class="form-control" formControlName="direccion"
-            [ngClass]="{'is-valid': direccion?.valid, 'is-invalid': direccion?.invalid && (direccion?.touched || direccion?.dirty)}" />
-          <div *ngIf="direccion?.invalid && (direccion?.touched || direccion?.dirty)" class="invalid-feedback col-12">
-            La dirección es obligatorio.
-          </div>
-        </label>
-      </div>-->
-
       <div class="col-12 col-md-6 mb-3">
         <label class="col-6">Email
           <input class="form-control" formControlName="email"
@@ -57,7 +47,19 @@
           </div>
         </label>
       </div>
+    </div>
 
+    <div class="row d-flex">
+      <div class="col-12">
+        <!--<textarea name="" id="" cols="30" rows="10"></textarea>-->
+        <label>Descripción de la empresa
+          <textarea class="form-control" formControlName="descripcion"
+            [ngClass]="{'is-valid': descripcion?.valid, 'is-invalid': descripcion?.invalid && (descripcion?.touched || descripcion?.dirty)}"></textarea>
+          <div *ngIf="descripcion?.invalid && (descripcion?.touched || descripcion?.dirty)" class="invalid-feedback col-12">
+            El descripción es obligatorio.
+          </div>
+        </label>
+      </div>
     </div>
 
     <div class="row d-flex py-2">
@@ -101,7 +103,6 @@
     </div>
 
     <div class="row d-flex">
-
       <div class="col-12 col-md-6 mb-3">
         <label>Latitud
           <input class="form-control" formControlName="lat"
@@ -121,7 +122,6 @@
           </div>
         </label>
       </div>
-
     </div>
 
     <div class="row d-flex">
@@ -152,13 +152,13 @@
       </div>
     </div>
 
-    <!--<div class="row d-flex">
-      <div class="col-12 col-md-6 mb-3">
+    <div class="row d-flex">
+      <!--<div class="col-12 col-md-6 mb-3">
         <label>Categoría
           <select formControlName="categoria" name="categoria"
             [ngClass]="{'is-valid': categoria?.valid, 'is-invalid': categoria?.invalid && (categoria?.touched || categoria?.dirty)}">
-            @for (prov of categorias; track prov) {
-            <option [value]="prov">{{prov | capitalizar}}</option>
+            @for (cat of categorias; track cat) {
+            <option [value]="cat">{{cat}}</option>
             }
           </select>
           <div *ngIf="categoria?.invalid && (categoria?.touched || categoria?.dirty)" class="invalid-feedback col-12">
@@ -175,9 +175,9 @@
       </div>
 
       <div class="col-6 align-self-end">
-        <img id="imagenVista" class="d-none text-center img-preview img-fluid"> //Vista previa
-      </div>
-    </div>-->
+        <img id="imagenVista" class="d-none text-center img-preview img-fluid">
+      </div>-->
+    </div>
 
     <div class="d-flex justify-content-end mt-3">
       <button type="submit" class="main-btn w-100">
