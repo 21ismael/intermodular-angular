@@ -88,6 +88,11 @@ export class AddEmpresaComponent {
   submit(e: Event) {
     e.preventDefault();
     if (this.empresaFormGroup.valid) {
+      let provincia = this.empresaFormGroup.get('provincia')?.value;
+      if(provincia){
+         const provinciaCorrecta = provincia.charAt(0).toUpperCase() + provincia.slice(1);
+         provincia = provinciaCorrecta;
+      }
       const data = {
         nombre: this.empresaFormGroup.get('nombre')?.value,
         imagen: "../../assets/empresas/imagen.jpg",
@@ -97,7 +102,7 @@ export class AddEmpresaComponent {
         telefono: this.empresaFormGroup.get('telefono')?.value,
         email: this.empresaFormGroup.get('email')?.value,
         direccion: this.empresaFormGroup.get('direccion')?.value,
-        provincia: this.empresaFormGroup.get('provincia')?.value,
+        provincia: provincia,
         localidad: this.empresaFormGroup.get('localidad')?.value,
         lat: this.empresaFormGroup.get('lat')?.value,
         lng: this.empresaFormGroup.get('lng')?.value,

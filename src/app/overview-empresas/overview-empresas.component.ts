@@ -24,10 +24,11 @@ export class OverviewEmpresasComponent {
   }
 
   eliminarEmpresa(id: number) {
-    console.log("Empresa: " + id);
     this.empresaService.deleteEmpresa(id).subscribe({
       next: response => {
         console.log(response);
+        const idx = this.empresas.findIndex(empresa => empresa.id === id);
+        this.empresas.splice(idx, 1);
         this.router.navigate(['/panel/empresas']);
       },
       error: err => {

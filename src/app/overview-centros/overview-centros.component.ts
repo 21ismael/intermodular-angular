@@ -33,7 +33,8 @@ export class OverviewCentrosComponent implements OnInit {
   eliminarCentro(id: number) {
     this.centroService.deleteCentro(id).subscribe({
       next: response => {
-        console.log(response);
+        const idx = this.centros.findIndex(centro => centro.id === id);
+        this.centros.splice(idx, 1);
         this.router.navigate(['/panel/centros']);
       },
       error: err => {
