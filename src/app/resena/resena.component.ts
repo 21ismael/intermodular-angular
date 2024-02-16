@@ -27,7 +27,13 @@ export class ResenaComponent {
 
   form = new FormGroup({
     rating1: new FormControl(""),
-    rating2: new FormControl("")
+    rating2: new FormControl(""),
+    rating3: new FormControl(""),
+    rating4: new FormControl(""),
+    rating5: new FormControl(""),
+    rating6: new FormControl(""),
+    rating7: new FormControl(""),
+    rating8: new FormControl("")
   })
 
   getRating(event: Event) {
@@ -54,5 +60,9 @@ export class ResenaComponent {
       console.log(this.router.url)
     }
     console.log(this.router.url)
+  }
+
+  submit(){
+    console.log("hola")
   }
 }
