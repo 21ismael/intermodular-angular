@@ -19,19 +19,7 @@ label.star {
 }
 
 /* ocultamos los radiobuttons */
-input[name=rating1] {
-  display: none;
-}
-
-input[name=rating2] {
-  display: none;
-}
-
-input[name=rating3] {
-  display: none;
-}
-
-input[name=rating4] {
+input[name=rating] {
   display: none;
 }
 

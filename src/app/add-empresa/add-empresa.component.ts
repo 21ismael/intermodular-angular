@@ -85,13 +85,33 @@ export class AddEmpresaComponent {
     }
   }
 
+  onFileSelected(event: any) {
+    const imagen = document.getElementById('imagenVista') as HTMLImageElement;
+    this.previewFile(event.target.files[0], imagen);
+  }
+
+  previewFile(file: File, imagen: HTMLImageElement) {
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      imagen.src = reader.result as string;
+      imagen.className = "text-center img-preview img-fluid";
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      imagen.className = "d-none text-center img-preview img-fluid";
+    }
+  }
+
   submit(e: Event) {
     e.preventDefault();
     if (this.empresaFormGroup.valid) {
       let provincia = this.empresaFormGroup.get('provincia')?.value;
-      if(provincia){
-         const provinciaCorrecta = provincia.charAt(0).toUpperCase() + provincia.slice(1);
-         provincia = provinciaCorrecta;
+      if (provincia) {
+        const provinciaCorrecta = provincia.charAt(0).toUpperCase() + provincia.slice(1);
+        provincia = provinciaCorrecta;
       }
       const data = {
         nombre: this.empresaFormGroup.get('nombre')?.value,

@@ -55,6 +55,7 @@ export class CuerpoComponent {
   ngOnInit(): void {
     this.route.data.subscribe(({ empresas }) => {
       this.listaEmpresas = empresas;
+
       console.log(this.listaEmpresas);
     });
 

@@ -40,7 +40,9 @@ input[type="time"] {
   border-radius: 5px;
   border: 1px solid lightgray;
 }*/
-select, input, option {
+select,
+input,
+option {
   width: 100%;
   padding: 10px;
   border: 1px solid rgba(221, 221, 221, 0.8666666667);
@@ -57,6 +59,16 @@ label {
   border: 1px solid #dc3545;
 }
 
-input:focus, select:focus {
+input:focus,
+select:focus {
   outline: none;
+}
+
+#imagenVista {
+  height: 300px;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 3px solid transparent;
+  background: linear-gradient(90deg, rgb(241, 39, 17) 0%, rgb(240, 129, 22) 66%);
 }/*# sourceMappingURL=add-empresa.component.css.map */
