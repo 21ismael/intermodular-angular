@@ -37,7 +37,7 @@ export class EmpresasService {
   }
 
   getUbicacion(): Observable<any> {
-    return this.http.get<any>('http://localhost:3000/ubicacion');
+    return this.http.get<any>('http://intermodular-laravel.lo/api/provincias');
   }
 
   getCategorias(): Observable<any> {

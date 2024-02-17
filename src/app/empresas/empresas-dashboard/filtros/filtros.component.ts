@@ -43,7 +43,7 @@ export class FiltrosComponent {
     this.subscription = this.empresasService.getUbicacion().subscribe({
       next: value => {
         this.ubicacion = value;
-        this.provincias = Object.keys(this.ubicacion);
+        this.provincias = [value.data[0].nombre, value.data[1].nombre, value.data[2].nombre];
       },
       error: err => console.error('Error en el observable', err),
     });
@@ -51,12 +51,12 @@ export class FiltrosComponent {
 
   cambioProvincia() {
     this.localidad = "";
-    if (this.provincia == "alicante") {
-      this.localidades = this.ubicacion.alicante;
-    } else if (this.provincia == "valencia") {
-      this.localidades = this.ubicacion.valencia;
-    } else if (this.provincia == "castellón") {
-      this.localidades = this.ubicacion.castellón;
+    if (this.provincia == "Alicante") {
+      this.localidades = this.ubicacion.data[0].poblaciones;
+    } else if (this.provincia == "Valencia") {
+      this.localidades = this.ubicacion.data[1].poblaciones;
+    } else if (this.provincia == "Castellon") {
+      this.localidades = this.ubicacion.data[2].poblaciones;
     } else {
       this.localidades = [];
     }

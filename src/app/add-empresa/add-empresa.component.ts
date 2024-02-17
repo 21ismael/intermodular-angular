@@ -66,7 +66,9 @@ export class AddEmpresaComponent {
     this.subscription = this.empresasService.getUbicacion().subscribe({
       next: value => {
         this.ubicacion = value;
-        this.provincias = Object.keys(this.ubicacion);
+        this.ubicacion.data.forEach((prov: any) => {
+          this.provincias.push(prov.nombre);
+        });
       },
       error: err => console.error('Error en el observable', err),
     });
@@ -74,12 +76,12 @@ export class AddEmpresaComponent {
 
   cambioProvincia() {
     let provinciaSeleccionada = this.provincia?.value;
-    if (provinciaSeleccionada == "alicante") {
-      this.localidades = this.ubicacion.alicante;
-    } else if (provinciaSeleccionada == "valencia") {
-      this.localidades = this.ubicacion.valencia;
-    } else if (provinciaSeleccionada == "castellón") {
-      this.localidades = this.ubicacion.castellón;
+    if (provinciaSeleccionada == "Alicante") {
+      this.localidades = this.ubicacion.data[0].poblaciones;
+    } else if (provinciaSeleccionada == "Valencia") {
+      this.localidades = this.ubicacion.data[1].poblaciones;
+    } else if (provinciaSeleccionada == "Castellon") {
+      this.localidades = this.ubicacion.data[2].poblaciones;
     } else {
       this.localidades = [];
     }

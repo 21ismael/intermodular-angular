@@ -1,4 +1,8 @@
 .empresa-container {
   height: 100%;
   padding: 20px;
+}
+
+img {
+  width: 100%;
 }/*# sourceMappingURL=empresa-details.component.css.map */

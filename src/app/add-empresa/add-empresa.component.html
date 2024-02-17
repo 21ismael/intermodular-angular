@@ -69,7 +69,7 @@
           <select formControlName="provincia" (change)="cambioProvincia()" name="provincia"
             [ngClass]="{'is-valid': provincia?.valid, 'is-invalid': provincia?.invalid && (provincia?.touched || provincia?.dirty)}">
             @for (prov of provincias; track prov) {
-            <option [value]="prov">{{prov | capitalizar}}</option>
+            <option [value]="prov">{{prov}}</option>
             }
           </select>
           <div *ngIf="provincia?.invalid && (provincia?.touched || provincia?.dirty)" class="invalid-feedback col-12">

@@ -7,6 +7,17 @@ form {
   gap: 10px;
 }
 
+button {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 40px;
+  border: none;
+  padding-left: 10px;
+}
+
 h1 {
   font-size: 20px;
   font-weight: bolder;
@@ -31,4 +42,24 @@ select {
   border: none;
   border-bottom: 1.5px solid lightgray;
   /*padding: -5px;*/
+}
+
+@media (max-width: 1000px) {
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .contenedor-filtros {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  input, select {
+    width: 300px;
+  }
+  button {
+    width: 200px;
+  }
 }/*# sourceMappingURL=filtros.component.css.map */

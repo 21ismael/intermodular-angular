@@ -1,13 +1,10 @@
 <div class="empresa-container container-fluid">
   <div class="row">
-    <figure class="col-12 col-md-5">
-      <img class="img-fluid rounded" [src]="empresa.imagen">
-    </figure>
-    <div class="col-12 col-md-7">
+    <div class="col-12 col-lg-7">
       <p id="localidad">{{ empresa.ubicacion.localidad }} - ({{ empresa.ubicacion.provincia }})</p>
       <h1 id="nombre" class="mb-3">{{ empresa.nombre }}</h1>
       <div class="row">
-        <div class="col-4">
+        <div class="col-12 col-xl-4">
           <div class="ubicacion d-flex">
             <div class="logo p-2 d-flex align-center">
               <i class="bi bi-geo-alt"></i>
@@ -18,7 +15,7 @@
             </div>
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-xl-4">
           <div class="direccion d-flex">
             <div class="logo p-3 d-flex align-center">
               <i class="bi bi-calendar-week"></i>
@@ -29,7 +26,7 @@
             </div>
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-xl-4">
           <div class="direccion d-flex">
             <div class="logo p-3 d-flex align-center">
               <i class="bi bi-person"></i>
@@ -47,9 +44,12 @@
         </div>
       </div>
     </div>
+    <figure class="col-12 col-lg-5">
+      <img class="img-fluid rounded" [src]="empresa.imagen">
+    </figure>
   </div>
 </div>
 
-<div class="empresa-details">
+<!--<div class="empresa-details">
   <p>{{empresa | json}}</p>
-</div>
+</div>-->

@@ -14,4 +14,19 @@
   width: 80%;
   overflow-y: scroll;
   padding-bottom: 20px;
+}
+
+@media (max-width: 1000px) {
+  .empresas-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .filtros {
+    width: 100%;
+    height: auto;
+  }
+  .cuerpo {
+    width: 100%;
+    overflow-y: visible;
+  }
 }/*# sourceMappingURL=empresas-principal.component.css.map */
