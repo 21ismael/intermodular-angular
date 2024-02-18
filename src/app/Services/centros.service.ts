@@ -12,7 +12,6 @@ export class CentrosService {
   private URL: string = "http://intermodular-laravel.lo/api/centros";
 
   getAllCentros() : Observable<any> {
-    console.log(this.http.get<any>(this.URL));
     return this.http.get<any>(this.URL)
     .pipe(retry(2), catchError(this.handleHttpError));
   }

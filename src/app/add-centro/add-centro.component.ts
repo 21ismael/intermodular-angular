@@ -71,7 +71,7 @@ export class AddCentroComponent implements OnInit {
         email: this.formulario.get('email')?.value,
         direccion: this.formulario.get('direccion')?.value,
         telefono: this.formulario.get('telefono')?.value,
-        localidad: this.formulario.get('localidad')?.value,
+        poblacion: this.formulario.get('localidad')?.value,
         provincia: this.formulario.get('provincia')?.value,
         login: this.formulario.get('login')?.value,
         password: this.formulario.get('password')?.value,
