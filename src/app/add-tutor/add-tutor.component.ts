@@ -17,7 +17,7 @@ export class AddTutorComponent implements OnInit {
   addTutorForm!: FormGroup;
   added!: boolean;
   userLoggedRoles!: string | string[];
-  
+
   constructor(private formBuilder: FormBuilder, private usersService: UsersService, private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {

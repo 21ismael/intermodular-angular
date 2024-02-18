@@ -55,9 +55,9 @@ export class AddCentroComponent implements OnInit {
     if (provinciaSeleccionada == "Alicante") {
       this.localidades = this.ubicacion.data[0].poblaciones;
     } else if (provinciaSeleccionada == "Valencia") {
-      this.localidades = this.ubicacion.data[1].poblaciones;
-    } else if (provinciaSeleccionada == "Castellon") {
       this.localidades = this.ubicacion.data[2].poblaciones;
+    } else if (provinciaSeleccionada == "Castellon") {
+      this.localidades = this.ubicacion.data[1].poblaciones;
     } else {
       this.localidades = [];
     }

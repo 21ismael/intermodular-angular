@@ -25,6 +25,8 @@ export class AddEmpresaComponent {
 
   categorias: string[] = ['Programación Web', 'Programación Multimedía', 'Administración de Sistemas'];
 
+  imagenBase64 = '';
+
   empresaFormGroup = new FormGroup({
     nombre: new FormControl('', Validators.required),
     cif: new FormControl('', Validators.required),
@@ -65,6 +67,7 @@ export class AddEmpresaComponent {
 
     this.subscription = this.empresasService.getUbicacion().subscribe({
       next: value => {
+        console.log(value)
         this.ubicacion = value;
         this.ubicacion.data.forEach((prov: any) => {
           this.provincias.push(prov.nombre);
@@ -79,17 +82,12 @@ export class AddEmpresaComponent {
     if (provinciaSeleccionada == "Alicante") {
       this.localidades = this.ubicacion.data[0].poblaciones;
     } else if (provinciaSeleccionada == "Valencia") {
-      this.localidades = this.ubicacion.data[1].poblaciones;
-    } else if (provinciaSeleccionada == "Castellon") {
       this.localidades = this.ubicacion.data[2].poblaciones;
+    } else if (provinciaSeleccionada == "Castellon") {
+      this.localidades = this.ubicacion.data[1].poblaciones;
     } else {
       this.localidades = [];
     }
-  }
-
-  onFileSelected(event: any) {
-    const imagen = document.getElementById('imagenVista') as HTMLImageElement;
-    this.previewFile(event.target.files[0], imagen);
   }
 
   previewFile(file: File, imagen: HTMLImageElement) {
@@ -107,24 +105,36 @@ export class AddEmpresaComponent {
     }
   }
 
+  onFileSelected(event: any) {
+    //prevista de la imagen
+    const imagenVista = document.getElementById('imagenVista') as HTMLImageElement;
+    this.previewFile(event.target.files[0], imagenVista);
+
+    //conversión de la imagen a Base64 la imagen
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (event) => {
+      this.imagenBase64 = event.target?.result as string;
+      console.log(this.imagenBase64);
+    };
+
+    reader.readAsDataURL(file);
+  }
+
   submit(e: Event) {
     e.preventDefault();
     if (this.empresaFormGroup.valid) {
-      let provincia = this.empresaFormGroup.get('provincia')?.value;
-      if (provincia) {
-        const provinciaCorrecta = provincia.charAt(0).toUpperCase() + provincia.slice(1);
-        provincia = provinciaCorrecta;
-      }
       const data = {
         nombre: this.empresaFormGroup.get('nombre')?.value,
-        imagen: "../../assets/empresas/imagen.jpg",
+        imagen: this.imagenBase64,
         nota: 0,
         cif: this.empresaFormGroup.get('cif')?.value,
         descripcion: this.empresaFormGroup.get('descripcion')?.value,
         telefono: this.empresaFormGroup.get('telefono')?.value,
         email: this.empresaFormGroup.get('email')?.value,
         direccion: this.empresaFormGroup.get('direccion')?.value,
-        provincia: provincia,
+        provincia: this.empresaFormGroup.get('provincia')?.value,
         localidad: this.empresaFormGroup.get('localidad')?.value,
         lat: this.empresaFormGroup.get('lat')?.value,
         lng: this.empresaFormGroup.get('lng')?.value,
@@ -133,6 +143,8 @@ export class AddEmpresaComponent {
         hora_fin: this.empresaFormGroup.get('hora_fin')?.value,
         //categoria: this.empresaFormGroup.get('categoria')?.value
       };
+
+      console.log(data);
 
       this.empresasService.postEmpresa(data).subscribe({
         next: response => {

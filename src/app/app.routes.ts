@@ -28,7 +28,6 @@ export const routes: Routes = [
     { path: '', component: CuerpoComponent, title: 'Empresas Dashboard' },
     { path: 'search/:id', component: EmpresaDetailsComponent, resolve: { empresa: detailsResolver } }
   ]},
-  /*{ path: 'empresas/:id', component: EmpresaDetailsComponent, resolve: { empresa: detailsResolver } },*/
   { path: 'panel', component: AdminPanelComponent ,title: 'Panel de administración', canActivate: [authGuard], canActivateChild: [authGuard, rolGuard], resolve: {usuarios: usersDataResolver}, children: [
     { path: 'centros', component: OverviewCentrosComponent, title: 'Información de centros', resolve: {centros: centrosResolver}, data: { roles: ['admin', 'centro', 'tutor', 'empresa'] } },
     { path: 'tutores', component: OverviewTutoresComponent, title: 'Información de tutores', resolve: {usuarios: usersDataResolver}, data: { roles: ['admin', 'centro', 'tutor', 'empresa'] } },

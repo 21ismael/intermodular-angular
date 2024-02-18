@@ -54,9 +54,9 @@ export class FiltrosComponent {
     if (this.provincia == "Alicante") {
       this.localidades = this.ubicacion.data[0].poblaciones;
     } else if (this.provincia == "Valencia") {
-      this.localidades = this.ubicacion.data[1].poblaciones;
-    } else if (this.provincia == "Castellon") {
       this.localidades = this.ubicacion.data[2].poblaciones;
+    } else if (this.provincia == "Castellon") {
+      this.localidades = this.ubicacion.data[1].poblaciones;
     } else {
       this.localidades = [];
     }
