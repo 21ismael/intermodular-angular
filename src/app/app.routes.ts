@@ -3,7 +3,7 @@ import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LandingPageComponentComponent } from './landing-page-component/landing-page-component.component';
 import { EmpresasPrincipalComponent } from './empresas/empresas-dashboard/empresas-principal/empresas-principal.component';
-import { centrosResolver, detailsResolver, empresasResolver } from './data-resolver.resolver';
+import { centroDetailsResolver, centrosResolver, detailsResolver, empresasResolver } from './data-resolver.resolver';
 import { EmpresaDetailsComponent } from './empresas/empresas-dashboard/empresa-details/empresa-details.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AddCentroComponent } from './add-centro/add-centro.component';
@@ -35,7 +35,7 @@ export const routes: Routes = [
     { path: 'add/centro', component: AddCentroComponent, title: 'Añadir Centro', data: { roles: ['admin'] } },
     { path: 'add/tutor', component: AddTutorComponent, title: 'Añadir Tutor', data: { roles: ['admin', 'centro'] } },
     { path: 'add/empresa', component: AddEmpresaComponent, title: 'Añadir Empresa', data: { roles: ['admin', 'centro', 'tutor'] } },
-    { path: 'edit/centro/:id', component: EditCentroComponent, title: 'Editar Centro', data: { roles: ['admin'] } },
+    { path: 'edit/centro/:id', component: EditCentroComponent, title: 'Editar Centro', resolve: {centro: centroDetailsResolver}, data: { roles: ['admin'] } },
     { path: 'edit/tutor/:id', component: EditTutorComponent, title: 'Editar Tutor', resolve: {usuario: userDetailsResolver}, data: { roles: ['admin', 'centro'] } }
   ] },
   { path: 'formulario/:id', component: ResenaComponent, title: 'Formulario', resolve: {empresas: detailsResolver}},

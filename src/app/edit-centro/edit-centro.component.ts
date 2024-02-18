@@ -3,8 +3,10 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Subscription } from 'rxjs';
 import { EmpresasService } from '../empresas/empresas-dashboard/empresas.service';
 import { CentrosService } from '../Services/centros.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Usuario } from '../usuario';
+import { Centro } from '../centro';
 
 @Component({
   selector: 'app-edit-centro',
@@ -14,24 +16,19 @@ import { CommonModule } from '@angular/common';
   styleUrl: './edit-centro.component.scss'
 })
 export class EditCentroComponent {
-  constructor(private empresasService: EmpresasService, private formBuilder: FormBuilder, private centrosService: CentrosService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private empresasService: EmpresasService, private formBuilder: FormBuilder, private centrosService: CentrosService, private router: Router) { }
+  centro!: Centro;
   formulario!: FormGroup;
+  isDisabled: boolean = true;
   subscription!: Subscription;
   ubicacion: any = [];
   provincias: string[] = [];
   localidades: string[] = [];
 
   ngOnInit(): void {
-    this.formulario = this.formBuilder.group({
-      nombre: ['', [Validators.required, Validators.minLength(10)]],
-      email: ['', [Validators.required, Validators.email]],
-      login: ['', [Validators.required, Validators.minLength(5)]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      direccion: ['', [Validators.required, Validators.minLength(10)]],
-      telefono: ['', [Validators.required, Validators.pattern(/[0-9]{9,}/)]],
-      localidad: ['', Validators.required],
-      provincia: ['', Validators.required],
-      roles: 'centro'
+    this.route.data.subscribe(({ centro }) => {
+      console.log(centro);
+      this.centro = centro
     });
 
     this.subscription = this.empresasService.getUbicacion().subscribe({
@@ -43,6 +40,19 @@ export class EditCentroComponent {
       },
       error: err => console.error('Error en el observable', err),
     });
+
+    this.formulario = this.formBuilder.group({
+      nombre: [this.centro.nombre, [Validators.required, Validators.minLength(10)]],
+      email: [this.centro.email, [Validators.required, Validators.email]],
+      login: ['', [Validators.required, Validators.minLength(5)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      direccion: [this.centro.direccion, [Validators.required, Validators.minLength(10)]],
+      telefono: [this.centro.telefono, [Validators.required, Validators.pattern(/[0-9]{9,}/)]],
+      localidad: [this.centro.poblacion, Validators.required],
+      provincia: [this.centro.provincia, Validators.required],
+      roles: 'centro'
+    });
+    this.formulario.valueChanges.subscribe(() => this.isDisabled = !this.formulario.dirty || this.formulario.invalid);
   }
 
   get provincia() { return this.formulario.get('provincia') }
@@ -62,8 +72,24 @@ export class EditCentroComponent {
     }
   }
 
-  submit(e: Event){
+  submit(e: Event) {
     e.preventDefault();
-
+    const data: Partial<any> = {
+      nombre: this.formulario.get('nombre')?.value,
+      email: this.formulario.get('email')?.value,
+      direccion: this.formulario.get('direccion')?.value,
+      telefono: this.formulario.get('telefono')?.value,
+      poblacion: this.formulario.get('localidad')?.value,
+      provincia: this.formulario.get('provincia')?.value,
+    }
+    this.centrosService.editCentro(this.centro.id, data).subscribe({
+      next: x => {
+        console.log(x);
+        this.router.navigate(['/panel/centros'])
+      },
+      error: err => {
+        console.log(err);
+      }
+    });
   }
 }
