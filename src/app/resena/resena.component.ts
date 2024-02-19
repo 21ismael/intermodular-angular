@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Empresa } from '../empresas/empresas-dashboard/empresa/empresa';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ResenaService } from './resena.service';
+import { Pregunta } from './preguntas';
 
 @Component({
   selector: 'app-resena',
@@ -14,10 +15,10 @@ import { ResenaService } from './resena.service';
 export class ResenaComponent {
   empresa!: Empresa;
   boolean: boolean = false;
-  preguntas: string[] = []
+  preguntas: Pregunta[] = []
   canShowNavbar! : boolean;
 
-  constructor(private route: ActivatedRoute, private resenaService: ResenaService, private router: Router) { 
+  constructor(private route: ActivatedRoute, private resenaService: ResenaService, private router: Router,private formBuilder: FormBuilder) { 
     this.router.events.subscribe(x => {
       if (x instanceof NavigationEnd) {
         this.update()
@@ -25,31 +26,24 @@ export class ResenaComponent {
     });
   }
 
-  form = new FormGroup({
-    rating1: new FormControl(""),
-    rating2: new FormControl(""),
-    rating3: new FormControl(""),
-    rating4: new FormControl(""),
-    rating5: new FormControl(""),
-    rating6: new FormControl(""),
-    rating7: new FormControl(""),
-    rating8: new FormControl("")
-  })
+  form!:FormGroup;
 
   getRating(event: Event) {
     console.log((event.target as HTMLInputElement).value)
   }
 
   ngOnInit(): void{
-    this.route.data.subscribe(({ empresas }) => {
-      this.empresa = empresas;
-      this.boolean = true;
+    this.route.data.subscribe(({ resena }) => {
+      
+      console.log(resena);
+      this.preguntas = resena.preguntas;
+      this.empresa = resena.empresa;
+      this.canShowNavbar = false;
       console.log(this.empresa);
     });
-
-    this.resenaService.getAllPreguntas().subscribe( (data) => {
-      console.log(data);
-      this.preguntas = data.preguntas.map(pregunta => pregunta.titulo)
+    this.form = this.formBuilder.group({});
+    this.preguntas.forEach((pregunta) => {
+      this.form.addControl(pregunta.id.toString(),this.formBuilder.control('', Validators.required));
     });
   }
   
@@ -64,6 +58,33 @@ export class ResenaComponent {
   }
 
   submit(){
-    console.log("hola")
+    if(this.form.valid){
+      const data = {
+        preguntas: this.form.value,
+        id: this.router.url.slice(12)
+      }
+
+      this.resenaService.postRepuestas(data).subscribe({
+        next: response => {
+          console.log(response);
+        },
+        error: err => {
+          console.log(err);
+        }
+      })
+      this.resenaService.putResena(this.router.url.slice(12)).subscribe({
+        next: response => {
+          this.router.navigate(['/main']);
+        },
+        error: err => {
+          console.log(err);
+        }
+      })
+    console.log(data);
+    } else {
+      console.log('no');
+      console.log(this.router.url.slice(12));
+    }
+    
   }
 }

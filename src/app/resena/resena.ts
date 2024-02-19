@@ -1,16 +1,9 @@
+import { Empresa } from "../empresas/empresas-dashboard/empresa/empresa";
+import { Pregunta } from "./preguntas";
+
 export interface Resena {
     id: string;
     formulario_id: number;
-    preguntas: {
-        id: number,
-        titulo: string,
-        tipo: string,
-        orden: number,
-        created_at: string,
-        updated_at: string,
-        pivot: {
-            formulario_id: number,
-            pregunta_id: number
-        }
-    }[];
+    empresa: Empresa;
+    preguntas: Pregunta[];
 }

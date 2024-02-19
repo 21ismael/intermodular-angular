@@ -4,6 +4,8 @@ import { EmpresasService } from './empresas/empresas-dashboard/empresas.service'
 import { inject } from "@angular/core";
 import { Centro } from "./centro";
 import { CentrosService } from "./Services/centros.service";
+import { ResenaService } from "./resena/resena.service";
+import { Resena } from "./resena/resena";
 
 
 export const empresasResolver: ResolveFn<Empresa[]> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
@@ -17,5 +19,14 @@ export const detailsResolver: ResolveFn<Empresa> = (route: ActivatedRouteSnapsho
 export const centrosResolver: ResolveFn<Centro[]> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
   return inject(CentrosService).getAllCentros();
 };
+
+export const centroDetailsResolver: ResolveFn<Centro> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+  console.log(inject(CentrosService).getCentroById(+(route.paramMap.get('id') || 0)));
+  return inject(CentrosService).getCentroById(+(route.paramMap.get('id') || 0));
+};
+
+export const resenaResolver: ResolveFn<Resena> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+  return inject(ResenaService).getAllPreguntas(route.paramMap.get('id') || '0');
+}
 
 
