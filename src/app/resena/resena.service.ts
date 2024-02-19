@@ -7,11 +7,12 @@ import { Resena } from './resena';
   providedIn: 'root'
 })
 export class ResenaService {
-  private URL: string = 'http://intermodular-laravel.lo/api/resena/9b57d106-db0e-496c-816a-7fac61fc3528'
+  private URL: string = 'http://intermodular-laravel.lo/api/resena/9b5d9033-dcb2-4d11-b699-ce451630f09b'
 
   constructor(private http: HttpClient) { }
 
   getAllPreguntas() : Observable<Resena> {
+    console.log("hola")
     return this.http.get<Resena>(this.URL)
     .pipe(retry(2), catchError(this.handleHttpError));
   }

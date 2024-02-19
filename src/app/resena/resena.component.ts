@@ -48,7 +48,8 @@ export class ResenaComponent {
     });
 
     this.resenaService.getAllPreguntas().subscribe( (data) => {
-      this.preguntas = data.preguntas
+      console.log(data);
+      this.preguntas = data.preguntas.map(pregunta => pregunta.titulo)
     });
   }
   
