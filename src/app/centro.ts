@@ -6,4 +6,5 @@ export interface Centro {
   telefono: string;
   poblacion: string;
   provincia: string;
+  password: string;
 }
