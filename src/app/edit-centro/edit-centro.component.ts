@@ -37,6 +37,7 @@ export class EditCentroComponent {
         this.ubicacion.data.forEach((prov: any) => {
           this.provincias.push(prov.nombre);
         });
+        this.cambioProvincia();
       },
       error: err => console.error('Error en el observable', err),
     });
