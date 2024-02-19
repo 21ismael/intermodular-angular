@@ -78,7 +78,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> 
                 </div>
                 <!-- --------------------------------------------------------------------- -->
                 <div class="container col-12 col-lg-8 offset-1 mt-5 ms-2">
@@ -88,19 +88,20 @@
                         </div>
                         <form novalidate [formGroup]="form" id="form1" (ngSubmit)="submit()">
                             @for (pregunta of preguntas; track pregunta; let i = $index) {
-                                @if (i <= 7) {
+
+                                @if (pregunta.tipo === "estrellas") {
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-12 col-lg-8">
-                                                <p>{{preguntas[i]}}</p>
+                                                <p>{{pregunta.titulo}}</p>
                                             </div>
                                             <div class="col-lg-3 offset-lg-1">
                                                 <div class="rating">
-                                                    <input id=rating1 type=radio value=5 name=rating{{i+1}} (change)="getRating($event)" formControlName=rating{{i+1}} style="--c:#ff9933" />
-                                                    <input id=rating2 type=radio value=4 name=rating{{i+1}} (change)="getRating($event)" formControlName=rating{{i+1}} style="--c:#ff9933" />
-                                                    <input id=rating3 type=radio value=3 name=rating{{i+1}} (change)="getRating($event)" formControlName=rating{{i+1}} style="--c:#ff9933" />
-                                                    <input id=rating4 type=radio value=2 name=rating{{i+1}} (change)="getRating($event)" formControlName=rating{{i+1}} style="--c:#ff9933" />
-                                                    <input id=rating5 type=radio value=1 name=rating{{i+1}} (change)="getRating($event)" formControlName=rating{{i+1}} style="--c:#ff9933" />
+                                                    <input id=rating1 type=radio value=5 name={{pregunta.id}} (change)="getRating($event)" formControlName={{pregunta.id}} style="--c:#ff9933" required/>
+                                                    <input id=rating2 type=radio value=4 name={{pregunta.id}} (change)="getRating($event)" formControlName={{pregunta.id}} style="--c:#ff9933" required/>
+                                                    <input id=rating3 type=radio value=3 name={{pregunta.id}} (change)="getRating($event)" formControlName={{pregunta.id}} style="--c:#ff9933" required/>
+                                                    <input id=rating4 type=radio value=2 name={{pregunta.id}} (change)="getRating($event)" formControlName={{pregunta.id}} style="--c:#ff9933" required/>
+                                                    <input id=rating5 type=radio value=1 name={{pregunta.id}} (change)="getRating($event)" formControlName={{pregunta.id}} style="--c:#ff9933" required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -111,9 +112,9 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-12">
-                                                <p>{{preguntas[i]}}</p>
+                                                <p>{{pregunta.titulo}}</p>
                                             </div>
-                                            <textarea rows="4" cols="4"></textarea>
+                                            <textarea rows="4" cols="4" name={{pregunta.id}} formControlName={{pregunta.id}}></textarea>
                                         </div>
                                     </div>
                                 }
