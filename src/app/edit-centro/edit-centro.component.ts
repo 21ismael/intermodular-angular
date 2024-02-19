@@ -37,6 +37,7 @@ export class EditCentroComponent {
         this.ubicacion.data.forEach((prov: any) => {
           this.provincias.push(prov.nombre);
         });
+        this.cambioProvincia();
       },
       error: err => console.error('Error en el observable', err),
     });
@@ -48,7 +49,7 @@ export class EditCentroComponent {
       password: [this.centro.password, [Validators.required, Validators.minLength(8)]],
       direccion: [this.centro.direccion, [Validators.required, Validators.minLength(10)]],
       telefono: [this.centro.telefono, [Validators.required, Validators.pattern(/[0-9]{9,}/)]],
-      localidad: [this.centro.poblacion, Validators.required],
+      poblacion: [this.centro.poblacion, Validators.required],
       provincia: [this.centro.provincia, Validators.required],
       roles: 'centro'
     });
@@ -56,7 +57,7 @@ export class EditCentroComponent {
   }
 
   get provincia() { return this.formulario.get('provincia') }
-  get localidad() { return this.formulario.get('localidad') }
+  get localidad() { return this.formulario.get('poblacion') }
 
 
   cambioProvincia() {
@@ -79,7 +80,7 @@ export class EditCentroComponent {
       email: this.formulario.get('email')?.value,
       direccion: this.formulario.get('direccion')?.value,
       telefono: this.formulario.get('telefono')?.value,
-      poblacion: this.formulario.get('localidad')?.value,
+      poblacion: this.formulario.get('poblacion')?.value,
       provincia: this.formulario.get('provincia')?.value,
       password: this.formulario.get('password')?.value,
       login: this.formulario.get('login')?.value
