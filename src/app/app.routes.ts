@@ -19,6 +19,9 @@ import { userDetailsResolver, usersDataResolver } from './Resolvers/users-data.r
 import { OverviewEmpresasComponent } from './overview-empresas/overview-empresas.component';
 import { rolGuard } from './Guards/rol.guard';
 import { ResenaComponent } from './resena/resena.component';
+import { OverviewCategoriasComponent } from './overview-categorias/overview-categorias.component';
+import { CategoryDetailsResolver, categoriasResolver } from './Resolvers/categorias.resolver';
+import { ViewCategoriaComponent } from './view-categoria/view-categoria.component';
 
 
 export const routes: Routes = [
@@ -32,6 +35,8 @@ export const routes: Routes = [
     { path: 'centros', component: OverviewCentrosComponent, title: 'Información de centros', resolve: {centros: centrosResolver}, data: { roles: ['admin', 'centro', 'tutor', 'empresa'] } },
     { path: 'tutores', component: OverviewTutoresComponent, title: 'Información de tutores', resolve: {usuarios: usersDataResolver}, data: { roles: ['admin', 'centro', 'tutor', 'empresa'] } },
     { path: 'empresas', component: OverviewEmpresasComponent, title: 'Información de empresas', resolve: {empresas: empresasResolver}, data: { roles: ['admin', 'centro', 'tutor', 'empresa'] } },
+    { path: 'categorias', component: OverviewCategoriasComponent, title: 'Información de categorías', resolve: {categorias: categoriasResolver}, data: { roles: ['admin', 'centro', 'tutor', 'empresa'] }},
+    { path: 'categorias/:id', component: ViewCategoriaComponent, title: 'Categoría', resolve: { categoria: CategoryDetailsResolver }, data: { roles: ['admin', 'centro', 'tutor', 'empresa'] } },
     { path: 'add/centro', component: AddCentroComponent, title: 'Añadir Centro', data: { roles: ['admin'] } },
     { path: 'add/tutor', component: AddTutorComponent, title: 'Añadir Tutor', data: { roles: ['admin', 'centro'] } },
     { path: 'add/empresa', component: AddEmpresaComponent, title: 'Añadir Empresa', data: { roles: ['admin', 'centro', 'tutor'] } },
