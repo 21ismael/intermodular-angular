@@ -3,7 +3,7 @@ import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LandingPageComponentComponent } from './landing-page-component/landing-page-component.component';
 import { EmpresasPrincipalComponent } from './empresas/empresas-dashboard/empresas-principal/empresas-principal.component';
-import { centroDetailsResolver, centrosResolver, detailsResolver, empresasResolver } from './data-resolver.resolver';
+import { centroDetailsResolver, centrosResolver, detailsResolver, empresasResolver, resenaResolver } from './data-resolver.resolver';
 import { EmpresaDetailsComponent } from './empresas/empresas-dashboard/empresa-details/empresa-details.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AddCentroComponent } from './add-centro/add-centro.component';
@@ -38,6 +38,6 @@ export const routes: Routes = [
     { path: 'edit/centro/:id', component: EditCentroComponent, title: 'Editar Centro', resolve: {centro: centroDetailsResolver}, data: { roles: ['admin'] } },
     { path: 'edit/tutor/:id', component: EditTutorComponent, title: 'Editar Tutor', resolve: {usuario: userDetailsResolver}, data: { roles: ['admin', 'centro'] } }
   ] },
-  { path: 'formulario/:id', component: ResenaComponent, title: 'Formulario', resolve: {empresas: detailsResolver}},
+  { path: 'formulario/:id', component: ResenaComponent, title: 'Formulario', resolve: {resena: resenaResolver}},
   { path: '**', component: NotFoundComponent, title: 'Página no encontrada' }
 ];

@@ -17,7 +17,7 @@ import { Centro } from '../centro';
 })
 export class EditCentroComponent {
   constructor(private route: ActivatedRoute, private empresasService: EmpresasService, private formBuilder: FormBuilder, private centrosService: CentrosService, private router: Router) { }
-  centro!: Centro;
+  centro!: any;
   formulario!: FormGroup;
   isDisabled: boolean = true;
   subscription!: Subscription;
@@ -27,8 +27,8 @@ export class EditCentroComponent {
 
   ngOnInit(): void {
     this.route.data.subscribe(({ centro }) => {
-      console.log(centro);
-      this.centro = centro
+      this.centro = centro.data
+      console.log(this.centro);
     });
 
     this.subscription = this.empresasService.getUbicacion().subscribe({
@@ -44,8 +44,8 @@ export class EditCentroComponent {
     this.formulario = this.formBuilder.group({
       nombre: [this.centro.nombre, [Validators.required, Validators.minLength(10)]],
       email: [this.centro.email, [Validators.required, Validators.email]],
-      login: ['', [Validators.required, Validators.minLength(5)]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      login: [this.centro.usuarios[0].login, [Validators.required, Validators.minLength(5)]],
+      password: [this.centro.password, [Validators.required, Validators.minLength(8)]],
       direccion: [this.centro.direccion, [Validators.required, Validators.minLength(10)]],
       telefono: [this.centro.telefono, [Validators.required, Validators.pattern(/[0-9]{9,}/)]],
       poblacion: [this.centro.poblacion, Validators.required],
@@ -81,6 +81,8 @@ export class EditCentroComponent {
       telefono: this.formulario.get('telefono')?.value,
       poblacion: this.formulario.get('poblacion')?.value,
       provincia: this.formulario.get('provincia')?.value,
+      password: this.formulario.get('password')?.value,
+      login: this.formulario.get('login')?.value
     }
     this.centrosService.editCentro(this.centro.id, data).subscribe({
       next: x => {
