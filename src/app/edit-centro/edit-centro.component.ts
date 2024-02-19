@@ -48,7 +48,7 @@ export class EditCentroComponent {
       password: ['', [Validators.required, Validators.minLength(8)]],
       direccion: [this.centro.direccion, [Validators.required, Validators.minLength(10)]],
       telefono: [this.centro.telefono, [Validators.required, Validators.pattern(/[0-9]{9,}/)]],
-      localidad: [this.centro.poblacion, Validators.required],
+      poblacion: [this.centro.poblacion, Validators.required],
       provincia: [this.centro.provincia, Validators.required],
       roles: 'centro'
     });
@@ -56,7 +56,7 @@ export class EditCentroComponent {
   }
 
   get provincia() { return this.formulario.get('provincia') }
-  get localidad() { return this.formulario.get('localidad') }
+  get localidad() { return this.formulario.get('poblacion') }
 
 
   cambioProvincia() {
@@ -79,7 +79,7 @@ export class EditCentroComponent {
       email: this.formulario.get('email')?.value,
       direccion: this.formulario.get('direccion')?.value,
       telefono: this.formulario.get('telefono')?.value,
-      poblacion: this.formulario.get('localidad')?.value,
+      poblacion: this.formulario.get('poblacion')?.value,
       provincia: this.formulario.get('provincia')?.value,
     }
     this.centrosService.editCentro(this.centro.id, data).subscribe({
