@@ -18,6 +18,14 @@ export class CategoriasService {
     return this.http.get<Categoria>(`${this.apiURL}/${id}`).pipe(catchError(this.error));
   }
 
+  editCategoria(id: number, data: Partial<Categoria>) {
+    return this.http.put<Categoria>(`${this.apiURL}/${id}`, data).pipe(catchError(this.error));
+  }
+
+  deleteCategoria(id: number) {
+    return this.http.delete<Categoria>(`${this.apiURL}/${id}`).pipe(catchError(this.error));
+  }
+
   private error(error: HttpErrorResponse) {
     if (error.status === 0) {
       return throwError(() => new Error('No se ha podido establecer conexión con el servidor'));
