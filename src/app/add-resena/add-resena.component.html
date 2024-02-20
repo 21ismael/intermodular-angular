@@ -1,0 +1,12 @@
+<button mat-button [matMenuTriggerFor]="menu">Reseña</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="onClick(1)" [matMenuTriggerFor]="alumno">Alumno</button>
+  <button mat-menu-item (click)="onClick(2)" [matMenuTriggerFor]="tutor">Tutor de la Empresa</button>
+</mat-menu>
+
+<mat-menu #alumno="matMenu">
+    <input type="text" name="link" id="1" (click)="stopProp($event)" readonly>
+</mat-menu>
+<mat-menu #tutor="matMenu">
+    <input type="text" name="link" id="2"(click)="stopProp($event)" readonly>
+</mat-menu>
