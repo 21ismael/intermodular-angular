@@ -22,6 +22,8 @@ import { ResenaComponent } from './resena/resena.component';
 import { OverviewCategoriasComponent } from './overview-categorias/overview-categorias.component';
 import { CategoryDetailsResolver, categoriasResolver } from './Resolvers/categorias.resolver';
 import { ViewCategoriaComponent } from './view-categoria/view-categoria.component';
+import { EditCategoryComponent } from './edit-category/edit-category.component';
+import { AddCategoriaComponent } from './add-categoria/add-categoria.component';
 
 
 export const routes: Routes = [
@@ -39,9 +41,11 @@ export const routes: Routes = [
     { path: 'categorias/:id', component: ViewCategoriaComponent, title: 'Categoría', resolve: { categoria: CategoryDetailsResolver }, data: { roles: ['admin', 'centro', 'tutor', 'empresa'] } },
     { path: 'add/centro', component: AddCentroComponent, title: 'Añadir Centro', data: { roles: ['admin'] } },
     { path: 'add/tutor', component: AddTutorComponent, title: 'Añadir Tutor', data: { roles: ['admin', 'centro'] } },
+    { path: 'add/categoria', component: AddCategoriaComponent, title: 'Añadir Categoría', data: { roles: ['admin', 'centro'] } },
     { path: 'add/empresa', component: AddEmpresaComponent, title: 'Añadir Empresa', data: { roles: ['admin', 'centro', 'tutor'] } },
     { path: 'edit/centro/:id', component: EditCentroComponent, title: 'Editar Centro', resolve: {centro: centroDetailsResolver}, data: { roles: ['admin'] } },
-    { path: 'edit/tutor/:id', component: EditTutorComponent, title: 'Editar Tutor', resolve: {usuario: userDetailsResolver}, data: { roles: ['admin', 'centro'] } }
+    { path: 'edit/tutor/:id', component: EditTutorComponent, title: 'Editar Tutor', resolve: {usuario: userDetailsResolver}, data: { roles: ['admin', 'centro'] } },
+    { path: 'edit/categoria/:id', component: EditCategoryComponent, title: 'Editar Categoría', resolve: {categoria: CategoryDetailsResolver}, data: { roles: ['admin', 'centro'] } }
   ] },
   { path: 'formulario/:id', component: ResenaComponent, title: 'Formulario', resolve: {resena: resenaResolver}},
   { path: '**', component: NotFoundComponent, title: 'Página no encontrada' }

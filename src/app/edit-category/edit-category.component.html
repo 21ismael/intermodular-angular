@@ -1,0 +1,46 @@
+<section class="container-fluid py-5">
+    <h2 class="h1 mb-5">Editar Categoría: {{ categoria.nombre }}</h2>
+    <form [formGroup]="category" (ngSubmit)="submit($event)">
+        <div class="mb-5">
+            <label for="" class="mb-2">Nombre</label>
+            <input type="text" formControlName="nombre">
+        </div>
+        <div class="mb-5">
+            <label for="" class="mb-2">Descripción</label>
+            <input type="text" formControlName="descripcion">
+        </div>
+        <div class="col-12 mb-5" formArrayName="servicios">
+            <h2 class="mt-5">Servicios</h2>
+            <div class="row">
+                @for (servicio of getServicios().controls; track servicio.value; let i = $index) {
+                    <div class="col-6">
+                        <div class="row d-flex align-items-center">
+                            <div class="col">
+                                <input type="text" [formControlName]="i" class="my-3">
+                            </div>
+                            <div class="col">
+                                <button type="button" [disabled]="getServicios().length == 1" (click)="remove(i)" class="secondary-btn" id="delete-btn">
+                                    <i class="bi bi-trash mx-3"></i>
+                                    <span>Eliminar</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <h3 class="mt-2">Añadir servicio</h3>
+            <select name="servicios" (change)="addService($event)">
+                @for (serv of serviciosFiltrados; track serv.id) {
+                    <option [value]="serv.id">{{ serv.nombre }}</option>
+                }
+            </select>
+        </div>
+        <div class="mt-5">
+            <button type="submit" class="main-btn w-100" id="añadir-btn" [disabled]="!modificado && !category.dirty">
+                <i class="bi bi-check-lg"></i>
+                <span class="ms-2">Aceptar</span>
+            </button>
+        </div>
+    </form>
+</section>
+<p>{{ category.value | json }}</p>
