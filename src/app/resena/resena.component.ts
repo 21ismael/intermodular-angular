@@ -4,13 +4,14 @@ import { Empresa } from '../empresas/empresas-dashboard/empresa/empresa';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ResenaService } from './resena.service';
 import { Pregunta } from './preguntas';
+import { AddResenaComponent } from "../add-resena/add-resena.component";
 
 @Component({
-  selector: 'app-resena',
-  standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
-  templateUrl: './resena.component.html',
-  styleUrl: './resena.component.css'
+    selector: 'app-resena',
+    standalone: true,
+    templateUrl: './resena.component.html',
+    styleUrl: './resena.component.css',
+    imports: [FormsModule, ReactiveFormsModule, AddResenaComponent]
 })
 export class ResenaComponent {
   empresa!: Empresa;

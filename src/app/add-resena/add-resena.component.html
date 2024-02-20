@@ -5,8 +5,8 @@
 </mat-menu>
 
 <mat-menu #alumno="matMenu">
-    <input type="text" name="link" id="1" (click)="stopProp($event)" readonly>
+    <input type="text" name="link" id="1" (click)="stopProp($event)" readonly value="{{alumnos}}">
 </mat-menu>
 <mat-menu #tutor="matMenu">
-    <input type="text" name="link" id="2"(click)="stopProp($event)" readonly>
+    <input type="text" name="link" id="2"(click)="stopProp($event)" readonly value="{{tutores}}">
 </mat-menu>

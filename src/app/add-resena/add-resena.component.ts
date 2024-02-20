@@ -16,6 +16,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AddResenaComponent {
 
+  url!:string;
+  alumnos!:string;
+  tutores!:string;
+
   constructor(private resenaService: ResenaService, private route: ActivatedRoute){
 
   }
@@ -29,24 +33,19 @@ export class AddResenaComponent {
       "formulario_id":tipoformulario,
       "centroempresa_id":1
     }
+    this.resenaService.postResena(data).subscribe({
+      next: response => {
+        console.log(response);
+        this.url = "htttp://intermodular-angular/formulario/"+response.id;
+      },
+      error: err => {
+        console.log(err);
+      }
+    })
     if(tipoformulario === 1){
-      this.resenaService.postResena(data).subscribe({
-        next: response => {
-          console.log(response);
-        },
-        error: err => {
-          console.log(err);
-        }
-      })
+      this.alumnos = this.url;
     } else if(tipoformulario === 2){
-      this.resenaService.postResena(data).subscribe({
-        next: response => {
-          console.log(response);
-        },
-        error: err => {
-          console.log(err);
-        }
-      })
+      this.tutores = this.url;
     }
   } 
   stopProp($event:any):void{
