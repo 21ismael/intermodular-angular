@@ -1,0 +1,19 @@
+select, input, option {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgba(221, 221, 221, 0.8666666667);
+  font-size: 18px;
+  border-radius: 15px;
+}
+
+label {
+  font-size: 18px;
+}
+
+.invalid {
+  border: 1px solid #dc3545;
+}
+
+input:focus, select:focus {
+  outline: none;
+}/*# sourceMappingURL=edit-centro.component.css.map */

@@ -12,8 +12,4 @@ import { FiltroComponentComponent } from '../filtro-component/filtro-component.c
 export class LandingPageComponentComponent {
 
   constructor(private router: Router) {}
-
-  onLoginClick() {
-    this.router.navigate(['/login']);
-  }
 }

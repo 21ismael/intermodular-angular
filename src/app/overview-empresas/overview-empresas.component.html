@@ -1,0 +1,42 @@
+<section class="container-fluid py-5">
+  <h2 class="h1 mb-5">Información general de empresas</h2>
+  <div class="mt-3 table-responsive">
+      <table class="table table-hover">
+          <thead>
+              <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Teléfono</th>
+                  <th scope="col">Provincia</th>
+                  <th scope="col">Localidad</th>
+                  <th scope="col">Operaciones</th>
+              </tr>
+          </thead>
+          <tbody>
+              @for(empresa of empresas; track empresa.id) {
+                  <tr>
+                      <th scope="row">{{ empresa.id }}</th>
+                      <td>{{ empresa.nombre }}</td>
+                      <td>{{ empresa.email }}</td>
+                      <td>{{ empresa.telefono }}</td>
+                      <td>{{ empresa.ubicacion.provincia }}</td>
+                      <td>{{ empresa.ubicacion.localidad }}</td>
+                      <td>
+                          <a class="operations-icon" matTooltip="Editar" routerLink="/panel/edit/empresa/{{empresa.id}}"><i class="bi bi-pencil mx-3"></i></a>
+                          <a class="operations-icon" matTooltip="Eliminar" (click)="eliminarEmpresa(empresa.id)"><i class="bi bi-trash mx-3"></i></a>
+                      </td>
+                  </tr>
+              }
+          </tbody>
+      </table>
+  </div>
+  @if(userLoggedRol && userLoggedRol === 'admin') {
+    <div class=" mt-5 w-100 d-flex justify-content-end">
+        <button class="main-btn" routerLink="/panel/add/empresa">
+            <i class="bi bi-plus-circle me-1"></i>
+            <span class="ms-1">Añadir Empresa</span>
+        </button>
+    </div>
+  }
+</section>

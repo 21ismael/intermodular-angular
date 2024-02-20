@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { RouterOutlet, RouterLink } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { RouterOutlet, RouterLink, ActivatedRoute } from '@angular/router';
 import { AdminPanelLateralComponent } from '../admin-panel-lateral/admin-panel-lateral.component';
+import { Usuario } from '../usuario';
 
 @Component({
   selector: 'app-admin-panel',
@@ -9,6 +10,15 @@ import { AdminPanelLateralComponent } from '../admin-panel-lateral/admin-panel-l
   templateUrl: './admin-panel.component.html',
   styleUrl: './admin-panel.component.scss'
 })
-export class AdminPanelComponent {
+export class AdminPanelComponent implements OnInit {
 
+  usuarios: Usuario[] = [];
+
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.route.data.subscribe(({ usuarios }) => {
+      this.usuarios = usuarios;
+    })
+  }
 }

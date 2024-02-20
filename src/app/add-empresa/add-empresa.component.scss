@@ -41,7 +41,9 @@ input[type="time"] {
   border: 1px solid lightgray;
 }*/
 
-select, input, option {
+select,
+input,
+option {
   width: 100%;
   padding: 10px;
   border: 1px solid #dddd;
@@ -58,6 +60,15 @@ label {
   border: 1px solid #dc3545;
 }
 
-input:focus, select:focus {
+input:focus,
+select:focus {
   outline: none;
+}
+
+#imagenVista {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+  border: 3px solid transparent;
+  background: linear-gradient(90deg, rgb(241, 39, 17) 0%, rgb(240, 129, 22) 66%);
 }

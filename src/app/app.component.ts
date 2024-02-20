@@ -26,6 +26,6 @@ export class AppComponent {
   canShowNavbar! : boolean;
 
   update() : void {
-    this.router.url == '/login' ? this.canShowNavbar = false : this.canShowNavbar = true;
+    this.router.url == '/' ? this.canShowNavbar = false : this.canShowNavbar = true;
   }
 }

@@ -37,10 +37,26 @@ body {
   opacity: 0.8;
   padding: 10px;
   color: white;
-  transition: opacity 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
 }
 .main-btn:hover {
   opacity: 1;
+}
+.main-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.operations-icon {
+  color: black;
+  border-radius: 100%;
+  padding: 5px;
+  font-size: 20px;
+  transition: background-color 200ms ease-in;
+}
+.operations-icon:hover {
+  background-color: #ddd;
+  cursor: pointer;
 }
 
 .secondary-btn {

@@ -1,1 +1,128 @@
-<p>edit-centro works!</p>
+<section class="container-fluid p-4">
+  <h3 class="h1 my-5">Editar Centro</h3>
+  <form [formGroup]="formulario" (ngSubmit)="submit($event)">
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <div class="mb-5">
+          <label for="nombre" class="mb-2 ms-1">Nombre del centro</label>
+          <input type="text" name="nombre" formControlName="nombre"
+            [ngClass]="{'invalid': formulario.get('nombre')?.invalid && (formulario.get('nombre')?.dirty || formulario.get('nombre')?.touched)}">
+          <div
+            *ngIf="formulario.get('nombre')?.invalid && (formulario.get('nombre')?.dirty || formulario.get('nombre')?.touched)"
+            class="position-absolute mt-2">
+            <span *ngIf="formulario.get('nombre')?.errors?.['required']" class="text-danger">El nombre es
+              obligatorio</span>
+            <span *ngIf="formulario.get('nombre')?.errors?.['minlength']" class="text-danger">El nombre debe ser de al
+              menos 10 caracteres</span>
+          </div>
+        </div>
+        <div class="my-5">
+          <label for="email" class="mb-2 ms-1">Correo electrónico</label>
+          <input type="text" name="email" formControlName="email"
+            [ngClass]="{'invalid': formulario.get('email')?.invalid && (formulario.get('email')?.dirty || formulario.get('email')?.touched)}">
+          <div
+            *ngIf="formulario.get('email')?.invalid && (formulario.get('email')?.dirty || formulario.get('email')?.touched)"
+            class="position-absolute mt-2">
+            <span *ngIf="formulario.get('email')?.errors?.['required']" class="text-danger">El correo electrónico es
+              obligatorio</span>
+            <span *ngIf="formulario.get('email')?.errors?.['email']" class="text-danger">La dirección de correo no es
+              correcta</span>
+          </div>
+        </div>
+        <div class="my-5">
+          <label for="direccion" class="mb-2 ms-1">Dirección</label>
+          <input type="text" name="direccion" formControlName="direccion"
+            [ngClass]="{'invalid': formulario.get('direccion')?.invalid && (formulario.get('direccion')?.dirty || formulario.get('direccion')?.touched)}">
+          <div
+            *ngIf="formulario.get('direccion')?.invalid && (formulario.get('direccion')?.dirty || formulario.get('direccion')?.touched)"
+            class="position-absolute mt-2">
+            <span *ngIf="formulario.get('direccion')?.errors?.['required']" class="text-danger">El dirección es
+              obligatoria</span>
+            <span *ngIf="formulario.get('direccion')?.errors?.['minlength']" class="text-danger">La dirección debe ser
+              de al menos 10 caracteres</span>
+          </div>
+        </div>
+        <div class="my-5">
+          <label for="telefono" class="mb-2 ms-1">Teléfono</label>
+          <input type="text" name="telefono" formControlName="telefono"
+            [ngClass]="{'invalid': formulario.get('telefono')?.invalid && (formulario.get('telefono')?.dirty || formulario.get('telefono')?.touched)}">
+          <div
+            *ngIf="formulario.get('telefono')?.invalid && (formulario.get('telefono')?.dirty || formulario.get('telefono')?.touched)"
+            class="position-absolute mt-2">
+            <span *ngIf="formulario.get('telefono')?.errors?.['required']" class="text-danger">El teléfono es
+              obligatorio</span>
+            <span *ngIf="formulario.get('telefono')?.errors?.['pattern']" class="text-danger">El teléfono no es
+              correcto</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div class="mb-5">
+          <label for="login" class="mb-2 ms-1">Nombre de usuario</label>
+          <input type="text" name="login" formControlName="login"
+            [ngClass]="{'invalid': formulario.get('login')?.invalid && (formulario.get('login')?.dirty || formulario.get('login')?.touched)}">
+          <div
+            *ngIf="formulario.get('login')?.invalid && (formulario.get('login')?.dirty || formulario.get('login')?.touched)"
+            class="position-absolute mt-2">
+            <span *ngIf="formulario.get('login')?.errors?.['required']" class="text-danger">El nombre de usuario es
+              obligatorio</span>
+            <span *ngIf="formulario.get('login')?.errors?.['minlength']" class="text-danger">El nombre de usuario debe
+              ser de mínimo 5 caracteres</span>
+          </div>
+        </div>
+        <div class="mb-5">
+          <label for="password" class="mb-2 ms-1">Contraseña</label>
+          <input type="password" name="password" formControlName="password"
+            [ngClass]="{'invalid': formulario.get('password')?.invalid && (formulario.get('password')?.dirty || formulario.get('password')?.touched)}">
+          <div
+            *ngIf="formulario.get('password')?.invalid && (formulario.get('password')?.dirty || formulario.get('password')?.touched)"
+            class="position-absolute mt-2">
+            <span *ngIf="formulario.get('password')?.errors?.['required']" class="text-danger">La contraseña es
+              obligatoria</span>
+            <span *ngIf="formulario.get('password')?.errors?.['minlength']" class="text-danger">La contraseña debe
+              contar con mínimo 8 caracteres</span>
+          </div>
+        </div>
+        <div class="my-5">
+          <label for="provincia" class="mb-2 ms-1">Provincia</label>
+          <select formControlName="provincia" (change)="cambioProvincia()" name="provincia"
+            [ngClass]="{'is-valid': provincia?.valid, 'is-invalid': provincia?.invalid && (provincia?.touched || provincia?.dirty)}">
+            @for (prov of provincias; track prov) {
+            <option [value]="prov">{{prov}}</option>
+            }
+          </select>
+          <div
+            *ngIf="formulario.get('provincia')?.invalid && (formulario.get('provincia')?.dirty || formulario.get('provincia')?.touched)"
+            class="position-absolute mt-2">
+            <span *ngIf="formulario.get('provincia')?.errors?.['required']" class="text-danger">La selección de una
+              provincia es obligatoria</span>
+          </div>
+        </div>
+        <div class="my-5">
+          <label for="localidad" class="mb-2 ms-1">Localidad</label>
+          <select formControlName="poblacion" name="poblacion"
+            [ngClass]="{'is-valid': localidad?.valid, 'is-invalid': localidad?.invalid && (localidad?.touched || localidad?.dirty)}">
+            @for (loc of localidades; track loc) {
+            <option [value]="loc">{{loc}}</option>
+            }
+          </select>
+          <div
+            *ngIf="formulario.get('poblacion')?.invalid && (formulario.get('poblacion')?.dirty || formulario.get('poblacion')?.touched)"
+            class="position-absolute mt-2">
+            <span *ngIf="formulario.get('poblacion')?.errors?.['required']" class="text-danger">La selección de una
+              población es obligatoria</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end mt-5">
+      <button type="submit" class="main-btn w-100" id="añadir-btn" [disabled]="formulario.invalid">
+        <i class="bi bi-plus-circle"></i>
+        <span class="ms-2">Editar</span>
+      </button>
+    </div>
+  </form>
+
+  <p>{{ formulario.value | json }}</p>
+</section>
+

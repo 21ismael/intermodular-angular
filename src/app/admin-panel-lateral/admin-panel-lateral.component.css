@@ -1,0 +1,46 @@
+aside {
+  padding: 10px;
+  color: white;
+  background: linear-gradient(60deg, rgb(241, 39, 17) 0%, rgb(240, 129, 22) 66%);
+  opacity: 1;
+  box-shadow: rgba(99, 99, 99, 0.3) 3px 0px 8px;
+}
+
+.panel-option {
+  padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  margin: 20px 0;
+  transition: all 300ms ease-in-out;
+  cursor: pointer;
+}
+.panel-option:hover {
+  background-color: rgb(231, 83, 10);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.active {
+  background-color: rgb(231, 83, 10);
+  transition: background-color 300ms ease-in-out;
+  cursor: default;
+}
+
+p, i {
+  font-size: 30px;
+  font-weight: 400;
+}
+
+#title {
+  font-size: 50px;
+  font-weight: 500;
+  background-color: rgb(231, 83, 10);
+  padding: 20px;
+  border-radius: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+@media (min-width: 1200px) {
+  aside {
+    height: 100vh;
+  }
+}/*# sourceMappingURL=admin-panel-lateral.component.css.map */

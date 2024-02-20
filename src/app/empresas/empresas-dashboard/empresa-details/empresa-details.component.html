@@ -1,5 +1,55 @@
-<div class="empresas-container container-fluid p-0">
-  <div class="empresa-details">
-    <p>{{empresa | json}}</p>
+<div class="empresa-container container-fluid">
+  <div class="row">
+    <div class="col-12 col-lg-7">
+      <p id="localidad">{{ empresa.ubicacion.localidad }} - ({{ empresa.ubicacion.provincia }})</p>
+      <h1 id="nombre" class="mb-3">{{ empresa.nombre }}</h1>
+      <div class="row">
+        <div class="col-12 col-xl-4">
+          <div class="ubicacion d-flex">
+            <div class="logo p-2 d-flex align-center">
+              <i class="bi bi-geo-alt"></i>
+            </div>
+            <div class="info">
+              <p class="small m-0">{{ empresa.ubicacion.localidad }} - ({{ empresa.ubicacion.provincia }})</p>
+              <p>{{ empresa.ubicacion.direccion }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-xl-4">
+          <div class="direccion d-flex">
+            <div class="logo p-3 d-flex align-center">
+              <i class="bi bi-calendar-week"></i>
+            </div>
+            <div class="info">
+              <p class="m-0">Horario</p>
+              <p>{{empresa.horario.inicio}}h - {{empresa.horario.fin}}h</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-xl-4">
+          <div class="direccion d-flex">
+            <div class="logo p-3 d-flex align-center">
+              <i class="bi bi-person"></i>
+            </div>
+            <div class="info">
+              <p><span class="small">Puestos disponibles</span><br>{{ empresa.vacantes }} {{empresa.vacantes == 1 ? "puesto" : "puestos"}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <p class="m-0"><b>Descripción: </b></p>
+          <p>{{empresa.descripcion}}</p>
+        </div>
+      </div>
+    </div>
+    <figure class="col-12 col-lg-5">
+      <img class="img-fluid rounded" [src]="empresa.imagen">
+    </figure>
   </div>
 </div>
+
+<!--<div class="empresa-details">
+  <p>{{empresa | json}}</p>
+</div>-->
