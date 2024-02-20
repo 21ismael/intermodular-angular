@@ -16,7 +16,7 @@
                     <div class="col-6">
                         <div class="row d-flex align-items-center">
                             <div class="col">
-                                <input type="text" [formControlName]="i" class="my-3">
+                                <input type="text" [formControlName]="i" class="my-3" readonly>
                             </div>
                             <div class="col">
                                 <button type="button" [disabled]="getServicios().length == 1" (click)="remove(i)" class="secondary-btn" id="delete-btn">
@@ -30,6 +30,7 @@
             </div>
             <h3 class="mt-2">Añadir servicio</h3>
             <select name="servicios" (change)="addService($event)">
+                <option value="">Seleccione un servicio</option>
                 @for (serv of serviciosFiltrados; track serv.id) {
                     <option [value]="serv.id">{{ serv.nombre }}</option>
                 }
