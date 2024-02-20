@@ -41,6 +41,6 @@ p, i {
 
 @media (min-width: 1200px) {
   aside {
-    height: 100%;
+    height: 100vh;
   }
 }/*# sourceMappingURL=admin-panel-lateral.component.css.map */

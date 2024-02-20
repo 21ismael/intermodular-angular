@@ -22,6 +22,7 @@ import { ResenaComponent } from './resena/resena.component';
 import { OverviewCategoriasComponent } from './overview-categorias/overview-categorias.component';
 import { CategoryDetailsResolver, categoriasResolver } from './Resolvers/categorias.resolver';
 import { ViewCategoriaComponent } from './view-categoria/view-categoria.component';
+import { EditarEmpresaComponent } from './editar-empresa/editar-empresa.component';
 
 
 export const routes: Routes = [
@@ -40,6 +41,7 @@ export const routes: Routes = [
     { path: 'add/centro', component: AddCentroComponent, title: 'Añadir Centro', data: { roles: ['admin'] } },
     { path: 'add/tutor', component: AddTutorComponent, title: 'Añadir Tutor', data: { roles: ['admin', 'centro'] } },
     { path: 'add/empresa', component: AddEmpresaComponent, title: 'Añadir Empresa', data: { roles: ['admin', 'centro', 'tutor'] } },
+    { path: 'edit/empresa/:id', component: EditarEmpresaComponent, title: 'Editar Empresa', resolve: { empresa: detailsResolver }, data: { roles: ['admin'] } },
     { path: 'edit/centro/:id', component: EditCentroComponent, title: 'Editar Centro', resolve: {centro: centroDetailsResolver}, data: { roles: ['admin'] } },
     { path: 'edit/tutor/:id', component: EditTutorComponent, title: 'Editar Tutor', resolve: {usuario: userDetailsResolver}, data: { roles: ['admin', 'centro'] } }
   ] },

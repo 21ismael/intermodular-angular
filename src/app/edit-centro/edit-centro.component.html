@@ -1,5 +1,5 @@
 <section class="container-fluid p-4">
-  <h3 class="h1 my-5">Añadir Centro</h3>
+  <h3 class="h1 my-5">Editar Centro</h3>
   <form [formGroup]="formulario" (ngSubmit)="submit($event)">
     <div class="row">
       <div class="col-12 col-lg-6">
@@ -118,7 +118,7 @@
     <div class="d-flex justify-content-end mt-5">
       <button type="submit" class="main-btn w-100" id="añadir-btn" [disabled]="formulario.invalid">
         <i class="bi bi-plus-circle"></i>
-        <span class="ms-2">Añadir</span>
+        <span class="ms-2">Editar</span>
       </button>
     </div>
   </form>

@@ -31,6 +31,10 @@ export class EmpresasService {
     return this.http.post<any>(this.URL, data).pipe(catchError(this.handleHttpError));
   }
 
+  editEmpresa(id: number, data: Partial<any>) {
+    return this.http.put<any>(`${this.URL}/${id}`, data).pipe(catchError(this.handleHttpError));
+  }
+
   deleteEmpresa(id: number) {
     const deleteUrl = `${this.URL}/${id}`;
     return this.http.delete<any>(deleteUrl).pipe(catchError(this.handleHttpError));
