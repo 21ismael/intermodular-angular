@@ -9,7 +9,6 @@
                 <tr>
                     <th scope="col">Nombre</th>
                     <th scope="col">Descripción</th>
-                    <th scope="col">Operaciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -17,19 +16,9 @@
                     <tr>
                         <td>{{ servicio.nombre }}</td>
                         <td>{{ servicio.descripcion }}</td>
-                        <td>
-                            <a class="operations-icon" matTooltip="Editar"><i class="bi bi-pencil mx-3"></i></a>
-                            <a class="operations-icon" matTooltip="Eliminar"><i class="bi bi-trash mx-3"></i></a>
-                        </td>
                     </tr>
                 }
             </tbody>
         </table>
-        <div class=" mt-5 w-100 d-flex justify-content-end">
-            <button class="main-btn" routerLink="/panel/add/tutor">
-                <i class="bi bi-plus-circle me-1"></i>
-                <span class="ms-1">Añadir servicio</span>
-            </button>
-        </div>
     </div>
 </section>

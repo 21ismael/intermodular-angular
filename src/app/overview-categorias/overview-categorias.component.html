@@ -18,8 +18,8 @@
                         <td>{{ categoria.descripcion }}</td>
                         <td>
                             <a class="operations-icon" matTooltip="Ver" routerLink="/panel/categorias/{{categoria.id}}"><i class="bi bi-eye"></i></a>
-                            <a class="operations-icon" matTooltip="Editar"><i class="bi bi-pencil mx-3"></i></a>
-                            <a class="operations-icon" matTooltip="Eliminar"><i class="bi bi-trash mx-3"></i></a>
+                            <a class="operations-icon" matTooltip="Editar" routerLink="/panel/edit/categoria/{{ categoria.id }}"><i class="bi bi-pencil mx-3"></i></a>
+                            <a class="operations-icon" matTooltip="Eliminar" (click)="delete($event, categoria.id)"><i class="bi bi-trash mx-3"></i></a>
                         </td>
                     </tr>
                 }
@@ -28,7 +28,7 @@
     </div>
 
         <div class=" mt-5 w-100 d-flex justify-content-end">
-            <button class="main-btn" routerLink="/panel/add/tutor">
+            <button class="main-btn" routerLink="/panel/add/categoria">
                 <i class="bi bi-plus-circle me-1"></i>
                 <span class="ms-1">Añadir categoría</span>
             </button>
