@@ -153,6 +153,18 @@
       </div>
     </div>
 
+    <div class="col-12 col-md-6 mb-3">
+      <label>Categoría
+        <select formControlName="categoria" name="categoria"
+          [ngClass]="{'is-valid': categoria?.valid, 'is-invalid': categoria?.invalid && (categoria?.touched || categoria?.dirty)}">
+          <option *ngFor="let cat of categorias" [value]="cat.id">{{ cat.nombre }}</option>
+        </select>
+        <div *ngIf="categoria?.invalid && (categoria?.touched || categoria?.dirty)" class="invalid-feedback col-12">
+          La categoría es obligatoria.
+        </div>
+      </label>
+    </div>
+
     <div class="row d-flex">
       <div class="col-12 col-md-6 mb-3">
         <label class="w-100">Imagen <input name="imagen" id="imagen" type="file" accept="image/*"
@@ -178,19 +190,3 @@
   <br>
   <p>{{empresa | json}}</p>
 </div>
-
-
-<!--<div class="col-12 col-md-6 mb-3">
-        <label>Categoría
-          <select formControlName="categoria" name="categoria"
-            [ngClass]="{'is-valid': categoria?.valid, 'is-invalid': categoria?.invalid && (categoria?.touched || categoria?.dirty)}">
-            @for (cat of categorias; track cat) {
-            <option [value]="cat">{{cat}}</option>
-            }
-          </select>
-          <div *ngIf="categoria?.invalid && (categoria?.touched || categoria?.dirty)" class="invalid-feedback col-12">
-            La categoria es obligatoria.
-          </div>
-        </label>
-      </div>
-      -->

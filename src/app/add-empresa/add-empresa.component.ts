@@ -6,6 +6,7 @@ import { EmpresasService } from '../empresas/empresas-dashboard/empresas.service
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { Empresa } from '../empresas/empresas-dashboard/empresa/empresa';
+import { Categoria } from '../Interfaces/categoria';
 
 @Component({
   selector: 'app-add-empresa',
@@ -23,7 +24,7 @@ export class AddEmpresaComponent {
   provincias: string[] = [];
   localidades: string[] = [];
 
-  categorias: string[] = ['Programación Web', 'Programación Multimedía', 'Administración de Sistemas'];
+  categorias: Categoria[] = [];
 
   imagenBase64 = '';
 
@@ -41,6 +42,7 @@ export class AddEmpresaComponent {
     vacantes: new FormControl('', Validators.required),
     hora_inicio: new FormControl('', Validators.required),
     hora_fin: new FormControl('', Validators.required),
+    categoria: new FormControl('', Validators.required),
   })
 
   get nombre() { return this.empresaFormGroup.get('nombre') }
@@ -64,6 +66,14 @@ export class AddEmpresaComponent {
     this.empresaFormGroup.valueChanges.subscribe(value => {
       this.empresa = value;
     });
+
+    this.subscription = this.empresasService.getCategorias().subscribe({
+      next: categorias => {
+        this.categorias = categorias.data;
+        console.log(this.categorias);
+      },
+      error: err => console.error('Error en el observable', err),
+    })
 
     this.subscription = this.empresasService.getUbicacion().subscribe({
       next: value => {

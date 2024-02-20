@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, retry, throwError } from 'rxjs';
 import { Empresa } from './empresa/empresa';
+import { Categoria } from '../../Interfaces/categoria';
 
 @Injectable({
   providedIn: 'root'
@@ -40,12 +41,12 @@ export class EmpresasService {
     return this.http.delete<any>(deleteUrl).pipe(catchError(this.handleHttpError));
   }
 
-  getUbicacion(): Observable<any> {
-    return this.http.get<any>('http://intermodular-laravel.lo/api/provincias');
+  getCategorias() : Observable<any> {
+    return this.http.get<any>('http://intermodular-laravel.lo/api/categorias').pipe(catchError(this.handleHttpError));
   }
 
-  getCategorias(): Observable<any> {
-    return this.http.get<any>('http://localhost:3000/categorias');
+  getUbicacion(): Observable<any> {
+    return this.http.get<any>('http://intermodular-laravel.lo/api/provincias');
   }
 
   private handleHttpError(error : HttpErrorResponse) {
