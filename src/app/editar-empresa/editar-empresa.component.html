@@ -1,5 +1,5 @@
 <div class="container-fluid p-4">
-  <h1 class="h1 my-4">Agregar empresa</h1>
+  <h1 class="h1 my-4">Editar empresa</h1>
   <form [formGroup]="empresaFormGroup" (ngSubmit)="submit($event)">
 
     <div class="row d-flex">
@@ -153,21 +153,9 @@
       </div>
     </div>
 
-    <div class="col-12 col-md-6 mb-3">
-      <label>Categoría
-        <select formControlName="categoria" name="categoria"
-          [ngClass]="{'is-valid': categoria?.valid, 'is-invalid': categoria?.invalid && (categoria?.touched || categoria?.dirty)}">
-          <option *ngFor="let cat of categorias" [value]="cat.id">{{ cat.nombre }}</option>
-        </select>
-        <div *ngIf="categoria?.invalid && (categoria?.touched || categoria?.dirty)" class="invalid-feedback col-12">
-          La categoría es obligatoria.
-        </div>
-      </label>
-    </div>
-
     <div class="row d-flex">
       <div class="col-12 col-md-6 mb-3">
-        <label class="w-100">Imagen <input name="imagen" id="imagen" type="file" accept="image/*"
+        <label class="w-100">Imagen <input name="imagen" id="imagen" class="form-control" formControlName="imagen" type="file" accept="image/*"
             class="form-control w-100" (change)="onFileSelected($event)">
           <div class="invalid-feedback">La imagen es obligatoria</div>
         </label>
@@ -181,7 +169,7 @@
     <div class="d-flex justify-content-end mt-3">
       <button type="submit" class="main-btn w-100">
         <i class="bi bi-plus-circle"></i>
-        <span class="ms-2">Añadir Empresa</span>
+        <span class="ms-2">Editar</span>
       </button>
     </div>
   </form>
@@ -190,3 +178,19 @@
   <br>
   <p>{{empresa | json}}</p>
 </div>
+
+
+<!--<div class="col-12 col-md-6 mb-3">
+        <label>Categoría
+          <select formControlName="categoria" name="categoria"
+            [ngClass]="{'is-valid': categoria?.valid, 'is-invalid': categoria?.invalid && (categoria?.touched || categoria?.dirty)}">
+            @for (cat of categorias; track cat) {
+            <option [value]="cat">{{cat}}</option>
+            }
+          </select>
+          <div *ngIf="categoria?.invalid && (categoria?.touched || categoria?.dirty)" class="invalid-feedback col-12">
+            La categoria es obligatoria.
+          </div>
+        </label>
+      </div>
+-->

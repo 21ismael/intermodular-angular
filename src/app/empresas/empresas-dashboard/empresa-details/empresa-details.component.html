@@ -32,7 +32,8 @@
               <i class="bi bi-person"></i>
             </div>
             <div class="info">
-              <p><span class="small">Puestos disponibles</span><br>{{ empresa.vacantes }} {{empresa.vacantes == 1 ? "puesto" : "puestos"}}</p>
+              <p><span class="small">Puestos disponibles</span><br>{{ empresa.vacantes }} {{empresa.vacantes == 1 ?
+                "puesto" : "puestos"}}</p>
             </div>
           </div>
         </div>
@@ -41,6 +42,15 @@
         <div class="col-12">
           <p class="m-0"><b>Descripción: </b></p>
           <p>{{empresa.descripcion}}</p>
+        </div>
+      </div>
+      <div class="d-flex w-100 flex-column mb-4">
+        <label class="mb-1" style="margin-right: 20px;"><b>Calificación</b></label>
+        <div class="progress mt-1" style="width: 500px;">
+          <div class="progress-bar bg-warning" role="progressbar" [style.width.%]="(empresa.nota / 5) * 100"
+            [attr.aria-valuenow]="empresa.nota" aria-valuemin="0" aria-valuemax="5">
+            <span>{{ empresa.nota }} / 5 ★</span>
+          </div>
         </div>
       </div>
     </div>

@@ -1,35 +1,37 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CapitalizarPipe } from '../pipes/capitalizar.pipe';
 import { EmpresasService } from '../empresas/empresas-dashboard/empresas.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { Empresa } from '../empresas/empresas-dashboard/empresa/empresa';
-import { Categoria } from '../Interfaces/categoria';
 
 @Component({
-  selector: 'app-add-empresa',
+  selector: 'app-editar-empresa',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, CapitalizarPipe],
-  templateUrl: './add-empresa.component.html',
-  styleUrl: './add-empresa.component.scss'
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  templateUrl: './editar-empresa.component.html',
+  styleUrl: './editar-empresa.component.scss'
 })
-export class AddEmpresaComponent {
-  constructor(private empresasService: EmpresasService, private router: Router) { }
+export class EditarEmpresaComponent {
+  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private empresasService: EmpresasService, private router: Router) { }
 
+  empresa!: any;
   subscription!: Subscription;
 
   ubicacion: any = [];
   provincias: string[] = [];
   localidades: string[] = [];
 
-  categorias: Categoria[] = [];
+  isDisabled: boolean = true;
+
+  categorias: string[] = ['Programación Web', 'Programación Multimedía', 'Administración de Sistemas'];
 
   imagenBase64 = '';
 
   empresaFormGroup = new FormGroup({
     nombre: new FormControl('', Validators.required),
+    imagen: new FormControl('', Validators.required),
     cif: new FormControl('', Validators.required),
     descripcion: new FormControl('', Validators.required),
     telefono: new FormControl('', Validators.required),
@@ -41,8 +43,7 @@ export class AddEmpresaComponent {
     lng: new FormControl('', Validators.required),
     vacantes: new FormControl('', Validators.required),
     hora_inicio: new FormControl('', Validators.required),
-    hora_fin: new FormControl('', Validators.required),
-    categoria: new FormControl('', Validators.required),
+    hora_fin: new FormControl('', Validators.required)
   })
 
   get nombre() { return this.empresaFormGroup.get('nombre') }
@@ -59,21 +60,17 @@ export class AddEmpresaComponent {
   get inicio() { return this.empresaFormGroup.get('hora_inicio'); }
   get fin() { return this.empresaFormGroup.get('hora_fin'); }
   get categoria() { return this.empresaFormGroup.get('categoria'); }
-
-  empresa: any = {}
+  get imagen() { return this.empresaFormGroup.get('imagen'); }
 
   ngOnInit() {
-    this.empresaFormGroup.valueChanges.subscribe(value => {
-      this.empresa = value;
+    this.route.data.subscribe(({ empresa }) => {
+      this.empresa = empresa
+      console.log(this.empresa);
     });
 
-    this.subscription = this.empresasService.getCategorias().subscribe({
-      next: categorias => {
-        this.categorias = categorias.data;
-        console.log(this.categorias);
-      },
-      error: err => console.error('Error en el observable', err),
-    })
+    /*this.empresaFormGroup.valueChanges.subscribe(value => {
+      this.empresa = value;
+    });*/
 
     this.subscription = this.empresasService.getUbicacion().subscribe({
       next: value => {
@@ -82,9 +79,28 @@ export class AddEmpresaComponent {
         this.ubicacion.data.forEach((prov: any) => {
           this.provincias.push(prov.nombre);
         });
+        this.cambioProvincia();
       },
       error: err => console.error('Error en el observable', err),
     });
+
+    this.empresaFormGroup = new FormGroup({
+      nombre: new FormControl(this.empresa.nombre, Validators.required),
+      imagen: new FormControl('', Validators.required),
+      cif: new FormControl(this.empresa.cif, Validators.required),
+      descripcion: new FormControl(this.empresa.descripcion, Validators.required),
+      telefono: new FormControl(this.empresa.telefono, Validators.required),
+      email: new FormControl(this.empresa.email, [Validators.required, Validators.email]),
+      direccion: new FormControl(this.empresa.ubicacion.direccion, Validators.required),
+      provincia: new FormControl(this.empresa.ubicacion.provincia, Validators.required),
+      localidad: new FormControl(this.empresa.ubicacion.localidad, Validators.required),
+      lat: new FormControl(this.empresa.ubicacion.coordenadas.lat, Validators.required),
+      lng: new FormControl(this.empresa.ubicacion.coordenadas.lng, Validators.required),
+      vacantes: new FormControl(this.empresa.vacantes, Validators.required),
+      hora_inicio: new FormControl(this.empresa.horario.inicio, Validators.required),
+      hora_fin: new FormControl(this.empresa.horario.fin, Validators.required)
+    })
+    this.empresaFormGroup.valueChanges.subscribe(() => this.isDisabled = !this.empresaFormGroup.dirty || this.empresaFormGroup.invalid);
   }
 
   cambioProvincia() {
@@ -134,8 +150,8 @@ export class AddEmpresaComponent {
 
   submit(e: Event) {
     e.preventDefault();
-    //console.log(this.empresa.cif)
     if (this.empresaFormGroup.valid) {
+      console.log("FDf");
       const data = {
         nombre: this.empresaFormGroup.get('nombre')?.value,
         imagen: this.imagenBase64,
@@ -157,7 +173,7 @@ export class AddEmpresaComponent {
 
       console.log(data);
 
-      this.empresasService.postEmpresa(data).subscribe({
+      this.empresasService.editEmpresa(this.empresa.id, data).subscribe({
         next: response => {
           console.log(response);
           this.router.navigate(['/panel/empresas']);
@@ -169,23 +185,3 @@ export class AddEmpresaComponent {
     }
   }
 }
-
-/*
-{
-  "nombre": "Empresa de ejemplo",
-  "imagen": "../../assets/empresas/centauro.jpg",
-  "nota": 5,
-  "cif": "CIF123456",
-  "descripcion": "Descripción de la empresa de ejemplo",
-  "telefono": "123-456-789",
-  "email": "info@empresa.com",
-  "direccion": "Calle Ejemplo 123",
-  "provincia": "Ejemplo",
-  "localidad": "Ciudad Ejemplo",
-  "lat": 40.7128,
-  "lng": -74.0060,
-  "vacantes": 10,
-  "hora_inicio": "09:00:00",
-  "hora_fin": "18:00:00"
-}
-*/

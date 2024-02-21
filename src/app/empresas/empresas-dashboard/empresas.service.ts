@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, retry, throwError } from 'rxjs';
 import { Empresa } from './empresa/empresa';
+import { Categoria } from '../../Interfaces/categoria';
 
 @Injectable({
   providedIn: 'root'
@@ -31,17 +32,20 @@ export class EmpresasService {
     return this.http.post<any>(this.URL, data).pipe(catchError(this.handleHttpError));
   }
 
+  editEmpresa(id: number, data: Partial<any>) {
+    return this.http.put<any>(`${this.URL}/${id}`, data).pipe(catchError(this.handleHttpError));
+  }
+
   deleteEmpresa(id: number) {
-    const deleteUrl = `${this.URL}/${id}`;
-    return this.http.delete<any>(deleteUrl).pipe(catchError(this.handleHttpError));
+    return this.http.delete<any>(`${this.URL}/${id}`).pipe(catchError(this.handleHttpError));
+  }
+
+  getCategorias() : Observable<any> {
+    return this.http.get<any>('http://intermodular-laravel.lo/api/categorias').pipe(catchError(this.handleHttpError));
   }
 
   getUbicacion(): Observable<any> {
     return this.http.get<any>('http://intermodular-laravel.lo/api/provincias');
-  }
-
-  getCategorias(): Observable<any> {
-    return this.http.get<any>('http://localhost:3000/categorias');
   }
 
   private handleHttpError(error : HttpErrorResponse) {

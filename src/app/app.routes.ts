@@ -24,6 +24,7 @@ import { CategoryDetailsResolver, categoriasResolver } from './Resolvers/categor
 import { ViewCategoriaComponent } from './view-categoria/view-categoria.component';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
 import { AddCategoriaComponent } from './add-categoria/add-categoria.component';
+import { EditarEmpresaComponent } from './editar-empresa/editar-empresa.component';
 
 
 export const routes: Routes = [
@@ -42,6 +43,7 @@ export const routes: Routes = [
     { path: 'add/tutor', component: AddTutorComponent, title: 'Añadir Tutor', data: { roles: ['admin', 'centro'] } },
     { path: 'add/categoria', component: AddCategoriaComponent, title: 'Añadir Categoría', data: { roles: ['admin', 'centro'] } },
     { path: 'add/empresa', component: AddEmpresaComponent, title: 'Añadir Empresa', data: { roles: ['admin', 'centro', 'tutor'] } },
+    { path: 'edit/empresa/:id', component: EditarEmpresaComponent, title: 'Editar Empresa', resolve: { empresa: detailsResolver }, data: { roles: ['admin'] } },
     { path: 'edit/centro/:id', component: EditCentroComponent, title: 'Editar Centro', resolve: {centro: centroDetailsResolver}, data: { roles: ['admin'] } },
     { path: 'edit/tutor/:id', component: EditTutorComponent, title: 'Editar Tutor', resolve: {usuario: userDetailsResolver}, data: { roles: ['admin', 'centro'] } },
     { path: 'edit/categoria/:id', component: EditCategoryComponent, title: 'Editar Categoría', resolve: {categoria: CategoryDetailsResolver}, data: { roles: ['admin', 'centro'] } }
