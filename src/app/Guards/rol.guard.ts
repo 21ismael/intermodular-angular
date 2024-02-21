@@ -6,7 +6,7 @@ export const rolGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state) =>
   const usuarioRolesString = sessionStorage.getItem('roles');
 
   if (!usuarioRolesString) {
-    return inject(Router).createUrlTree(['/main']);
+    return inject(Router).createUrlTree(['/empresas']);
   }
 
   let acceso = false;
@@ -24,7 +24,7 @@ export const rolGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state) =>
   }
 
   if (!acceso) {
-    return inject(Router).createUrlTree(['/main']);
+    return inject(Router).createUrlTree(['/empresas']);
   }
 
   return true;

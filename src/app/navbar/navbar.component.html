@@ -6,11 +6,11 @@
     <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navbar-ul">
       <li class="nav-item my-3 mx-2">
         @if (userLoggedRoles.includes('admin') || userLoggedRoles === 'admin') {
-          <button class="secondary-btn w-100" matTooltip="Panel de administrador" (click)="navigate('/panel')">
+          <button class="secondary-btn w-100" matTooltip="Panel de administrador" (click)="navigate('/panel/categorias')">
             <i class="bi bi-key"></i>
           </button>
         } @else {
-          <button class="secondary-btn w-100" matTooltip="Información" (click)="navigate('/panel')">
+          <button class="secondary-btn w-100" matTooltip="Información" (click)="navigate('/panel/categorias')">
             <i class="bi bi-info-circle"></i>
           </button>
         }
