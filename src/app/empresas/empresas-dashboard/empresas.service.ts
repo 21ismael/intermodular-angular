@@ -37,8 +37,7 @@ export class EmpresasService {
   }
 
   deleteEmpresa(id: number) {
-    const deleteUrl = `${this.URL}/${id}`;
-    return this.http.delete<any>(deleteUrl).pipe(catchError(this.handleHttpError));
+    return this.http.delete<any>(`${this.URL}/${id}`).pipe(catchError(this.handleHttpError));
   }
 
   getCategorias() : Observable<any> {

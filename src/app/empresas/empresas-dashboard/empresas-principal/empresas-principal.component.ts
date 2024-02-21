@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
-import { FiltrosComponent } from '../filtros/filtros.component';
 import { CuerpoComponent } from '../cuerpo/cuerpo.component';
-import { FiltroComponentComponent } from '../../../filtro-component/filtro-component.component';
 import { RouterModule } from '@angular/router';
+import { FiltrosComponent } from '../filtros/filtros.component';
 
 @Component({
   selector: 'app-empresas-principal',
   standalone: true,
-  imports: [RouterModule, FiltrosComponent, CuerpoComponent, FiltroComponentComponent],
+  imports: [RouterModule, FiltrosComponent, CuerpoComponent],
   templateUrl: './empresas-principal.component.html',
   styleUrl: './empresas-principal.component.scss'
 })

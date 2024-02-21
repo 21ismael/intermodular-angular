@@ -134,6 +134,7 @@ export class AddEmpresaComponent {
 
   submit(e: Event) {
     e.preventDefault();
+    //console.log(this.empresa.cif)
     if (this.empresaFormGroup.valid) {
       const data = {
         nombre: this.empresaFormGroup.get('nombre')?.value,
@@ -167,7 +168,6 @@ export class AddEmpresaComponent {
       });
     }
   }
-
 }
 
 /*

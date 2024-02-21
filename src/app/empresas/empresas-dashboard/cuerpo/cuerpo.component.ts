@@ -7,11 +7,12 @@ import { ActivatedRoute } from '@angular/router';
 import { FiltrosService } from '../filtros.service';
 import { MatTabsModule } from '@angular/material/tabs';
 import { GoogleMap, MapGeocoder, MapInfoWindow, MapMarker } from '@angular/google-maps';
+import { TelPipe } from '../../../pipes/tel.pipe';
 
 @Component({
   selector: 'app-cuerpo',
   standalone: true,
-  imports: [CommonModule, EmpresaComponent, MatTabsModule, GoogleMap, MapMarker, MapInfoWindow],
+  imports: [CommonModule, EmpresaComponent, MatTabsModule, GoogleMap, MapMarker, MapInfoWindow, TelPipe],
   templateUrl: './cuerpo.component.html',
   styleUrl: './cuerpo.component.scss'
 })

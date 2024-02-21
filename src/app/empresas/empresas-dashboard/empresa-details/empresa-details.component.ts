@@ -21,16 +21,3 @@ export class EmpresaDetailsComponent {
     console.log(this.empresa);
   }
 }
-
-/*
-import { ActivatedRoute } from '@angular/router';
-
-constructor(private route: ActivatedRoute) { }
-
-ngOnInit() {
-  this.route.data.subscribe(data => {
-    this.empresa = data.empresa;
-  });
-}
-
-*/

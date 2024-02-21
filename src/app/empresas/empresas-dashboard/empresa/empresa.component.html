@@ -14,11 +14,11 @@
   </div>
   <div class="inline">
     <i class="bi bi-telephone"></i>
-    <p><a href="{{ empresa.telefono }}">Teléfono de contacto</a></p>
+    <p><a href="{{ empresa.telefono | tel }}">Teléfono de contacto</a></p>
   </div>
   <div class="inline">
     <i class="bi bi-envelope"></i>
-    <p><a href="{{ empresa.email }}">Correo electrónico</a></p>
+    <p><a href="{{ empresa.email | email}}">Correo electrónico</a></p>
   </div>
   <div class="inline">
     <i class="bi bi-clock-history"></i>
