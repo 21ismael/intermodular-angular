@@ -8,11 +8,12 @@ import { FiltrosService } from '../filtros.service';
 import { MatTabsModule } from '@angular/material/tabs';
 import { GoogleMap, MapGeocoder, MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { TelPipe } from '../../../pipes/tel.pipe';
+import { EmailPipe } from '../../../pipes/email.pipe';
 
 @Component({
   selector: 'app-cuerpo',
   standalone: true,
-  imports: [CommonModule, EmpresaComponent, MatTabsModule, GoogleMap, MapMarker, MapInfoWindow, TelPipe],
+  imports: [CommonModule, EmpresaComponent, MatTabsModule, GoogleMap, MapMarker, MapInfoWindow, TelPipe, EmailPipe],
   templateUrl: './cuerpo.component.html',
   styleUrl: './cuerpo.component.scss'
 })

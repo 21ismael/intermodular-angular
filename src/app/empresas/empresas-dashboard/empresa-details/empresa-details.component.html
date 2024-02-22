@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-12 col-lg-7">
       <p id="localidad">{{ empresa.ubicacion.localidad }} - ({{ empresa.ubicacion.provincia }})</p>
-      <h1 id="nombre" class="mb-3">{{ empresa.nombre }}</h1>
+      <h1 id="nombre" class="mb-3">{{ empresa.nombre }}  <b><small style="font-size: medium;"><a href="{{ empresa.email | email}}" style="color: orangered; text-decoration: none;">Contactar</a></small></b></h1>
       <div class="row">
         <div class="col-12 col-xl-4">
           <div class="ubicacion d-flex">

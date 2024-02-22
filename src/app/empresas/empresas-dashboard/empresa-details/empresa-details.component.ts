@@ -3,11 +3,12 @@ import { Empresa } from '../empresa/empresa';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FiltrosComponent } from '../filtros/filtros.component';
+import { EmailPipe } from '../../../pipes/email.pipe';
 
 @Component({
   selector: 'app-empresa-details',
   standalone: true,
-  imports: [CommonModule, FiltrosComponent],
+  imports: [CommonModule, FiltrosComponent, EmailPipe],
   templateUrl: './empresa-details.component.html',
   styleUrl: './empresa-details.component.scss'
 })
